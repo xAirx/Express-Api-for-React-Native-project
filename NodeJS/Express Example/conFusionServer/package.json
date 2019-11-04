@@ -13,6 +13,8 @@
     "jade": "~1.11.0",
     "mongoose": "^5.7.7",
     "mongoose-currency": "^0.2.0",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "swagger-jsdoc": "^3.4.0",
+    "swagger-ui-express": "^4.1.2"
   }
 }

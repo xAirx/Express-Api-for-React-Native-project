@@ -4,11 +4,11 @@ const mongoose = require('mongoose');
 
 const Dishes = require('../models/dishes');
 
-const dishRouter = express.Router();
+const DishRouter = express.Router();
 
-dishRouter.use(bodyParser.json());
+DishRouter.use(bodyParser.json());
 
-dishRouter.route('/')
+DishRouter.route('/')
     .get((req, res, next) => {
         Dishes.find({})
             .then((dishes) => {
@@ -42,7 +42,7 @@ dishRouter.route('/')
             .catch((err) => next(err));
     });
 
-dishRouter.route('/:dishId')
+DishRouter.route('/:dishId')
     .get((req, res, next) => {
         Dishes.findById(req.params.dishId)
             .then((dish) => {
@@ -79,11 +79,11 @@ dishRouter.route('/:dishId')
 
 //// DISH ID COMMENTS
 
-dishRouter.route('/:dishId/comments')
+DishRouter.route('/:dishId/comments')
     .get((req, res, next) => {
         Dishes.findById(req.params.dishId)
             .then((dish) => {
-                if (dish != null) {
+                if (dish !== null) {
                     res.statusCode = 200;
                     res.setHeader('Content-Type', 'application/json');
                     res.json(dish.comments);
@@ -97,24 +97,18 @@ dishRouter.route('/:dishId/comments')
             .catch((err) => next(err));
     })
     .post((req, res, next) => {
-        Dishes.findById(req.params.dishId)
-            .then((dish) => {
-                if (dish != null) {
-                    dish.comments.push(req.body);
-                    dish.save()
-                        .then((dish) => {
-                            res.statusCode = 200;
-                            res.setHeader('Content-Type', 'application/json');
-                            res.json(dish);
-                        }, (err) => next(err));
-                }
-                else {
-                    err = new Error('Dish ' + req.params.dishId + ' not found');
-                    err.status = 404;
-                    return next(err);
-                }
-            }, (err) => next(err))
-            .catch((err) => next(err));
+        Dishes.findByIdAndUpdate(req.params.dishId,
+            { "$push": { "comments": req.body } },
+            { "new": true },
+            function (err, managerparent) {
+                if (err) throw err;
+                res.statusCode = 200;
+                res.send('Added comment to successfully')
+                console.log(managerparent);
+            },
+            // Send Success RESPONSE.
+        );
+
     })
     .put((req, res, next) => {
         res.statusCode = 403;
@@ -144,7 +138,7 @@ dishRouter.route('/:dishId/comments')
             .catch((err) => next(err));
     });
 
-dishRouter.route('/:dishId/comments/:commentId')
+DishRouter.route('/:dishId/comments/:commentId')
     .get((req, res, next) => {
         Dishes.findById(req.params.dishId)
             .then((dish) => {
@@ -227,4 +221,4 @@ dishRouter.route('/:dishId/comments/:commentId')
             .catch((err) => next(err));
     });
 
-module.exports = dishRouter;
+module.exports = DishRouter;

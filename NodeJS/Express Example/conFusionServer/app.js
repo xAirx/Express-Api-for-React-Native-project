@@ -10,6 +10,34 @@ const dishesRouter = require('./routes/dishRouter')
 const promoRouter = require('./routes/promoRouter')
 const leaderRouter = require('./routes/leaderRouter')
 
+/* const swaggerJSDoc = require('swagger-jsdoc');
+ */
+/* const options = {
+  definition: {
+    openapi: '3.0.0', // Specification (optional, defaults to swagger: '2.0')
+    info: {
+      title: 'Hello World', // Title (required)
+      version: '1.0.0', // Version (required)
+    },
+  },
+  // Path to the API docs
+  apis: ['./routes.js'],
+}; */
+
+// Initialize swagger-jsdoc -> returns validated swagger spec in json format
+/* const swaggerSpec = swaggerJSDoc(options);
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
+app.use('/api-docs', function (req, res, next) {
+  swaggerDocument.host = req.get('host');
+  req.swaggerDoc = swaggerDocument;
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+  next();
+}, swaggerUi.serve, swaggerUi.setup()); */
+
 const app = express();
 
 //// CONNECT TO MONGOOSE SERVER ////
