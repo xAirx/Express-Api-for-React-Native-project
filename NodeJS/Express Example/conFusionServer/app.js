@@ -52,7 +52,7 @@ connect.then((db) => {
   console.log("Connected correctly to server");
 }, (err) => { console.log(err); });
 
-///////////////////////////////////
+/////////////////////////////////// f
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -62,6 +62,45 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+
+//Adding authentication to allow the client to grab data after being authenticated.
+
+//basic auth which runs before all other middleware.
+function auth(req, res, next) {
+  console.log(req.headers);
+  var authHeader = req.headers.authorization;
+  if (!authHeader) {
+    var err = new Error('You are not authenticated!');
+    res.setHeader('WWW-Authenticate', 'Basic');
+    err.status = 401;
+    next(err);
+    return;
+  }
+
+  // we are splitting the headers here, extracting user and pass.
+
+  var auth = new Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
+  var user = auth[0];
+  var pass = auth[1];
+
+  // checking for authorization.
+
+  if (user == 'admin' && pass == 'password') {
+    next(); // authorized
+  } else {
+    var err = new Error('You are not authenticated!');
+    res.setHeader('WWW-Authenticate', 'Basic');
+    err.status = 401;
+    next(err);
+  }
+}
+
+app.use(auth);
+
+
+
+// Enables us to serve static data from our public folder.
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
