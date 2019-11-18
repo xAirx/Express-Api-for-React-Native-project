@@ -3,13 +3,15 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-var session = require('express-session');
-var FileStore = require('session-file-store')(session);
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/usersRouter');
 const dishesRouter = require('./routes/dishRouter')
 const promoRouter = require('./routes/promoRouter')
 const leaderRouter = require('./routes/leaderRouter')
+const passport = require('passport');
+const authenticate = require('./authenticate')
 /* const swaggerJSDoc = require('swagger-jsdoc');
  */
 /* const options = {
@@ -77,28 +79,52 @@ app.use(session({
   store: new FileStore()
 }));
 
+/* at the login stage,
+the passport authenticate local will
+automatically add the user property to the request message.
+So, it'll add req.user and then,
+the passport session that we have done here will automatically
+serialize that user information and then store it in the session.
+So, and subsequently, whenever
+a incoming request comes in from the client side
+with the session cookie already in place,
+then this will automatically load the req.user onto the incoming request.  */
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 // User authentication with routing
 // an incoming user can access the index file and acccess the users endpoint without being authenticated. any other endpoint will require authentication below.
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 function auth(req, res, next) {
-  console.log(req.session);
+  /*
+    So, your authentication code becomes lot more simpler because if req.user is not present,
+  then that means that the authentication has not been done correctly so,
+  that's why you indicate the error.
+  Otherwise, you are authenticated.
+  If req.user is present,
+  that means the passport has done the authentication and the
+  req.user user is loaded on to the request message,
+  and so you can just go on further down. */
 
-  if (!req.session.user) {
+
+  /*   if (!req.session.user) { */
+  if (!req.user) {
     var err = new Error('You are not authenticated!');
     err.status = 403;
     return next(err);
   }
   else {
-    if (req.session.user === 'authenticated') {
-      next();
-    }
+    /*    if (req.user === 'authenticated') { */
+    next();
+    /* }
     else {
       var err = new Error('You are not authenticated!');
       err.status = 403;
       return next(err);
-    }
+    } */
   }
 }
 
