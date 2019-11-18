@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const User = require('../models/user');
 const UsersRouter = express.Router()
 UsersRouter.use(bodyParser.json());
-
+const authenticate = require('../authenticate');
 /* UsersRouter.post('/signup', (req, res, next) => {
   User.findOne({ username: req.body.username })
     .then((user) => {
@@ -49,9 +49,20 @@ UsersRouter.post('/signup', (req, res, next) => {
 
 
 UsersRouter.post('/login', passport.authenticate('local'), (req, res) => {
+
+  // CREATING TOKEN UPON LOGGING IN
+  /*  we'll say id: req.user._id.
+   That is sufficient enough for creating the JsonWebToken.
+   We don't want to include any other of the user's information.
+   If you choose to, you can include other parts of the user information,
+   but I would suggest that keep the JsonWebToken small.
+   The user ID is sufficient enough because if you need to search for the user,
+   the user ID is enough to search in the MongoDB for the user. */
+  const token = authenticate.getToken({ _id: req.user._id });
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');
-  res.json({ success: true, status: 'You are successfully logged in!' });
+  // SENDING THE TOKEN IN THE HEADER HERE:
+  res.json({ success: true, token: token, status: 'You are successfully logged in!' });
 });
 
 /*

@@ -1,7 +1,12 @@
-var passport = require('passport');
+const passport = require('passport');
 // Exports a strategy that we can use for our application.
-var LocalStrategy = require('passport-local').Strategy;
-var User = require('./models/user');
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('./models/user');
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
+const jwt = require('jsonwebtoken');
+
+const config = require('./config');
 
 /* passport use and say
 new LocalStrategy and then this is where
@@ -32,3 +37,68 @@ the user schema and model by the use of the passport-local-mongoose plugin here.
 passport.serializeUser(User.serializeUser());
 
 passport.deserializeUser(User.deserializeUser());
+
+// Creating the token
+exports.getToken = function (user) {
+
+	/* 	this helps us to create the JSON Web Token and so inside that it'll
+	allow me to supply the payload and
+	the payload here comes in as the parameter here called user,
+	and then the second parameter is
+	the secret or private key which I get from config.secret key, */
+
+	return jwt.sign(user, config.secretKey, { expiresIn: 3600 });
+};
+
+const opts = {};
+
+/* Now this option specifies
+how the jsonwebtoken should be extracted from the incoming request message.
+This is where we will use the extract JWT.
+This extract JWT supports various methods
+for extracting information from the header.
+It'll say from authHeader from authHeader as bearer token,
+from header which scheme and so on.
+If you read the documentation it will tell
+you various ways of extracting the jsonwebtoken. */
+opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+
+
+/* The next one we'll say opts.secretOrKey,
+this is the second parameter which helps me to
+supply the secret key which I'm going to be using within my strategy for the sign-in */
+opts.secretOrKey = config.secretKey;
+
+
+/* functionJWT_payload. */
+/* Done. So, when this function is called, */
+/* the done is the callback that is provided b y passport.*/
+/* So, whenever you have passport which you're  configuring with a new strategy,/
+/* you need to supply the second parameter don e.*/
+/* Through this done parameter, */
+/* you will be passing back information to pas sport which it will then*/
+/* use for loading things onto the request mes sage.*/
+/* So, when passport parses the request messag e,*/
+/* it will use the strategy and then extract i nformation,*/
+/* and then load it onto our request message.  */
+exports.jwtPassport = passport.use(new JwtStrategy(opts,
+	(jwt_payload, done) => {
+		console.log("JWTPAYLOAD: ", jwt_payload);
+		User.findOne({ _id: jwt_payload._id }, (err, user) => {
+			if (err) {
+				/* 		User.findOne and the second one
+	is a callback function.
+	As you realize, this user Mongoose method and you try to find.
+	So, we'll say if err then, return done.
+	What does this done? This done is the callback that
+	passport will pass into your strategy here. */
+				return done
+			}
+		})
+	}));
+
+// We are creating no sessions, since we are using JWT based auth.
+// WE AUTHENTICATE HERE WITH THE TOKEN AND VERIFY THE USERS:
+
+// ANY PLACE WE WANT TO VERIFYUSER WE CAN USE THIS EXPORT.
+exports.verifyUser = passport.authenticate('jwt', { session: false })
