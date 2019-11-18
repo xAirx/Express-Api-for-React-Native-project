@@ -6,11 +6,10 @@ const logger = require('morgan');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const usersRouter = require('./routes/usersRouter');
 const dishesRouter = require('./routes/dishRouter')
 const promoRouter = require('./routes/promoRouter')
 const leaderRouter = require('./routes/leaderRouter')
-
 /* const swaggerJSDoc = require('swagger-jsdoc');
  */
 /* const options = {
@@ -78,7 +77,35 @@ app.use(session({
   store: new FileStore()
 }));
 
+// User authentication with routing
+// an incoming user can access the index file and acccess the users endpoint without being authenticated. any other endpoint will require authentication below.
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
 function auth(req, res, next) {
+  console.log(req.session);
+
+  if (!req.session.user) {
+    var err = new Error('You are not authenticated!');
+    err.status = 403;
+    return next(err);
+  }
+  else {
+    if (req.session.user === 'authenticated') {
+      next();
+    }
+    else {
+      var err = new Error('You are not authenticated!');
+      err.status = 403;
+      return next(err);
+    }
+  }
+}
+
+
+// COOKIE AND SESSION EXAMPLE
+
+/* function auth(req, res, next) {
   console.log(req.session);
 
   if (!req.session.user) {
@@ -114,7 +141,7 @@ function auth(req, res, next) {
       next(err);
     }
   }
-}
+} */
 
 app.use(auth);
 
@@ -122,8 +149,6 @@ app.use(auth);
 // Enables us to serve static data from our public folder.
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/dishes', dishesRouter)
 app.use('/promotions', promoRouter)
 app.use('/leaders', leaderRouter)
