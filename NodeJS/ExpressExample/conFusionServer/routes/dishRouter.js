@@ -4,13 +4,25 @@ const mongoose = require('mongoose');
 const Dishes = require('../models/dishes');
 const authenticate = require('../authenticate');
 const DishRouter = express.Router();
+var cors = require('cors')
 
 DishRouter.use(bodyParser.json());
 
 
-dishRouter.route('/')
+DishRouter.route('/')
     .get((req, res, next) => {
         Dishes.find({})
+
+            /*   dishes find and we will say after this, populate.
+              So, we are using the population support in mongoose
+              and we'll say populate comments author.
+              So, by stating this,
+              we are saying when
+              the dishes document has been constructed to send back the reply to the user,
+              we're going to populate the author field inside there from the user document in there.
+              So, this call to the populate will ensure that
+              the other field will be populated with the information as required. */
+
             .populate('comments.author')
             .then((dishes) => {
                 res.statusCode = 200;
@@ -31,7 +43,7 @@ dishRouter.route('/')
     If the authentication fails at this point,
     then passport authenticate will reply
     back to the client with the appropriate error message. */
-    .post(authenticate.verifyUser, (req, res, next) => {
+    .post(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
         Dishes.create(req.body)
             .then((dish) => {
                 console.log('Dish Created ', dish);
@@ -41,11 +53,11 @@ dishRouter.route('/')
             }, (err) => next(err))
             .catch((err) => next(err));
     })
-    .put(authenticate.verifyUser, (req, res, next) => {
+    .put(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
         res.statusCode = 403;
         res.end('PUT operation not supported on /dishes');
     })
-    .delete(authenticate.verifyUser, (req, res, next) => {
+    .delete(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
         Dishes.remove({})
             .then((resp) => {
                 res.statusCode = 200;
@@ -56,9 +68,21 @@ dishRouter.route('/')
     });
 
 
-dishRouter.route('/:dishId')
+DishRouter.route('/:dishId')
     .get((req, res, next) => {
         Dishes.findById(req.params.dishId)
+
+            /*   dishes find and we will say after this, populate.
+                  So, we are using the population support in mongoose
+                  and we'll say populate comments author.
+                  So, by stating this,
+                  we are saying when
+                  the dishes document has been constructed to send back the reply to the user,
+                  we're going to populate the author field inside there from the user document in there.
+                  So, this call to the populate will ensure that
+                  the other field will be populated with the information as required. */
+
+
             .populate('comments.author')
             .then((dish) => {
                 res.statusCode = 200;
@@ -68,11 +92,11 @@ dishRouter.route('/:dishId')
             .catch((err) => next(err));
     })
 
-    .post(authenticate.verifyUser, (req, res, next) => {
+    .post(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
         res.statusCode = 403;
         res.end('POST operation not supported on /dishes/' + req.params.dishId);
     })
-    .put(authenticate.verifyUser, (req, res, next) => {
+    .put(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
         Dishes.findByIdAndUpdate(req.params.dishId, {
             $set: req.body
         }, { new: true })
@@ -83,7 +107,7 @@ dishRouter.route('/:dishId')
             }, (err) => next(err))
             .catch((err) => next(err));
     })
-    .delete(authenticate.verifyUser, (req, res, next) => {
+    .delete(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
         Dishes.findByIdAndRemove(req.params.dishId)
             .then((resp) => {
                 res.statusCode = 200;
@@ -96,7 +120,7 @@ dishRouter.route('/:dishId')
 //// DISH ID COMMENTS
 
 
-dishRouter.route('/:dishId/comments')
+DishRouter.route('/:dishId/comments')
     .get((req, res, next) => {
         Dishes.findById(req.params.dishId)
             .populate('comments.author')
@@ -118,6 +142,20 @@ dishRouter.route('/:dishId/comments')
         Dishes.findById(req.params.dishId)
             .then((dish) => {
                 if (dish != null) {
+
+                    /*            Recall that the body contains the comment already,
+           but the author property will not be there in the body of the message in the book,
+           but depending on which user is posting this information,
+           we can immediately populate the author field.
+           Now, how do we know which user is posting this information?
+           The fact that we have done the verify user here for the post,
+           means that a specific user is posting this information,
+           and by doing the verify user,
+           we would have already loaded in the req.user into the request object.
+           In the request object,
+           we can go in and say wreck user,
+           and then underscore ID here. */
+
                     req.body.author = req.user._id;
                     dish.comments.push(req.body);
                     dish.save()
@@ -145,7 +183,7 @@ dishRouter.route('/:dishId/comments')
         res.end('PUT operation not supported on /dishes/'
             + req.params.dishId + '/comments');
     })
-    .delete(authenticate.verifyUser, (req, res, next) => {
+    .delete(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
         Dishes.findById(req.params.dishId)
             .then((dish) => {
                 if (dish != null) {
@@ -168,12 +206,19 @@ dishRouter.route('/:dishId/comments')
             .catch((err) => next(err));
     });
 
-dishRouter.route('/:dishId/comments/:commentId')
+
+/*    Allow a registered user to submit comments (already completed),
+   update a submitted comment and delete a submitted comment.
+   The user should be restricted to perform such operations only on his/her own comments.
+   No user or even the Admin can edit or delete the comments submitted by other users. */
+DishRouter.route('/:dishId/comments/:commentId')
     .get((req, res, next) => {
         Dishes.findById(req.params.dishId)
             .populate('comments.author')
             .then((dish) => {
-                if (dish != null && dish.comments.id(req.params.commentId) != null) {
+                if (dish != null && dish.comments.id(req.params.commentId) != null
+                    && dish.comments.id(req.params.commentId).author.equals(req.user._id)) {
+
                     res.statusCode = 200;
                     res.setHeader('Content-Type', 'application/json');
                     res.json(dish.comments.id(req.params.commentId));
@@ -183,9 +228,14 @@ dishRouter.route('/:dishId/comments/:commentId')
                     err.status = 404;
                     return next(err);
                 }
-                else {
+                else if (dish.comments.id(req.params.commentId) == null) {
                     err = new Error('Comment ' + req.params.commentId + ' not found');
                     err.status = 404;
+                    return next(err);
+                }
+                else {
+                    err = new Error('You are not authorized to update this comment!');
+                    err.status = 403;
                     return next(err);
                 }
             }, (err) => next(err))
@@ -196,10 +246,18 @@ dishRouter.route('/:dishId/comments/:commentId')
         res.end('POST operation not supported on /dishes/' + req.params.dishId
             + '/comments/' + req.params.commentId);
     })
-    .put(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
+    .put(authenticate.verifyUser, (req, res, next) => {
         Dishes.findById(req.params.dishId)
             .then((dish) => {
-                if (dish != null && dish.comments.id(req.params.commentId) != null) {
+                /*                 Allow a registered user to submit comments
+(already completed), update a submitted comment and delete a
+submitted comment. The user should be restricted to
+perform such operations only on his/her own comments.
+No user or even the Admin can edit or delete the comments
+ submitted by other users.
+ */                if (dish != null && dish.comments.id(req.params.commentId) != null
+                    && dish.comments.id(req.params.commentId).author.equals(req.user._id)) {
+                    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     if (req.body.rating) {
                         dish.comments.id(req.params.commentId).rating = req.body.rating;
                     }
@@ -222,18 +280,31 @@ dishRouter.route('/:dishId/comments/:commentId')
                     err.status = 404;
                     return next(err);
                 }
-                else {
+                else if (dish.comments.id(req.params.commentId) == null) {
                     err = new Error('Comment ' + req.params.commentId + ' not found');
                     err.status = 404;
+                    return next(err);
+                }
+                else {
+                    err = new Error('you are not authorized to delete this comment!');
+                    err.status = 403;
                     return next(err);
                 }
             }, (err) => next(err))
             .catch((err) => next(err));
     })
-    .delete(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
+    .delete(authenticate.verifyUser, (req, res, next) => {
         Dishes.findById(req.params.dishId)
             .then((dish) => {
-                if (dish != null && dish.comments.id(req.params.commentId) != null) {
+
+/*                 Allow a registered user to submit comments
+(already completed), update a submitted comment and delete a
+submitted comment. The user should be restricted to
+perform such operations only on his/her own comments.
+No user or even the Admin can edit or delete the comments
+ submitted by other users.
+ */                if (dish != null && dish.comments.id(req.params.commentId) != null
+                    && dish.comments.id(req.params.commentId).author.equals(req.user._id)) {
 
                     dish.comments.id(req.params.commentId).remove();
                     dish.save()
@@ -252,9 +323,14 @@ dishRouter.route('/:dishId/comments/:commentId')
                     err.status = 404;
                     return next(err);
                 }
-                else {
+                else if (dish.comments.id(req.params.commentId) == null) {
                     err = new Error('Comment ' + req.params.commentId + ' not found');
                     err.status = 404;
+                    return next(err);
+                }
+                else {
+                    err = new Error('you are not authorized to delete this comment!');
+                    err.status = 403;
                     return next(err);
                 }
             }, (err) => next(err))

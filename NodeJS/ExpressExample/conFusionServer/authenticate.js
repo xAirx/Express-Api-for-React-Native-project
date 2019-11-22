@@ -62,7 +62,7 @@ from header which scheme and so on.
 If you read the documentation it will tell
 you various ways of extracting the jsonwebtoken. */
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-
+/* jwtFromRequest : ExtractJWT.fromUrlQueryParameter('secret_token') */
 
 /* The next one we'll say opts.secretOrKey,
 this is the second parameter which helps me to
@@ -102,3 +102,21 @@ exports.jwtPassport = passport.use(new JwtStrategy(opts,
 
 // ANY PLACE WE WANT TO VERIFYUSER WE CAN USE THIS EXPORT.
 exports.verifyUser = passport.authenticate('jwt', { session: false })
+
+
+//Check if a verified ordinary user also has Admin privileges.
+exports.verifyAdmin = function (req, res, next) {
+	User.findOne({ _id: req.user._id })
+		.then((user) => {
+			console.log("User: ", req.user);
+			if (user.admin) {
+				next();
+			}
+			else {
+				err = new Error('You are not authorized to perform this operation!');
+				err.sttatus = 403;
+				return next(err);
+			}
+		}, (err) => next(err))
+		.catch((err) => next(err))
+}

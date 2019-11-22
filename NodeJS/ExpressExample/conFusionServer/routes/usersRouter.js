@@ -29,7 +29,18 @@ const authenticate = require('../authenticate');
 }); */
 
 //////// Using PASSPORT //////////
-router.post('/signup', (req, res, next) => {
+
+UsersRouter.get('/', authenticate.verifyAdmin, (req, res, next) => {
+  User.find({})
+    .then((users) => {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.json(users);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+});
+
+UsersRouter.post('/signup', (req, res, next) => {
   User.register(new User({ username: req.body.username }),
     req.body.password, (err, user) => {
       if (err) {

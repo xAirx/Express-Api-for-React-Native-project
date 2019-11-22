@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
+// hash and salt is automatically added by passportLocalMongooose.
 var passportLocalMongoose = require('passport-local-mongoose');
 
 
