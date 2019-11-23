@@ -17,7 +17,8 @@ var User = new Schema({
 	admin: {
 		type: Boolean,
 		default: false
-	}
+	},
+	facebookId: String
 });
 
 // Using schema and model with passport localmongoose.
