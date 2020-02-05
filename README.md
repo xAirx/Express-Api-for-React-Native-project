@@ -35,8 +35,11 @@ cd /conFusionServer
     Getting started
 
     Install JSON Server
-
-    npm install
+    
+    npm install -g json-server
+    
+    
+    
 
     Start JSON Server
 
