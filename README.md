@@ -1,6 +1,12 @@
 # Coursera-UniversyofHK-ServerSideNode
 
-# Start json server to make API work for website and app..
+# Make sure to check baseURLS in each project matches the exposed URL :) 
+
+    https://github.com/xAirx/Coursera-UniversityofHK-ReactNative/blob/master/ReactNative/confusion/shared/baseurl.js
+
+
+    https://github.com/xAirx/Coursera-UniversityofHK-React/blob/master/confusion/src/shared/baseUrl.js
+
 
 # cd /conFusionServer
 
