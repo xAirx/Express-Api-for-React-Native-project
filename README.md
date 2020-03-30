@@ -30,12 +30,14 @@
     TODO: Access with commandline   
     commandline: 
     
+    https://docs.mongodb.com/manual/mongo/
+    
     
     
     TODO: Access with mongoDBAtlas:
     
     
-    
+    TODO: https://geekflare.com/getting-started-mongodb/
     
     
     
