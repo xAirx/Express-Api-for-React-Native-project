@@ -1,4 +1,4 @@
-# Coursera-UniversyofHK-ServerSideNode
+# Backend-for-React-Native-project
 
 # Make sure to check baseURLS in each project matches the exposed URL :) 
 
