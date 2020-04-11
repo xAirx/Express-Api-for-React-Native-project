@@ -124,3 +124,21 @@
     json-server --watch db.json
 
     Now if you go to http://localhost:3000/dishes  <-- profit.
+
+
+
+# Devlog 
+
+
+### Todo
+
+- [ ] Mercury
+- [x] Venus
+- [x] Earth (Orbit/Moon)
+- [x] Mars
+- [ ] Jupiter
+- [ ] Saturn
+- [ ] Uranus
+- [ ] Neptune
+- [ ] Comet Haley
+
