@@ -1,5 +1,13 @@
 # Backend-for-React-Native-project
 
+
+ ### Endpoints and functionality:
+ 
+ 
+
+
+
+
 # Make sure to check baseURLS in each project matches the exposed URL :) 
 
     https://github.com/xAirx/Coursera-UniversityofHK-ReactNative/blob/master/ReactNative/confusion/shared/baseurl.js
@@ -40,9 +48,7 @@
     TODO: https://geekflare.com/getting-started-mongodb/
     
     
-    
-    
-    
+   
     
     //// CONNECT TO MONGOOSE SERVER ////
     const mongoose = require('mongoose');
