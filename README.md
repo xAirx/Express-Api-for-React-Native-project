@@ -123,7 +123,7 @@
      
 ## DevBranch  
 
-### ------------------Added post functionality for Dishes and Leaders / comments and Feedback------------------
+### -------------Added post functionality for Dishes and Leaders / comments and Feedback------------
 	
 			/routes/leaderRouter.js -implemented
 
@@ -150,7 +150,7 @@
 			    })
 	
 	
-### ------------------------------------HTTPS SECURE CONNECTION TO API------------------------------------
+### -----------------------HTTPS SECURE CONNECTION TO API------------------------
 	
 				root/app.js
 				
@@ -192,7 +192,7 @@
 
 	
 	
-### ------------------------------------Mongoose Population------------------------------------
+### ------------------Mongoose Population-------------------------
 	
 			/models/user.js
 
@@ -200,12 +200,12 @@
 
 
 
-### ------------------------------------Fileuploading with multer------------------------------------
+### ---------------Fileuploading with multer----------------------------
 		 
 			 http://localhost:3000/upload/ , Check UploadRouter under Devbranch  -implemented
 
 	
-### ------------------------------------CORS for express server------------------------------------
+### ---------------CORS for express server----------------------------
 		
 			Check cors.js under routes under Devbranch -implemented
 
@@ -216,7 +216,7 @@
 
 
 	 
-### ------------------------------------PASSPORT JWT, PROTECT ROUTES, ETC------------------------------------
+### ----------------PASSPORT JWT, PROTECT ROUTES, ETC---------------------
 	 
 			 -Adding PASSPORT express mongoose handling, login registration cookies…  -implemented
 			 -Facebook OAUTH implementation  -implemented
@@ -256,7 +256,7 @@
 
 	 
 	      
-### ------------------------------------ADMIN panel ----------------------------------
+### --------------------------ADMIN panel ----------------------------------
 
 		     Authentication based on being an admin or not. -implemented
 
@@ -306,7 +306,7 @@
 							})
 
      
-### ----------------------------------- Backend for Users Panel    ---------------------------------
+### -------------------- Backend for Users Panel    ---------------------------------
      
    
 
