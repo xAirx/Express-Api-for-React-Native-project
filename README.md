@@ -123,34 +123,34 @@
      
 ## DevBranch  
 
-	------------------Added post functionality for Dishes and Leaders / comments and Feedback------------------
+### ------------------Added post functionality for Dishes and Leaders / comments and Feedback------------------
 	
-		/routes/leaderRouter.js -implemented
+			/routes/leaderRouter.js -implemented
+
+			LeaderRouter.route('/')
+			    .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
+			    .get(cors.cors, (req, res, next) => {
+				Leaders.find({})
+				    .then((leaders) => {
+					res.statusCode = 200;
+					res.setHeader('Content-Type', 'application/json');
+					res.json(leaders);
+				    }, (err) => next(err))
+				    .catch((err) => next(err));
+			    })
+			    .post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+				Leaders.create(req.body)
+				    .then((leader) => {
+					console.log('Leader Created ', leaders);
+					res.statusCode = 200;
+					res.setHeader('Content-Type', 'application/json');
+					res.json(leaders);
+				    }, (err) => next(err))
+				    .catch((err) => next(err));
+			    })
 	
-		LeaderRouter.route('/')
-		    .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
-		    .get(cors.cors, (req, res, next) => {
-			Leaders.find({})
-			    .then((leaders) => {
-				res.statusCode = 200;
-				res.setHeader('Content-Type', 'application/json');
-				res.json(leaders);
-			    }, (err) => next(err))
-			    .catch((err) => next(err));
-		    })
-		    .post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-			Leaders.create(req.body)
-			    .then((leader) => {
-				console.log('Leader Created ', leaders);
-				res.statusCode = 200;
-				res.setHeader('Content-Type', 'application/json');
-				res.json(leaders);
-			    }, (err) => next(err))
-			    .catch((err) => next(err));
-		    })
 	
-	
-	------------------------------------HTTPS SECURE CONNECTION TO API------------------------------------
+### ------------------------------------HTTPS SECURE CONNECTION TO API------------------------------------
 	
 				root/app.js
 				
@@ -192,149 +192,149 @@
 
 	
 	
-	------------------------------------Mongoose Population------------------------------------
+### ------------------------------------Mongoose Population------------------------------------
 	
-		/models/user.js
+			/models/user.js
 
-		- express support for user registration and authentication -implemented
+			- express support for user registration and authentication -implemented
 
 
 
-	------------------------------------Fileuploading with multer------------------------------------
+### ------------------------------------Fileuploading with multer------------------------------------
 		 
-		 http://localhost:3000/upload/ , Check UploadRouter under Devbranch  -implemented
+			 http://localhost:3000/upload/ , Check UploadRouter under Devbranch  -implemented
 
 	
-	------------------------------------CORS for express server------------------------------------
+### ------------------------------------CORS for express server------------------------------------
 		
-		Check cors.js under routes under Devbranch -implemented
-		
-		
-		Whitelisting our HTTPS proxy
-		
-		const whitelist = ['http://localhost:3000', 'https://localhost:3443'];
+			Check cors.js under routes under Devbranch -implemented
+
+
+			Whitelisting our HTTPS proxy
+
+			const whitelist = ['http://localhost:3000', 'https://localhost:3443'];
 
 
 	 
-	 ------------------------------------PASSPORT JWT, PROTECT ROUTES, ETC------------------------------------
+### ------------------------------------PASSPORT JWT, PROTECT ROUTES, ETC------------------------------------
 	 
-	 -Adding PASSPORT express mongoose handling, login registration cookies…  -implemented
-	 -Facebook OAUTH implementation  -implemented
-	 
-	 
-	root/authenticate.js
-		exports.facebookPassport = passport.use(new FacebookTokenStrategy({
-			clientID: config.facebook.clientId,
-			clientSecret: config.facebook.clientSecret
-		}, (accessToken, refreshToken, profile, done) => {
-			User.findOne({ facebookId: profile.id }, (err, user) => {
-				if (err) {
-					return done(err, false);
-				}
-				if (!err && user !== null) {
-					return done(null, user);
-				}
-				else {
-					user = new User({ username: profile.displayName });
+			 -Adding PASSPORT express mongoose handling, login registration cookies…  -implemented
+			 -Facebook OAUTH implementation  -implemented
 
-	 -Session and Cookies, and Filestore -implemented
 
-	 
-		 http://localhost:3000/users/  - check UsersRouter under Devbranch
-		
-		 root/authenticate.js
-		 
-			 const passport = require('passport');
-			// Exports a strategy that we can use for our application.
-			const LocalStrategy = require('passport-local').Strategy;
-			const User = require('./models/user');
-			const JwtStrategy = require('passport-jwt').Strategy;
-			const ExtractJwt = require('passport-jwt').ExtractJwt;
-			const jwt = require('jsonwebtoken');
-			var FacebookTokenStrategy = require('passport-facebook-token');
-			const config = require('./config');
+			root/authenticate.js
+				exports.facebookPassport = passport.use(new FacebookTokenStrategy({
+					clientID: config.facebook.clientId,
+					clientSecret: config.facebook.clientSecret
+				}, (accessToken, refreshToken, profile, done) => {
+					User.findOne({ facebookId: profile.id }, (err, user) => {
+						if (err) {
+							return done(err, false);
+						}
+						if (!err && user !== null) {
+							return done(null, user);
+						}
+						else {
+							user = new User({ username: profile.displayName });
+
+			 -Session and Cookies, and Filestore -implemented
+
+
+				 http://localhost:3000/users/  - check UsersRouter under Devbranch
+
+				 root/authenticate.js
+
+					 const passport = require('passport');
+					// Exports a strategy that we can use for our application.
+					const LocalStrategy = require('passport-local').Strategy;
+					const User = require('./models/user');
+					const JwtStrategy = require('passport-jwt').Strategy;
+					const ExtractJwt = require('passport-jwt').ExtractJwt;
+					const jwt = require('jsonwebtoken');
+					var FacebookTokenStrategy = require('passport-facebook-token');
+					const config = require('./config');
 
 	 
 	      
-     ------------------------------------ADMIN panel ----------------------------------
+### ------------------------------------ADMIN panel ----------------------------------
 
-     Authentication based on being an admin or not. -implemented
-     
-		//Check if a verified ordinary user also has Admin privileges.
-		exports.verifyAdmin = function (req, res, next) {
-			User.findOne({ _id: req.user._id })
-				.then((user) => {
-					console.log("User: ", req.user);
-					if (user.admin) {
-						next();
-					}
-					else {
-						err = new Error('You are not authorized to perform this operation!');
-						err.sttatus = 403;
-						return next(err);
-					}
-				}, (err) => next(err))
-				.catch((err) => next(err))
-		}
+		     Authentication based on being an admin or not. -implemented
+
+				//Check if a verified ordinary user also has Admin privileges.
+				exports.verifyAdmin = function (req, res, next) {
+					User.findOne({ _id: req.user._id })
+						.then((user) => {
+							console.log("User: ", req.user);
+							if (user.admin) {
+								next();
+							}
+							else {
+								err = new Error('You are not authorized to perform this operation!');
+								err.sttatus = 403;
+								return next(err);
+							}
+						}, (err) => next(err))
+						.catch((err) => next(err))
+				}
+
+
+			 Admin based management, being able to see a user list -implemented
+
+			 Admin allowed see and flag dishes as featured or not. -implemented
+
+			 Admin can see and flag leaders as featured for the frontpage  -implemented
+
+			 Admin allowed / able to upload files, such as images when creating new dishes. -implemented
+
+			 Admin can  GET all the registered users' information  -implemented
+
+				Example from routes/dishRouter.js
+
+							.post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {.post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+							Dishes.create(req.body)
+							    .then((dish) => {
+								console.log('Dish Created ', dish);
+								res.statusCode = 200;
+								res.setHeader('Content-Type', 'application/json');
+								res.json(dish);
+							    }, (err) => next(err))
+							    .catch((err) => next(err));
+						    })
+							.put(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+							    res.statusCode = 403;
+							    res.end('PUT operation not supported on /dishes');
+							})
 
      
-    	 Admin based management, being able to see a user list -implemented
-     
-         Admin allowed see and flag dishes as featured or not. -implemented
-     
-     	 Admin can see and flag leaders as featured for the frontpage  -implemented
-	 
-	 Admin allowed / able to upload files, such as images when creating new dishes. -implemented
-	 
-	 Admin can  GET all the registered users' information  -implemented
-     	
-		Example from routes/dishRouter.js
-
-					.post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {.post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-					Dishes.create(req.body)
-					    .then((dish) => {
-						console.log('Dish Created ', dish);
-						res.statusCode = 200;
-						res.setHeader('Content-Type', 'application/json');
-						res.json(dish);
-					    }, (err) => next(err))
-					    .catch((err) => next(err));
-				    })
-					.put(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-					    res.statusCode = 403;
-					    res.end('PUT operation not supported on /dishes');
-					})
-
-     
-     ----------------------------------- Backend for Users Panel    ---------------------------------
+### ----------------------------------- Backend for Users Panel    ---------------------------------
      
    
 
-     Favorite functionality for users -implemented
-     
-     Comment and form support for the users to interact with the content. -implemented
-            
-     Support for a user to manage their own comments, delete functionality. -implemented
-     
-	     API supporting various objects of which contains members of the “company”  -implemented
+		     Favorite functionality for users -implemented
 
-	      Check routes / favoritesRouter.js
+		     Comment and form support for the users to interact with the content. -implemented
 
-	      favoriteRouter.route('/')
-		  .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
-		  .get(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
-		    Favorites.findOne({ user: req.user._id })
-		      .populate('user')
-		      .populate('dishes')
-		      .then((favorites) => {
-			res.statusCode = 200;
-			res.setHeader('Content-Type', 'application/json');
-			res.json(favorites);
-		      }, (err) => next(err))
-		      .catch((err) => next(err));
-		  })
+		     Support for a user to manage their own comments, delete functionality. -implemented
 
-    
+			     API supporting various objects of which contains members of the “company”  -implemented
+
+			      Check routes / favoritesRouter.js
+
+			      favoriteRouter.route('/')
+				  .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
+				  .get(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
+				    Favorites.findOne({ user: req.user._id })
+				      .populate('user')
+				      .populate('dishes')
+				      .then((favorites) => {
+					res.statusCode = 200;
+					res.setHeader('Content-Type', 'application/json');
+					res.json(favorites);
+				      }, (err) => next(err))
+				      .catch((err) => next(err));
+				  })
+
+
 &nbsp;
 &nbsp;
 &nbsp;
@@ -342,13 +342,13 @@
   
 
 
-## Todo 
+# Todo 
 	
-	To add (mirror leaderfunctionality)
-	
-		 Via Userpanel able to update profilepicture, description etc.  
+		   To add (mirror leaderfunctionality)
+	 
+		   Via Userpanel able to update profilepicture, description etc.  
 
-  	          Via Userpanel able to update a submitted comment and delete a submitted comment
+  	           Via Userpanel able to update a submitted comment and delete a submitted comment
     
 &nbsp;
 &nbsp;
