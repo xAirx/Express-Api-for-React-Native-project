@@ -128,37 +128,48 @@
 &nbsp;
   
 ## TODO  
+
     ------Upcoming:--------- 
-   
-   
-    Design the Express server to handle CORS
-    Develop user authentication based on OAuth protocol
-    Demonstrate the various Backend as a Service approaches
+  
     
     OAUTH - FACEBOOK ETC.
     CORS - WHITELISTING ETC.
     FILEUPLOADING - configure the Multer module to enable file uploading
     Passport with JWT (Mongoose)
-    
+        
      
-     
-     ------------------ADMIN panel and Users Panel---------------
+     ------------------ADMIN panel ----------------
 
      Authentication based on being an admin or not.
      
      Admin based management, being able to see a user list
      
-     Comment and form support for the users to interact with the content.
+         Admin allowed see and flag dishes as featured or not. and see it in the adminpanel
      
+     	 Admin can see and flag leaders as featured for the frontpage and see it in the adminpanel
+	 
+	 Admin allowed / able to upload files, such as images when creating new dishes. and see it in the adminpanel
+	 
+	 Admin can  GET all the registered users' information from the database and see it in the adminpanel
+     
+     
+     
+     ----------------- Users Panel    ---------------
+     
+     Via Userpanel able to update profilepicture, description etc.  
+
+     Via Userpanel able to update a submitted comment and delete a submitted comment
+       
      Favorite functionality for users
      
+     Comment and form support for the users to interact with the content.
+            
      Support for a user to manage their own comments, delete functionality.
      
      API supporting various objects of which contains members of the “company” 
 
 
     
-
 &nbsp;
 &nbsp;
 &nbsp;
