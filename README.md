@@ -121,6 +121,35 @@
      
      HTTPS and Secure Communication -done
      
+     
+## DevBranch  
+
+	-Added post functionality for Dishes and Leaders / comments and Feedback
+	
+	-HTTPS SECURE CONNETION TO API
+	
+	-Cookies
+	
+	-Mongoose Population
+	
+	-Session and Cookies, and Filestore
+	
+	-express support for user registration and authentication
+	
+	-PASSPORT JWT, PROTECT ROUTES, ETC
+
+	-Adding PASSPORT express mongoose handling, login registration cookies…
+
+
+
+
+	-Facebook OAUTH implementation
+
+	-Fileuploading with multer
+
+	-CORS for express server
+	
+
     
 &nbsp;
 &nbsp;
@@ -129,14 +158,6 @@
   
 ## TODO  
 
-    ------Upcoming:--------- 
-  
-    
-    OAUTH - FACEBOOK ETC.
-    CORS - WHITELISTING ETC.
-    FILEUPLOADING - configure the Multer module to enable file uploading
-    Passport with JWT (Mongoose)
-        
      
      ------------------ADMIN panel ----------------
 
@@ -379,34 +400,34 @@
    ## Backend as a service
 
 
-        Make sure that when user is created with registration HASH the password in the mongodb. - PASSPORT(Mongoose) Handles   this.
+        Make sure that when user is created with registration HASH the password in the mongodb. - PASSPORT(Mongoose) Handles   this. -done
 
-        Admin allowed / able to perform POST, PUT and DELETE operations
+        Admin allowed / able to perform POST, PUT and DELETE operations -done
 
-        /Admin route will give redirect 403, if you are not logged in as admin 
+        /Admin route will give redirect 403, if you are not logged in as admin  -done
         https://tylermcginnis.com/react-router-protected-routes-authentication/
 
 
-    * Allowed users to select a dish as their favorite, and add it to the list of favorites that are saved on the server.
+    * Allowed users to select a dish as their favorite, and add it to the list of favorites that are saved on the server. -done
     
-    * Allowed users to retrieve the list of their favorite products from the server
+    * Allowed users to retrieve the list of their favorite products from the server -done
     
-    * Delete one or all of their favorite products from their favorites list on the server.
+    * Delete one or all of their favorite products from their favorites list on the server. -done
 
 
-      * When the user does a GET operation on '/favorites',   populate the user information and the products information before returning the favorites to the user.
+      * When the user does a GET operation on '/favorites',   populate the user information and the products information before returning the favorites to the user. -done
     
-    * When the user does a POST operation on '/favorites' by including [{"_id":"dish ObjectId"}, . . ., {"_id":"dish ObjectId"}] in the body of the message,   (a) create a favorite document if such a document corresponding to this user does not already exist in the system, (b) add the products specified in the body of the message to the list of favorite products for the user, if the products do not already exists in the list of favorites.
+    * When the user does a POST operation on '/favorites' by including [{"_id":"dish ObjectId"}, . . ., {"_id":"dish ObjectId"}] in the body of the message,   (a) create a favorite document if such a document corresponding to this user does not already exist in the system, (b) add the products specified in the body of the message to the list of favorite products for the user, if the products do not already exists in the list of favorites. -done
     
-    * When the user performs a DELETE operation on '/favorites',  delete the list of favorites corresponding to the user, by deleting the favorite document corresponding to this user from the collection.
+    * When the user performs a DELETE operation on '/favorites',  delete the list of favorites corresponding to the user, by deleting the favorite document corresponding to this user from the collection. -done
     
-    * When the user performs a POST operation on '/favorites/:dishId', then   add the specified dish to the list of the user's list of favorite products, if the dish is not already in the list of favorite products.
+    * When the user performs a POST operation on '/favorites/:dishId', then   add the specified dish to the list of the user's list of favorite products, if the dish is not already in the list of favorite products. -done
     
-    * When the user performs a DELETE operation on '/favorites/:dishId', then  remove the specified dish from the list of the user's list of favorite products.
+    * When the user performs a DELETE operation on '/favorites/:dishId', then  remove the specified dish from the list of the user's list of favorite products. -done
     
-    * A new favoriteSchema and Favorites model has been correctly implemented to take advantage of Mongoose Population support to track the users and the list of favorite products using their ObjectIds in the favoriteSchema and Favorites model.
+    * A new favoriteSchema and Favorites model has been correctly implemented to take advantage of Mongoose Population support to track the users and the list of favorite products using their ObjectIds in the favoriteSchema and Favorites model. -done
     
-    * The GET, POST and DELETE operations are well supported as per the specifications above
+    * The GET, POST and DELETE operations are well supported as per the specifications above -done
     
-    * The app.js has been updated to support the new route.
+    * The app.js has been updated to support the new route. -done
 
