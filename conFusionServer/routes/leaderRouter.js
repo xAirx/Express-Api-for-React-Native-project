@@ -4,8 +4,8 @@ var mongoose = require('mongoose');
 var authenticate = require('../authenticate');
 var Leaders = require('../models/leaders');
 var LeaderRouter = express.Router();
-var favoriteRouter = require('./routes/favoriteRouter');
 LeaderRouter.use(bodyParser.json());
+var cors = require('../routes/cors');
 
 LeaderRouter.route('/')
     .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })

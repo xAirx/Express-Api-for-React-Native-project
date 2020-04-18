@@ -12,8 +12,8 @@ var usersRouter = require('./routes/usersRouter');
 var dishRouter = require('./routes/dishRouter');
 var promoRouter = require('./routes/promoRouter');
 var leaderRouter = require('./routes/leaderRouter');
+var favoritesRouter = require('./routes/favoritesRouter');
 var config = require('./config');
-
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
@@ -24,11 +24,8 @@ var authenticate = require('./authenticate');
 
 // Connection URL
 const url = config.mongoUrl;
-const connect = mongoose.connect(url, {
-  useMongoClient: true,
-  /* other options */
-});
 
+const connect = mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true });
 
 connect.then((db) => {
   console.log("Connected correctly to server");

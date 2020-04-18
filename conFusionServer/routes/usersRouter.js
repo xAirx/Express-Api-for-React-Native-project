@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const User = require('../models/user');
 const UsersRouter = express.Router()
+var cors = require('../routes/cors');
 UsersRouter.use(bodyParser.json());
 const authenticate = require('../authenticate');
 /* UsersRouter.post('/signup', (req, res, next) => {
@@ -135,7 +136,7 @@ UsersRouter.post('/login', (req, res, next) => {
 }) */
 
 
-router.get('/facebook/token', passport.authenticate('facebook-token'), (req, res) => {
+UsersRouter.get('/facebook/token', passport.authenticate('facebook-token'), (req, res) => {
   if (req.user) {
     var token = authenticate.getToken({ _id: req.user._id });
     res.statusCode = 200;

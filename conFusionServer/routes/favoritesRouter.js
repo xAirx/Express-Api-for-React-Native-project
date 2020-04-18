@@ -1,14 +1,10 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-
-const mongoose = require('mongoose');
-
-const Favorites = require('../models/favorite');
-const Dishes = require('../models/dishes');
+var express = require('express');
+var bodyParser = require('body-parser');
+var Favorites = require('../models/favorites');
 var authenticate = require('../authenticate');
-const cors = require('./cors');
+var cors = require('./cors');
 
-const favoriteRouter = express.Router();
+var favoriteRouter = express.Router();
 
 favoriteRouter.use(bodyParser.json());
 

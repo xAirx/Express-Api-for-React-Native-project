@@ -4,7 +4,7 @@ const Promotions = require('../models/promotions');
 const PromoRouter = express.Router()
 PromoRouter.use(bodyParser.json());
 const authenticate = require('../authenticate')
-
+var cors = require('../routes/cors');
 
 PromoRouter.route('/')
     .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
