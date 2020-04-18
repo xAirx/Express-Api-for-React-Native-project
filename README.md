@@ -46,7 +46,7 @@
 
 
 
-    --------Basic authentication-------- 
+    --------Basic authentication-------- <- JWT implemented on DEVbranch
 
   
         http://localhost:3000
@@ -123,7 +123,7 @@
      
 ## DevBranch  
 
-### -------------Added post functionality for Dishes and Leaders / comments and Feedback------------
+### ---Added post functionality for Dishes and Leaders / comments and Feedback----
 	
 			/routes/leaderRouter.js -implemented
 
