@@ -25,7 +25,7 @@ var authenticate = require('./authenticate');
 // Connection URL
 const url = config.mongoUrl;
 
-const connect = mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true });
+const connect = mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true, useUnifiedTopology: true });
 
 connect.then((db) => {
   console.log("Connected correctly to server");
