@@ -119,36 +119,220 @@
      
      Mongoose Population -done
      
-     HTTPS and Secure Communication -done
-     
+     HTTPS and Secure Communication -done      - Implemented Certificates -done
      
 ## DevBranch  
 
-	-Added post functionality for Dishes and Leaders / comments and Feedback
+	------------------Added post functionality for Dishes and Leaders / comments and Feedback------------------
 	
-	-HTTPS SECURE CONNETION TO API
+		/routes/leaderRouter.js -implemented
 	
-	-Cookies
+		LeaderRouter.route('/')
+		    .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
+		    .get(cors.cors, (req, res, next) => {
+			Leaders.find({})
+			    .then((leaders) => {
+				res.statusCode = 200;
+				res.setHeader('Content-Type', 'application/json');
+				res.json(leaders);
+			    }, (err) => next(err))
+			    .catch((err) => next(err));
+		    })
+		    .post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+			Leaders.create(req.body)
+			    .then((leader) => {
+				console.log('Leader Created ', leaders);
+				res.statusCode = 200;
+				res.setHeader('Content-Type', 'application/json');
+				res.json(leaders);
+			    }, (err) => next(err))
+			    .catch((err) => next(err));
+		    })
 	
-	-Mongoose Population
 	
-	-Session and Cookies, and Filestore
+	------------------------------------HTTPS SECURE CONNECTION TO API------------------------------------
 	
-	-express support for user registration and authentication
+				root/app.js
+				
+				// Secure traffic only
+				app.all('*', (req, res, next) => {
+				  if (req.secure) {
+				    return next();
+				  }
+				  else {
+				    res.redirect(307, 'https://' + req.hostname + ':' + app.get('secPort') + req.url);
+				  }
+				});
+				
+				
+				wwww/bin
+				
+				/**
+				 * Create HTTPS server.
+				 */
+
+				var options = {
+				  key: fs.readFileSync(__dirname + '/private.key'),
+				  cert: fs.readFileSync(__dirname + '/certificate.pem')
+				};
+
+				var secureServer = https.createServer(options, app);
+
+				/**
+				 * Listen on provided port, on all network interfaces.
+				 */
+
+				secureServer.listen(app.get('secPort'), () => {
+				  console.log('Secure Server listening on port ', app.get('secPort'));
+				});
+				secureServer.on('error', onError);
+				secureServer.on('listening', onListening);
+
+				/**
+
 	
-	-PASSPORT JWT, PROTECT ROUTES, ETC
-
-	-Adding PASSPORT express mongoose handling, login registration cookies…
-
-
-
-
-	-Facebook OAUTH implementation
-
-	-Fileuploading with multer
-
-	-CORS for express server
 	
+	------------------------------------Mongoose Population------------------------------------
+	
+		/models/user.js
+
+		- express support for user registration and authentication -implemented
+
+
+
+	------------------------------------Fileuploading with multer------------------------------------
+		 
+		 http://localhost:3000/upload/ , Check UploadRouter under Devbranch  -implemented
+
+	
+	------------------------------------CORS for express server------------------------------------
+		
+		Check cors.js under routes under Devbranch -implemented
+		
+		
+		Whitelisting our HTTPS proxy
+		
+		const whitelist = ['http://localhost:3000', 'https://localhost:3443'];
+
+
+	 
+	 ------------------------------------PASSPORT JWT, PROTECT ROUTES, ETC------------------------------------
+	 
+	 -Adding PASSPORT express mongoose handling, login registration cookies…  -implemented
+	 -Facebook OAUTH implementation  -implemented
+	 
+	 
+	root/authenticate.js
+		exports.facebookPassport = passport.use(new FacebookTokenStrategy({
+			clientID: config.facebook.clientId,
+			clientSecret: config.facebook.clientSecret
+		}, (accessToken, refreshToken, profile, done) => {
+			User.findOne({ facebookId: profile.id }, (err, user) => {
+				if (err) {
+					return done(err, false);
+				}
+				if (!err && user !== null) {
+					return done(null, user);
+				}
+				else {
+					user = new User({ username: profile.displayName });
+
+	 -Session and Cookies, and Filestore -implemented
+
+	 
+		 http://localhost:3000/users/  - check UsersRouter under Devbranch
+		
+		 root/authenticate.js
+		 
+			 const passport = require('passport');
+			// Exports a strategy that we can use for our application.
+			const LocalStrategy = require('passport-local').Strategy;
+			const User = require('./models/user');
+			const JwtStrategy = require('passport-jwt').Strategy;
+			const ExtractJwt = require('passport-jwt').ExtractJwt;
+			const jwt = require('jsonwebtoken');
+			var FacebookTokenStrategy = require('passport-facebook-token');
+			const config = require('./config');
+
+	 
+	      
+     ------------------------------------ADMIN panel ----------------------------------
+
+     Authentication based on being an admin or not. -implemented
+     
+		//Check if a verified ordinary user also has Admin privileges.
+		exports.verifyAdmin = function (req, res, next) {
+			User.findOne({ _id: req.user._id })
+				.then((user) => {
+					console.log("User: ", req.user);
+					if (user.admin) {
+						next();
+					}
+					else {
+						err = new Error('You are not authorized to perform this operation!');
+						err.sttatus = 403;
+						return next(err);
+					}
+				}, (err) => next(err))
+				.catch((err) => next(err))
+		}
+
+     
+    	 Admin based management, being able to see a user list -implemented
+     
+         Admin allowed see and flag dishes as featured or not. -implemented
+     
+     	 Admin can see and flag leaders as featured for the frontpage  -implemented
+	 
+	 Admin allowed / able to upload files, such as images when creating new dishes. -implemented
+	 
+	 Admin can  GET all the registered users' information  -implemented
+     	
+		Example from routes/dishRouter.js
+
+					.post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {.post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+					Dishes.create(req.body)
+					    .then((dish) => {
+						console.log('Dish Created ', dish);
+						res.statusCode = 200;
+						res.setHeader('Content-Type', 'application/json');
+						res.json(dish);
+					    }, (err) => next(err))
+					    .catch((err) => next(err));
+				    })
+					.put(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+					    res.statusCode = 403;
+					    res.end('PUT operation not supported on /dishes');
+					})
+
+     
+     ----------------------------------- Backend for Users Panel    ---------------------------------
+     
+   
+
+     Favorite functionality for users -implemented
+     
+     Comment and form support for the users to interact with the content. -implemented
+            
+     Support for a user to manage their own comments, delete functionality. -implemented
+     
+	     API supporting various objects of which contains members of the “company”  -implemented
+
+	      Check routes / favoritesRouter.js
+
+	      favoriteRouter.route('/')
+		  .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
+		  .get(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
+		    Favorites.findOne({ user: req.user._id })
+		      .populate('user')
+		      .populate('dishes')
+		      .then((favorites) => {
+			res.statusCode = 200;
+			res.setHeader('Content-Type', 'application/json');
+			res.json(favorites);
+		      }, (err) => next(err))
+		      .catch((err) => next(err));
+		  })
 
     
 &nbsp;
@@ -156,40 +340,15 @@
 &nbsp;
 &nbsp;
   
-## TODO  
-
-     
-     ------------------ADMIN panel ----------------
-
-     Authentication based on being an admin or not.
-     
-     Admin based management, being able to see a user list
-     
-         Admin allowed see and flag dishes as featured or not. and see it in the adminpanel
-     
-     	 Admin can see and flag leaders as featured for the frontpage and see it in the adminpanel
-	 
-	 Admin allowed / able to upload files, such as images when creating new dishes. and see it in the adminpanel
-	 
-	 Admin can  GET all the registered users' information from the database and see it in the adminpanel
-     
-     
-     
-     ----------------- Users Panel    ---------------
-     
-     Via Userpanel able to update profilepicture, description etc.  
-
-     Via Userpanel able to update a submitted comment and delete a submitted comment
-       
-     Favorite functionality for users
-     
-     Comment and form support for the users to interact with the content.
-            
-     Support for a user to manage their own comments, delete functionality.
-     
-     API supporting various objects of which contains members of the “company” 
 
 
+## Todo 
+	
+	To add (mirror leaderfunctionality)
+	
+		 Via Userpanel able to update profilepicture, description etc.  
+
+  	          Via Userpanel able to update a submitted comment and delete a submitted comment
     
 &nbsp;
 &nbsp;
@@ -209,108 +368,16 @@
     http://localhost:3000/leaders
     http://localhost:3000/leaders/:leaderId
     http://localhost:3000/leaders/:leaderId
-	
-	
-        • POST, PUT and DELETE operations on /dishes and /dishes/:dishId
-       	• DELETE operation on /dishes/:dishId/comments
-        • POST, PUT and DELETE operations on /promotions and /promotions/:promoId
-        • POST, PUT and DELETE operations on /promotions and /promotions/:promoId
-  
-  
-     --------------Example for registration:-----------
+    http://localhost:3000/favorites/
+    http://localhost:3000/favorites/:dishId
+    http://localhost:3000/uploads/
+    http://localhost:3000/users/
+    http://localhost:3000/users/signup
+    http://localhost:3000/users/login
+    http://localhost:3000/users/facebook/token
+    http://localhost:3000/users/logout
     
-
-            const bodyParser = require('body-parser');
-            var User = require('../models/user');
-
-            router.use(bodyParser.json());
-
-            router.post('/signup', (req, res, next) => {
-              User.findOne({ username: req.body.username })
-                .then((user) => {
-                  if (user != null) {
-                    var err = new Error('User ' + req.body.username + ' already exists!');
-                    err.status = 403;
-                    next(err);
-                  }
-                  else {
-                    return User.create({
-                      username: req.body.username,
-                      password: req.body.password
-                    });
-                  }
-                })
-                .then((user) => {
-                  res.statusCode = 200;
-                  res.setHeader('Content-Type', 'application/json');
-                  res.json({ status: 'Registration Successful!', user: user });
-                }, (err) => next(err))
-                .catch((err) => next(err));
-            });
-
-            router.post('/login', (req, res, next) => {
-
-              if (!req.session.user) {
-                var authHeader = req.headers.authorization;
-
-                if (!authHeader) {
-                  var err = new Error('You are not authenticated!');
-                  res.setHeader('WWW-Authenticate', 'Basic');
-                  err.status = 401;
-                  return next(err);
-                }
-
-                var auth = new Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
-                var username = auth[0];
-                var password = auth[1];
-
-                User.findOne({ username: username })
-                  .then((user) => {
-                    if (user === null) {
-                      var err = new Error('User ' + username + ' does not exist!');
-                      err.status = 403;
-                      return next(err);
-                    }
-                    else if (user.password !== password) {
-                      var err = new Error('Your password is incorrect!');
-                      err.status = 403;
-                      return next(err);
-                    }
-                    else if (user.username === username && user.password === password) {
-                      req.session.user = 'authenticated';
-                      res.statusCode = 200;
-                      res.setHeader('Content-Type', 'text/plain');
-                      res.end('You are authenticated!')
-                    }
-                  })
-                  .catch((err) => next(err));
-              }
-              else {
-                res.statusCode = 200;
-                res.setHeader('Content-Type', 'text/plain');
-                res.end('You are already authenticated!');
-              }
-            })
-
-            router.get('/logout', (req, res) => {
-              if (req.session) {
-                req.session.destroy();
-                res.clearCookie('session-id');
-                res.redirect('/');
-              }
-              else {
-                var err = new Error('You are not logged in!');
-                err.status = 403;
-                next(err);
-              }
-            });
-
     
-
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
 
 
 # Devlog 
