@@ -331,13 +331,15 @@
   
 
 
-# Todo 
+# If we ever pick this up again -> Todo 
 	
 		   To add (mirror leaderfunctionality)
 	 
 		   Via Userpanel able to update profilepicture, description etc.  
 
   	           Via Userpanel able to update a submitted comment and delete a submitted comment
+		   
+		   Testing, bugfixing.
     
 &nbsp;
 &nbsp;
