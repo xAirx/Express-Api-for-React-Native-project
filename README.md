@@ -28,25 +28,7 @@
     yarn start
     
 
-    
-    //// CONNECT TO MONGOOSE SERVER ////
-    
-    const mongoose = require('mongoose');
-
-    const Dishes = require('./models/dishes');
-
-    const url = 'mongodb://localhost:27017/conFusion';
-    const connect = mongoose.connect(url);
-
-    connect.then((db) => {
-      console.log("Connected correctly to server");
-    }, (err) => { console.log(err); });
-
-    /////////////////////////////////// 
-
-
-
-    --------Basic authentication-------- <- JWT implemented on DEVbranch
+    --------Basic authentication-------- 
 
   
         http://localhost:3000
@@ -121,9 +103,13 @@
      
      HTTPS and Secure Communication -done      - Implemented Certificates -done
      
-## DevBranch  
 
-### ---Added post functionality for Dishes and Leaders / comments and Feedback----
+
+## DevBranch  - Still bugged work in progress!!!!! which is why its on devbranch :D
+
+
+
+### ---Added post functionality for Dishes and Leaders / comments and Feedback---- WORKS
 	
 			/routes/leaderRouter.js -implemented
 
@@ -150,7 +136,7 @@
 			    })
 	
 	
-### -----------------------HTTPS SECURE CONNECTION TO API------------------------
+### -----------------------HTTPS SECURE CONNECTION TO API------------------------ WORKS
 	
 				root/app.js
 				
@@ -192,7 +178,7 @@
 
 	
 	
-### ------------------Mongoose Population-------------------------
+### ------------------Mongoose Population------------------------- WORKS
 	
 			/models/user.js
 
@@ -200,12 +186,12 @@
 
 
 
-### ---------------Fileuploading with multer----------------------------
+### ---------------Fileuploading with multer---------------------------- Needs testing
 		 
 			 http://localhost:3000/upload/ , Check UploadRouter under Devbranch  -implemented
 
 	
-### ---------------CORS for express server----------------------------
+### ---------------CORS for express server---------------------------- WORKS.
 		
 			Check cors.js under routes under Devbranch -implemented
 
@@ -216,10 +202,12 @@
 
 
 	 
-### ----------------PASSPORT JWT, PROTECT ROUTES, ETC---------------------
+### ----------------PASSPORT JWT, PROTECT ROUTES, ETC--------------------- BUGGED
 	 
-			 -Adding PASSPORT express mongoose handling, login registration cookies…  -implemented
-			 -Facebook OAUTH implementation  -implemented
+			 -Adding PASSPORT express mongoose handling, login registration cookies…  -BUGGED 
+			
+			
+			-Facebook OAUTH implementation  - Bugged needs update? old code..
 
 
 			root/authenticate.js
@@ -237,14 +225,15 @@
 						else {
 							user = new User({ username: profile.displayName });
 
-			 -Session and Cookies, and Filestore -implemented
+			
+			-Session and Cookies, and Filestore -implemented 
 
 
 				 http://localhost:3000/users/  - check UsersRouter under Devbranch
 
 				 root/authenticate.js
 
-					 const passport = require('passport');
+					const passport = require('passport');
 					// Exports a strategy that we can use for our application.
 					const LocalStrategy = require('passport-local').Strategy;
 					const User = require('./models/user');
@@ -256,7 +245,7 @@
 
 	 
 	      
-### --------------------------ADMIN panel ----------------------------------
+### --------------------------ADMIN panel ---------------------------------- Needs testing
 
 		     Authentication based on being an admin or not. -implemented
 
@@ -306,7 +295,7 @@
 							})
 
      
-### -------------------- Backend for Users Panel    ---------------------------------
+### -------------------- Backend for Users Panel    --------------------------------- Needs testing
      
    
 
@@ -362,20 +351,20 @@
 
     GET , PUT , POST , DELETE implemented on the various routes where needed, authentication is done via authenticate.js
 
-    http://localhost:3000/dishes/:dishId
-    http://localhost:3000/promotions 
-    http://localhost:3000/promotions/:promoId
-    http://localhost:3000/leaders
-    http://localhost:3000/leaders/:leaderId
-    http://localhost:3000/leaders/:leaderId
-    http://localhost:3000/favorites/
-    http://localhost:3000/favorites/:dishId
-    http://localhost:3000/uploads/
-    http://localhost:3000/users/
-    http://localhost:3000/users/signup
-    http://localhost:3000/users/login
-    http://localhost:3000/users/facebook/token
-    http://localhost:3000/users/logout
+    http://localhost:3443/dishes/:dishId
+    http://localhost:3443/promotions 
+    http://localhost:3443/promotions/:promoId
+    http://localhost:3443/leaders
+    http://localhost:3443/leaders/:leaderId
+    http://localhost:3443/leaders/:leaderId
+    http://localhost:3443/favorites/
+    http://localhost:3443/favorites/:dishId
+    http://localhost:3443/uploads/
+    http://localhost:3443/users/
+    http://localhost:3443/users/signup
+    http://localhost:3443/users/login
+    http://localhost:3443/users/facebook/token
+    http://localhost:3443/users/logout
     
     
 
