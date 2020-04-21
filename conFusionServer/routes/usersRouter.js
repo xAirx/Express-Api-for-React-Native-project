@@ -2,8 +2,7 @@ const passport = require('passport');
 const express = require('express');
 const bodyParser = require('body-parser');
 const User = require('../models/user');
-const UsersRouter = express.Router()
-var cors = require('../routes/cors');
+const UsersRouter = express.Router();
 UsersRouter.use(bodyParser.json());
 const authenticate = require('../authenticate');
 /* UsersRouter.post('/signup', (req, res, next) => {
@@ -31,14 +30,14 @@ const authenticate = require('../authenticate');
 
 //////// Using PASSPORT //////////
 
-UsersRouter.get('/', authenticate.verifyAdmin, (req, res, next) => {
+UsersRouter.get('/', authenticate.verifyUser, authenticate.verifyAdmin, (req,res,next) => {
   User.find({})
-    .then((users) => {
+  .then((users) => {
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
       res.json(users);
-    }, (err) => next(err))
-    .catch((err) => next(err));
+  }, (err) => next(err))
+  .catch((err) => next(err));
 });
 
 UsersRouter.post('/signup', (req, res, next) => {
@@ -134,16 +133,6 @@ UsersRouter.post('/login', (req, res, next) => {
     res.end('You are already authenticated!');
   }
 }) */
-
-
-UsersRouter.get('/facebook/token', passport.authenticate('facebook-token'), (req, res) => {
-  if (req.user) {
-    var token = authenticate.getToken({ _id: req.user._id });
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.json({ success: true, token: token, status: 'You are successfully logged in!' });
-  }
-});
 
 UsersRouter.get('/logout', (req, res) => {
   if (req.session) {

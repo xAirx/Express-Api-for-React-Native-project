@@ -25,7 +25,7 @@ var authenticate = require('./authenticate');
 // Connection URL
 const url = config.mongoUrl;
 
-const connect = mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true, useUnifiedTopology: true });
+const connect = mongoose.connect('mongodb://127.0.0.1:27017/conFusion', { useNewUrlParser: true, useUnifiedTopology: true });
 
 connect.then((db) => {
   console.log("Connected correctly to server");
@@ -91,6 +91,7 @@ app.use('/promotions', promoRouter);
 app.use('/leaders', leaderRouter);
 app.use('/imageUpload', uploadRouter);
 app.use('/favorites', favoritesRouter);
+app.use('/users', usersRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');

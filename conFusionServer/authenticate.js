@@ -39,15 +39,14 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Creating the token
-exports.getToken = function (user) {
-
-	/* 	this helps us to create the JSON Web Token and so inside that it'll
+exports.getToken = function(user) {
+        /* 	this helps us to create the JSON Web Token and so inside that it'll
 	allow me to supply the payload and
 	the payload here comes in as the parameter here called user,
 	and then the second parameter is
 	the secret or private key which I get from config.secret key, */
 
-	return jwt.sign(user, config.secretKey, { expiresIn: 3600 });
+        return jwt.sign(user, config.secretKey, { expiresIn: 3600 });
 };
 
 const opts = {};
@@ -81,8 +80,8 @@ opts.secretOrKey = config.secretKey;
 /* So, when passport parses the request messag e,*/
 /* it will use the strategy and then extract i nformation,*/
 /* and then load it onto our request message.  */
-exports.jwtPassport = passport.use(new JwtStrategy(opts,
-	(jwt_payload, done) => {
+exports.jwtPassport = passport.use(
+        new JwtStrategy(opts, (jwt_payload, done) => {
 		console.log("JWTPAYLOAD: ", jwt_payload);
 		User.findOne({ _id: jwt_payload._id }, (err, user) => {
 			if (err) {
@@ -100,9 +99,9 @@ exports.jwtPassport = passport.use(new JwtStrategy(opts,
 // We are creating no sessions, since we are using JWT based auth.
 // WE AUTHENTICATE HERE WITH THE TOKEN AND VERIFY THE USERS:
 
-// ANY PLACE WE WANT TO VERIFYUSER WE CAN USE THIS EXPORT.
-exports.verifyUser = passport.authenticate('jwt', { session: false })
 
+// ANY PLACE WE WANT TO VERIFYUSER WE CAN USE THIS EXPORT.
+exports.verifyUser = passport.authenticate('jwt', { session: false });
 
 //Check if a verified ordinary user also has Admin privileges.
 exports.verifyAdmin = function (req, res, next) {
