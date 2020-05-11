@@ -30,12 +30,9 @@
 
 
 
-
-
 	########Mongo <-- access DB
 
 	########Yarn start
-	
 	
 	
 
@@ -73,13 +70,6 @@
 	> db.leaders.find()
 	{ "_id" : ObjectId("5dc03f889ec7ab72ab8070d7"), "featured" : true, "name" : "Alberto Somayya", "image" : "images/alberto.png", "designation" : "Executive Chef", "abbr" : "EC", "description" : "Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. He says, Put together the cuisines from the two craziest cultures, and you get a winning hit! Amma Mia!", "feedback" : [ { "_id" : ObjectId("5dc040b0e5b472733ca44b98"), "rating" : 3, "comment" : "Eat it, just eat it!", "author" : "Michael Jaikishan", "updatedAt" : ISODate("2019-11-04T15:16:00.435Z"), "createdAt" : ISODate("2019-11-04T15:16:00.435Z") } ], "createdAt" : ISODate("2019-11-04T15:11:04.315Z"), "updatedAt" : ISODate("2019-11-04T15:16:00.435Z"), "__v" : 0 }
 	> 
-
-
-
- 
-
-
-
 
 
 
@@ -132,7 +122,57 @@
 &nbsp;
 &nbsp;
 &nbsp;
+
+  
+ # API description: 
+ 
+    EXAMPLE api overview.
+
+    GET , PUT , POST , DELETE implemented on the various routes where needed, authentication is done via authenticate.js
+
+    http://localhost:3443/dishes/:dishId
+    http://localhost:3443/promotions 
+    http://localhost:3443/promotions/:promoId
+    http://localhost:3443/leaders
+    http://localhost:3443/leaders/:leaderId
+    http://localhost:3443/leaders/:leaderId
+    http://localhost:3443/favorites/
+    http://localhost:3443/favorites/:dishId
+    http://localhost:3443/uploads/
+    http://localhost:3443/users/
+    http://localhost:3443/users/signup
+    http://localhost:3443/users/login
+    http://localhost:3443/users/facebook/token
+    http://localhost:3443/users/logout
+    
+    
+# API usage guide 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
 
   ## Backend and API + Authentication.
   
@@ -170,7 +210,7 @@
      
 
 
-## DevBranch  - Still bugged work in progress!!!!! which is why its on devbranch 
+## DevBranch  
 
 
 
@@ -267,13 +307,10 @@
 
 
 	 
-### ----------------PASSPORT JWT, PROTECT ROUTES, ETC--------------------- BUGGED
+### ----------------PASSPORT JWT, PROTECT ROUTES, ETC--------------------- WORKS
 	 
 			 -Adding PASSPORT express mongoose handling, login registration cookies…  -BUGGED 
 			
-			
-			-Facebook OAUTH implementation  - Bugged needs update? old code..
-
 
 			root/authenticate.js
 				exports.facebookPassport = passport.use(new FacebookTokenStrategy({
@@ -396,7 +433,7 @@
   
 
 
-# If we ever pick this up again -> Todo 
+# Todo 
 	
 		   To add (mirror leaderfunctionality)
 	 
@@ -410,31 +447,6 @@
 &nbsp;
 &nbsp;
 &nbsp;
-
-  
- # API description: 
- 
-    EXAMPLE api overview.
-
-    GET , PUT , POST , DELETE implemented on the various routes where needed, authentication is done via authenticate.js
-
-    http://localhost:3443/dishes/:dishId
-    http://localhost:3443/promotions 
-    http://localhost:3443/promotions/:promoId
-    http://localhost:3443/leaders
-    http://localhost:3443/leaders/:leaderId
-    http://localhost:3443/leaders/:leaderId
-    http://localhost:3443/favorites/
-    http://localhost:3443/favorites/:dishId
-    http://localhost:3443/uploads/
-    http://localhost:3443/users/
-    http://localhost:3443/users/signup
-    http://localhost:3443/users/login
-    http://localhost:3443/users/facebook/token
-    http://localhost:3443/users/logout
-    
-    
-
 
 # Devlog 
        
