@@ -19,7 +19,7 @@
 
 
 
-# Starting MongoDB 
+# Starting Server & MongoDB 
 
 
 	brew services list
@@ -29,8 +29,15 @@
 	brew services start mongodb-community 
 
 
-	Mongo <-- access DB
 
+
+
+	########Mongo <-- access DB
+
+	########Yarn start
+	
+	
+	
 
 	Commands: write help :D
 
