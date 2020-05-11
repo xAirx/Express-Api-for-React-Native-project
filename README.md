@@ -1,9 +1,68 @@
 # Backend-for-React-Native-project
+  ## Backend and API + Authentication.
+  
+  
+  
 
+   ### Goals:
+
+
+    Describe the use of Node for server-side development
+    Create a Node application
+    Demonstrate the use of Node modules in developing a Node application
+    Develop a simple REST API server using the Express framework
+    
+    Demonstrate an understanding of data persistence using a database
+    Design persistent data storage based on MongoDB, a NoSQL database
+    Develop schemas and models for data storage using Mongoose
+    Combine the REST API and the data persistance layer for a full-fledged server implementation
+    
+    Demonstrate the need for user authentication
+    Evaluate varioius alternative approaches for supporting user authentication
+    Develop a comprehensive user authentication system using Passport
+    Develop a secure server based on the HTTPS protocol
+    
+
+     REST API with express mongodb and Mongoose -done
+     
+     User login and authentication -done
+     
+     Basic Authentication -done
+      
+     Cookies, Express, Sessions and error handling. -done
+     
+     Mongoose Population -done
+     
+     HTTPS and Secure Communication -done      - Implemented Certificates -done
 &nbsp;
 &nbsp;
 &nbsp;
 &nbsp;
+
+ # API description: 
+ 
+    EXAMPLE api overview.
+
+    GET , PUT , POST , DELETE implemented on the various routes where needed, authentication is done via authenticate.js
+
+    http://localhost:3443/dishes/:dishId
+    http://localhost:3443/promotions 
+    http://localhost:3443/promotions/:promoId
+    http://localhost:3443/leaders
+    http://localhost:3443/leaders/:leaderId
+    http://localhost:3443/leaders/:leaderId
+    http://localhost:3443/favorites/
+    http://localhost:3443/favorites/:dishId
+    http://localhost:3443/uploads/
+    http://localhost:3443/users/
+    http://localhost:3443/users/signup
+    http://localhost:3443/users/login
+    http://localhost:3443/users/facebook/token
+    http://localhost:3443/users/logout
+    
+    
+# API usage guide 
+
 
 # Make sure to check baseURLS in each project matches the exposed URL
 
@@ -73,82 +132,7 @@
 
 
 
-# cd /conFusionServer
-
-    ------ Starting up -------
-    
-    
-    npm install
-
-    yarn start
-    
-
-    --------Basic authentication-------- 
-
-  
-        http://localhost:3000
-
-          if (user == 'admin' && pass == 'password') {
-            next(); // authorized
-          } else {
-            var err = new Error('You are not authenticated!');
-            res.setHeader('WWW-Authenticate', 'Basic');
-            err.status = 401;
-            next(err);
-          }
-        }
-
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-  
-
-# cd /jsonServer
-
-
-    Getting started
-
-    Install JSON Server
-    
-    npm install -g json-server
-
-    Start JSON Server
-
-    json-server --watch db.json
-
-    Now if you go to http://localhost:3000/dishes  <-- profit.
-
-&nbsp;
-&nbsp;
-&nbsp;
-
-  
- # API description: 
- 
-    EXAMPLE api overview.
-
-    GET , PUT , POST , DELETE implemented on the various routes where needed, authentication is done via authenticate.js
-
-    http://localhost:3443/dishes/:dishId
-    http://localhost:3443/promotions 
-    http://localhost:3443/promotions/:promoId
-    http://localhost:3443/leaders
-    http://localhost:3443/leaders/:leaderId
-    http://localhost:3443/leaders/:leaderId
-    http://localhost:3443/favorites/
-    http://localhost:3443/favorites/:dishId
-    http://localhost:3443/uploads/
-    http://localhost:3443/users/
-    http://localhost:3443/users/signup
-    http://localhost:3443/users/login
-    http://localhost:3443/users/facebook/token
-    http://localhost:3443/users/logout
-    
-    
-# API usage guide 
-
-
+ # User manual (for myself mainly)
 
 
 
@@ -172,41 +156,6 @@
 &nbsp;
 &nbsp;
 &nbsp;
-
-
-  ## Backend and API + Authentication.
-  
-
-   ### Goals:
-
-
-    Describe the use of Node for server-side development
-    Create a Node application
-    Demonstrate the use of Node modules in developing a Node application
-    Develop a simple REST API server using the Express framework
-    
-    Demonstrate an understanding of data persistence using a database
-    Design persistent data storage based on MongoDB, a NoSQL database
-    Develop schemas and models for data storage using Mongoose
-    Combine the REST API and the data persistance layer for a full-fledged server implementation
-    
-    Demonstrate the need for user authentication
-    Evaluate varioius alternative approaches for supporting user authentication
-    Develop a comprehensive user authentication system using Passport
-    Develop a secure server based on the HTTPS protocol
-    
-
-     REST API with express mongodb and Mongoose -done
-     
-     User login and authentication -done
-     
-     Basic Authentication -done
-      
-     Cookies, Express, Sessions and error handling. -done
-     
-     Mongoose Population -done
-     
-     HTTPS and Secure Communication -done      - Implemented Certificates -done
      
 
 
