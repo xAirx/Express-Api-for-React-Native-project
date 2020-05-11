@@ -5,7 +5,7 @@
 &nbsp;
 &nbsp;
 
-# Make sure to check baseURLS in each project matches the exposed URL :) 
+# Make sure to check baseURLS in each project matches the exposed URL
 
     https://github.com/xAirx/Coursera-UniversityofHK-ReactNative/blob/master/ReactNative/confusion/shared/baseurl.js
 
@@ -170,7 +170,7 @@
      
 
 
-## DevBranch  - Still bugged work in progress!!!!! which is why its on devbranch :D
+## DevBranch  - Still bugged work in progress!!!!! which is why its on devbranch 
 
 
 
