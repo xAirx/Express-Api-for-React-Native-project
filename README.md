@@ -147,8 +147,6 @@
 
 ![](https://imgur.com/6yjKsJp.png)
 
-<img src="https://imgur.com/6yjKsJp.png" />						
-
 	
 	
 	###Register user 
@@ -163,7 +161,7 @@
 
 		https://localhost:3443/users/signup
 
-	![](https://imgur.com/IOLA55p)
+![](https://imgur.com/IOLA55p.png)
 
 
 	###Register admin 
@@ -185,8 +183,8 @@
 				Via postman requires you to be logged in as admin
 
 			
-![](https://imgur.com/GTxXts2)
-![](https://imgur.com/jodIRxv)
+![](https://imgur.com/GTxXts2.png)
+![](https://imgur.com/jodIRxv.png)
 
 				Even if you pass admin as true via the postman call its not enabled.
 
@@ -205,8 +203,8 @@
 
 
 		##### Login 
-![](https://imgur.com/XmZFakp)
-![](https://imgur.com/eKZ9R29)
+![](https://imgur.com/XmZFakp.png)
+![](https://imgur.com/eKZ9R29.png)
 		
 		
 		
@@ -218,7 +216,7 @@
 				TODO 
 				Getting /users/ <— Admin protected route
 				
-![](https://imgur.com/c2yGeEE)
+![](https://imgur.com/c2yGeEE.png)
 
 
 
