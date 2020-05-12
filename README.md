@@ -143,13 +143,16 @@
 		Example: db.users.remove({username :"  "}, {justOne:true})
 
 
-		using mongoDBCompass
+	###using mongoDBCompass
 		￼
 
 ![](https://imgur.com/6yjKsJp)
 
 
-
+	
+	Register User 
+	
+	
 	###Register user 
 
 
@@ -162,40 +165,12 @@
 
 		https://localhost:3443/users/signup
 
-![](https://imgur.com/6yjKsJp)
-
-	
-	
+	![](https://imgur.com/IOLA55p)
 
 
 	###Register admin 
 
 		If we want to register an admin we have to do it either via CLI or via the mongoDB compass.
-
-		###### Model: 
-
-			var mongoose = require('mongoose');
-			var Schema = mongoose.Schema;
-			var passportLocalMongoose = require('passport-local-mongoose');
-
-			var User = new Schema({
-			    firstname: {
-			      type: String,
-				default: ''
-			    },
-			    lastname: {
-			      type: String,
-				default: ''
-			    },
-			    admin:   {
-				type: Boolean,
-				default: false
-			    }
-			});
-
-			User.plugin(passportLocalMongoose);
-
-			module.exports = mongoose.model('User', User);
 
 
 		 ###### Do not do it with CLI:
@@ -207,14 +182,12 @@
 
 
 
-
-		##### To register a user via postman 
+		##### To register an user via postman 
 
 				Via postman requires you to be logged in as admin
 
 			
-
-![](https://imgur.com/IOLA55p)
+![](https://imgur.com/GTxXts2)
 ![](https://imgur.com/jodIRxv)
 
 				Even if you pass admin as true via the postman call its not enabled.
@@ -230,9 +203,13 @@
 
 
 
+
+
+
 		##### Login 
-![](https://imgur.com/GTxXts2)
 ![](https://imgur.com/XmZFakp)
+![](https://imgur.com/eKZ9R29)
+		
 		
 		
 		
@@ -243,7 +220,7 @@
 				TODO 
 				Getting /users/ <— Admin protected route
 				
-![](https://imgur.com/eKZ9R29)
+![](https://imgur.com/c2yGeEE)
 
 
 
