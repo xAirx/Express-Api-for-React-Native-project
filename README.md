@@ -145,9 +145,8 @@
 
 		using mongoDBCompass
 		￼
-![alt text](https://imgur.com/6yjKsJp)
 
-![](https://imgur.com/6yjKsJp)
+![Screenshot](https://imgur.com/6yjKsJp)
 
 
 
