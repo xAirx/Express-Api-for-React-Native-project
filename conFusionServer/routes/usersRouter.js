@@ -30,7 +30,7 @@ const authenticate = require('../authenticate');
 
 //////// Using PASSPORT //////////
 
-UsersRouter.get('/', authenticate.verifyUser,authenticate.verifyAdmin, (req,res,next) => {
+UsersRouter.get('/', authenticate.verifyUser, authenticate.verifyAdmin, (req,res,next) => {
   User.find({})
   .then((users) => {
     console.log("we are inside the promise"),
@@ -40,6 +40,9 @@ UsersRouter.get('/', authenticate.verifyUser,authenticate.verifyAdmin, (req,res,
   }, (err) => next(err))
   .catch((err) => next(err));
 });
+
+
+// We should restrict admin only signup functionality.. but for non production purposes.. whatever
 
 UsersRouter.post('/signup', (req, res, next) => {
   User.register(new User({ username: req.body.username }),

@@ -9,8 +9,8 @@ DishRouter.use(bodyParser.json());
 
 
 DishRouter.route('/')
-    .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
-    .get(cors.cors, (req, res, next) => {
+   /*  .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); }) */
+    .get(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
         Dishes.find({})
 
             /*   dishes find and we will say after this, populate.
@@ -43,7 +43,7 @@ DishRouter.route('/')
     If the authentication fails at this point,
     then passport authenticate will reply
     back to the client with the appropriate error message. */
-    .post(cors.corsWithOptions, authenticate.verifyUser, /* authenticate.verifyAdmin, */ (req, res, next) => {
+    .post(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
         Dishes.create(req.body)
             .then((dish) => {
                 console.log('Dish Created ', dish);
@@ -53,11 +53,11 @@ DishRouter.route('/')
             }, (err) => next(err))
             .catch((err) => next(err));
         })
-        .put(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+        .put(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
             res.statusCode = 403;
             res.end('PUT operation not supported on /dishes');
         })
-        .delete(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+        .delete(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
             Dishes.remove({})
                 .then((resp) => {
                     res.statusCode = 200;

@@ -1,12 +1,13 @@
-const passport = require('passport');
-// Exports a strategy that we can use for our application.
-const LocalStrategy = require('passport-local').Strategy;
-const User = require('./models/user');
-const JwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
-const jwt = require('jsonwebtoken');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var User = require('./models/user');
+var JwtStrategy = require('passport-jwt').Strategy;
+var ExtractJwt = require('passport-jwt').ExtractJwt;
+var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
-const config = require('./config');
+var config = require('./config.js');
+
+
 
 /* passport use and say
 new LocalStrategy and then this is where
@@ -24,8 +25,9 @@ as parameters to the verify function that we will supply to the LocalStrategy.
  */
 
 // Our user authentication from passport is better than writing a custom one. as we did before.
-exports.local = passport.use(new LocalStrategy(User.authenticate()));
 
+
+exports.local = passport.use(new LocalStrategy(User.authenticate()));
 
 /* Now recall that the passport authenticate will mount the req.user or the user property to
 the request message and so
@@ -34,11 +36,10 @@ this saying serialize user and passport deserialize user.
 Also we'll say user deserialize user.
 These two functions they serialize user and deserialize user are provided on
 the user schema and model by the use of the passport-local-mongoose plugin here. */
-passport.serializeUser(User.serializeUser());
 
+passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// Creating the token
 exports.getToken = function (user) {
 
 	/* 	this helps us to create the JSON Web Token and so inside that it'll
@@ -47,10 +48,12 @@ exports.getToken = function (user) {
 	and then the second parameter is
 	the secret or private key which I get from config.secret key, */
 
-	return jwt.sign(user, config.secretKey, { expiresIn: 3600 });
+
+    return jwt.sign(user, config.secretKey,
+        { expiresIn: 3600 });
 };
 
-const opts = {};
+var opts = {};
 
 /* Now this option specifies
 how the jsonwebtoken should be extracted from the incoming request message.
@@ -61,13 +64,13 @@ It'll say from authHeader from authHeader as bearer token,
 from header which scheme and so on.
 If you read the documentation it will tell
 you various ways of extracting the jsonwebtoken. */
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+/* opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken(); */
 /* jwtFromRequest : ExtractJWT.fromUrlQueryParameter('secret_token') */
 
 /* The next one we'll say opts.secretOrKey,
 this is the second parameter which helps me to
 supply the secret key which I'm going to be using within my strategy for the sign-in */
-opts.secretOrKey = config.secretKey;
+/* opts.secretOrKey = config.secretKey; */
 
 
 /* functionJWT_payload. */
@@ -81,50 +84,52 @@ opts.secretOrKey = config.secretKey;
 /* So, when passport parses the request messag e,*/
 /* it will use the strategy and then extract i nformation,*/
 /* and then load it onto our request message.  */
+opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+opts.secretOrKey = config.secretKey;
+
 exports.jwtPassport = passport.use(new JwtStrategy(opts,
-	(jwt_payload, done) => {
-		console.log("JWTPAYLOAD: ", jwt_payload);
-		User.findOne({ _id: jwt_payload._id }, (err, user) => {
-			if (err) {
-				/* 		User.findOne and the second one
+    (jwt_payload, done) => {
+		console.log("JWT payload: ", jwt_payload);
+		/* User.findOne and the second one
 	is a callback function.
 	As you realize, this user Mongoose method and you try to find.
 	So, we'll say if err then, return done.
 	What does this done? This done is the callback that
 	passport will pass into your strategy here. */
-				return done
-			}
-		})
-	}));
+        User.findOne({ _id: jwt_payload._id }, (err, user) => {
+            if (err) {
+                return done(err, false);
+            }
+            else if (user) {
+                return done(null, user);
+            }
+            else {
+                return done(null, false);
+            }
+        });
+    }));
+
 
 // We are creating no sessions, since we are using JWT based auth.
 // WE AUTHENTICATE HERE WITH THE TOKEN AND VERIFY THE USERS:
 
 // ANY PLACE WE WANT TO VERIFYUSER WE CAN USE THIS EXPORT.
-/// A session is required to be able to log out.
-exports.verifyUser = passport.authenticate('jwt', { session: false })
 
 
-/* verifyAdmin will be called only after verifyUser.
-When you login using passport, a
- user property will be attached automatically to req.
- In verifyAdmin you dont have to find users from database.
- The user is already present in req as req.user because you will be using verifyAdmin only after verifyUser.
- Simpley you can do a check like this- if(req.user.admin===true){next();}
-else{ //error code}
-No need to find the users. And make sure when you are calling verifyAdmin in routes, verifyUser should be called first */
-//Check if a verified ordinary user also has Admin privileges.
-exports.verifyAdmin = function (req,res,next) {
-	/* User.findOne({ _id: req.user._id })
-		.then((user) => {
-			console.log("User: ", req.user); */
-			if (req.user.admin === true) {
-				console.log("ADMIN TRUE");
-				next();
-			}
-			else {
-				err = new Error('You are not authorized to perform this operation!');
-				err.status = 403;
-				return next(err);
-			}
+exports.verifyUser = passport.authenticate('jwt', { session: false });
+
+exports.verifyAdmin = function (req, res, next) {
+    User.findOne({ _id: req.user._id })
+        .then((user) => {
+            console.log("User: ", req.user);
+            if (user.admin) {
+                next();
+            }
+            else {
+                err = new Error('You are not authorized to perform this operation!');
+                err.status = 403;
+                return next(err);
+            }
+        }, (err) => next(err))
+        .catch((err) => next(err))
 }
