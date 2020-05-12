@@ -221,7 +221,7 @@
 				POST /Dishes <- Admin protected
 				
 				
- ![](https://imgur.com/HhGN4CS)
+ ![](https://imgur.com/HhGN4CS.png)
 				
 
 		
