@@ -127,8 +127,7 @@
 	users
 
 	> db.leaders.find()
-	{ "_id" : ObjectId("5dc03f889ec7ab72ab8070d7"), "featured" : true, "name" : "Alberto Somayya", "image" : "images/alberto.png", "designation" : "Executive Chef", "abbr" : "EC", "description" : "Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. He says, Put together the cuisines from the two craziest cultures, and you get a winning hit! Amma Mia!", "feedback" : [ { "_id" : ObjectId("5dc040b0e5b472733ca44b98"), "rating" : 3, "comment" : "Eat it, just eat it!", "author" : "Michael Jaikishan", "updatedAt" : ISODate("2019-11-04T15:16:00.435Z"), "createdAt" : ISODate("2019-11-04T15:16:00.435Z") } ], "createdAt" : ISODate("2019-11-04T15:11:04.315Z"), "updatedAt" : ISODate("2019-11-04T15:16:00.435Z"), "__v" : 0 }
-	> 
+	{ "_id" : ObjectId("5dc03f889ec7ab72ab8070d7"), "featured" : true, "name" : "Alberto Somayya", "image" : "images/alberto.png", "designation" : "Executive Chef", "abbr" : "EC", "description" : "Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. He says, Put together the cuisines from the two craziest cultures, and you get a winning hit! Amma Mia!", "feedback" : [ { "_id" : ObjectId("5dc040b0e5b472733ca44b98"), "rating" : 3, "comment" : "Eat it, just eat it!", "author" : "Michael Jaikishan", "updatedAt" : ISODate("2019-11-04T15:16:00.435Z"), "createdAt" : ISODate("2019-11-04T15:16:00.435Z") } ], "createdAt" : ISODate("2019-11-04T15:11:04.315Z"), "updatedAt" : ISODate("2019-11-04T15:16:00.435Z"), "__v" : 0 }> 
 
 
 
@@ -148,6 +147,7 @@
 
 ![](https://imgur.com/6yjKsJp)
 
+<img src="https://imgur.com/6yjKsJp" width="800" />						
 
 	
 	Register User 
