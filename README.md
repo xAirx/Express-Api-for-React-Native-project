@@ -1,126 +1,218 @@
-# Coursera-UniversyofHK-ServerSideNode
-
-# Make sure to check baseURLS in each project matches the exposed URL :) 
-
-    https://github.com/xAirx/Coursera-UniversityofHK-ReactNative/blob/master/ReactNative/confusion/shared/baseurl.js
 
 
-    https://github.com/xAirx/Coursera-UniversityofHK-React/blob/master/confusion/src/shared/baseUrl.js
-    
-    
-    --------- HOSTING --------
-    
-    https://medium.com/make-school/how-to-deploy-your-node-js-mongodb-app-to-the-web-using-heroku-63d4bccf2675 
+## DevBranch  
 
 
-# cd /conFusionServer
+	
+### -----------------------HTTPS SECURE CONNECTION TO API------------------------ WORKS
+	
+				root/app.js
+				
+				// Secure traffic only
+				app.all('*', (req, res, next) => {
+				  if (req.secure) {
+				    return next();
+				  }
+				  else {
+				    res.redirect(307, 'https://' + req.hostname + ':' + app.get('secPort') + req.url);
+				  }
+				});
+				
+				
+				wwww/bin
+				
+				/**
+				 * Create HTTPS server.
+				 */
 
-    ------ Starting up -------
-    
-    
-    npm install
+				var options = {
+				  key: fs.readFileSync(__dirname + '/private.key'),
+				  cert: fs.readFileSync(__dirname + '/certificate.pem')
+				};
 
-    yarn start
-    
+				var secureServer = https.createServer(options, app);
 
+				/**
+				 * Listen on provided port, on all network interfaces.
+				 */
 
-    TODO: ----------MongoDB----------
-    
-    
-    TODO: Access with commandline   
-    commandline: 
-    
-    https://docs.mongodb.com/manual/mongo/
-    
-    
-    
-    TODO: Access with mongoDBAtlas:
-    
-    
-    TODO: https://geekflare.com/getting-started-mongodb/
-    
-    
-    
-    
-    
-    
-    //// CONNECT TO MONGOOSE SERVER ////
-    const mongoose = require('mongoose');
+				secureServer.listen(app.get('secPort'), () => {
+				  console.log('Secure Server listening on port ', app.get('secPort'));
+				});
+				secureServer.on('error', onError);
+				secureServer.on('listening', onListening);
 
-    const Dishes = require('./models/dishes');
+				/**
 
-    const url = 'mongodb://localhost:27017/conFusion';
-    const connect = mongoose.connect(url);
+	
+	
+### ------------------Mongoose Population------------------------- WORKS
+	
+			/models/user.js
 
-    connect.then((db) => {
-      console.log("Connected correctly to server");
-    }, (err) => { console.log(err); });
-
-    /////////////////////////////////// 
+			- express support for user registration and authentication -implemented
 
 
 
-    --------Basic authentication-------- 
-
-  
-        http://localhost:3000
-
-          if (user == 'admin' && pass == 'password') {
-            next(); // authorized
-          } else {
-            var err = new Error('You are not authenticated!');
-            res.setHeader('WWW-Authenticate', 'Basic');
-            err.status = 401;
-            next(err);
-          }
-        }
+	
+### ---------------CORS for express server---------------------------- WORKS.
+		
+			Check cors.js under routes under Devbranch -implemented
 
 
+			Whitelisting our HTTPS proxy
+
+			const whitelist = ['http://localhost:3000', 'https://localhost:3443'];
 
 
-    TODO: ----------Improvements------
-    
-    READUP + Notes in onenote, and add funtionality from week 4.
-    
-    https://evdokimovm.github.io/javascript/nodejs/mongodb/expressjs/2016/07/17/Connect-Save-and-Find-Data-in-MongoDB-with-NodeJS-and-ExpressJS.html
-    
-    https://www.coursera.org/learn/server-side-nodejs/home/week/1
-    https://www.coursera.org/learn/server-side-nodejs/home/week/2
-    https://www.coursera.org/learn/server-side-nodejs/home/week/3
-    https://www.coursera.org/learn/server-side-nodejs/home/week/4
-    
-    
+	 
+### ----------------PASSPORT JWT, PROTECT ROUTES, ETC--------------------- WORKS
+	 
+			 -Adding PASSPORT.
+			
 
-    TODO: ------------ Endpoints --------------
-    
-    
-    You can now play with endpoints:
-    
-    
-    
-    
-    
-    
-    
-    --------------------------------------------
-    
-  
+			root/authenticate.js
+				exports.facebookPassport = passport.use(new FacebookTokenStrategy({
+					clientID: config.facebook.clientId,
+					clientSecret: config.facebook.clientSecret
+				}, (accessToken, refreshToken, profile, done) => {
+					User.findOne({ facebookId: profile.id }, (err, user) => {
+						if (err) {
+							return done(err, false);
+						}
+						if (!err && user !== null) {
+							return done(null, user);
+						}
+						else {
+							user = new User({ username: profile.displayName });
+
+			
+			-Session and Cookies, and Filestore -implemented 
 
 
-# cd /jsonServer
+				 http://localhost:3000/users/  - check UsersRouter under Devbranch
+
+				 root/authenticate.js
+
+					const passport = require('passport');
+					// Exports a strategy that we can use for our application.
+					const LocalStrategy = require('passport-local').Strategy;
+					const User = require('./models/user');
+					const JwtStrategy = require('passport-jwt').Strategy;
+					const ExtractJwt = require('passport-jwt').ExtractJwt;
+					const jwt = require('jsonwebtoken');
+					var FacebookTokenStrategy = require('passport-facebook-token');
+					const config = require('./config');
 
 
-    Getting started
 
-    Install JSON Server
-    
-    npm install -g json-server
-    
-    
-    
+### ---Added post functionality for Dishes and Leaders / comments and Feedback---- WORKS
+	
+			/routes/leaderRouter.js -implemented
 
-    Start JSON Server
+			LeaderRouter.route('/')
+			    .options(cors.cors, (req, res) => { res.sendStatus(200); })
+			    .get(cors.cors, (req, res, next) => {
+				Leaders.find({})
+				    .then((leaders) => {
+					res.statusCode = 200;
+					res.setHeader('Content-Type', 'application/json');
+					res.json(leaders);
+				    }, (err) => next(err))
+				    .catch((err) => next(err));
+			    })
+			    .post(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+				Leaders.create(req.body)
+				    .then((leader) => {
+					console.log('Leader Created ', leaders);
+					res.statusCode = 200;
+					res.setHeader('Content-Type', 'application/json');
+					res.json(leaders);
+				    }, (err) => next(err))
+				    .catch((err) => next(err));
+			    })
+	
 
-    json-server --watch db.json
 
-    Now if you go to http://localhost:3000/dishes  <-- profit.
+	      
+###--------------------------Verify Admin and Verify User ---------------------------------- works
+
+		  ####   Authentication based on being an admin or not. -implemented - works
+
+		
+		    // Check if user is logged in
+		   
+		   		exports.verifyUser = passport.authenticate('jwt', { session: false })  - works
+		
+		    //Check if a verified ordinary user also has Admin privileges.
+		    
+				exports.verifyAdmin = function (req, res, next) {
+	
+
+
+		Admin based management, being able to see a user list -implemented  - Works
+
+
+		Admin allowed see and flag dishes as featured or not. -implemented  - Works
+
+		
+		Admin can see and flag leaders as featured for the frontpage  -implemented  - Works
+
+		
+TODO ------>	Admin allowed / able to upload files, such as images when creating new dishes. -implemented  - NOT TESTED
+
+		
+TODO ------>	Admin can  GET all the registered users' information  -implemented - NOT TESTED
+ 
+			
+			
+			
+			#####Example from routes/dishRouter.js
+
+			.post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+				...... 
+				}
+	
+	
+	
+     
+### -------------------- Backend for Users Panel    --------------------------------- Needs testing
+     
+   
+		   
+TODO ------>	   Favorite functionality for users -implemented  - NOT TESTED
+
+		   
+TODO ------>	   Comment and form support for the users to interact with the content. - NOT IMPLEMENTED MIRROR LEADERS ROUTE CODE
+
+		   
+TODO ------>	   Support for a user to manage their own comments, delete functionality. -implemented - NOT TESTED
+
+		 
+			##### Check routes / favoritesRouter.js
+
+			      favoriteRouter.route('/')
+				  .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
+				  .get(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
+				    Favorites.findOne({ user: req.user._id })
+				      .populate('user')
+				      .populate('dishes')
+				      .then((favorites) => {
+					res.statusCode = 200;
+					res.setHeader('Content-Type', 'application/json');
+					res.json(favorites);
+				      }, (err) => next(err))
+				      .catch((err) => next(err));
+				  })
+
+
+&nbsp;
+&nbsp;
+
+
+### ---------------Fileuploading with multer---------------------------- Needs testing
+		 
+TODO ------>     http://localhost:3000/upload/ , Check UploadRouter under Devbranch  -implemented - Not tested
+
+
+&nbsp;
