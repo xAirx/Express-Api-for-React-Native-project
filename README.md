@@ -148,8 +148,7 @@
 ![](https://imgur.com/6yjKsJp.png)
 
 <img src="https://imgur.com/6yjKsJp.png" />						
-[Imgur](https://i.imgur.com/6yjKsJp.png)
-	Register User 
+
 	
 	
 	###Register user 
