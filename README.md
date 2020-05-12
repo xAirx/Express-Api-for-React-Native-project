@@ -328,10 +328,6 @@
 
 
 
-### ---------------Fileuploading with multer---------------------------- Needs testing
-		 
-			 http://localhost:3000/upload/ , Check UploadRouter under Devbranch  -implemented
-
 	
 ### ---------------CORS for express server---------------------------- WORKS.
 		
@@ -382,71 +378,69 @@
 					var FacebookTokenStrategy = require('passport-facebook-token');
 					const config = require('./config');
 
-	 
+
+
+
+
 	      
-### --------------------------ADMIN panel ---------------------------------- Needs testing
+### --------------------------Verify Admin and Verify User ---------------------------------- Needs testing
 
-		     Authentication based on being an admin or not. -implemented
+		  ####   Authentication based on being an admin or not. -implemented - BUGGED
 
-				//Check if a verified ordinary user also has Admin privileges.
+		
+		    // Check if user is logged in
+		   
+		   		exports.verifyUser = passport.authenticate('jwt', { session: false })  - BUGGED
+		
+		    //Check if a verified ordinary user also has Admin privileges.
+		    
 				exports.verifyAdmin = function (req, res, next) {
-					User.findOne({ _id: req.user._id })
-						.then((user) => {
-							console.log("User: ", req.user);
-							if (user.admin) {
-								next();
-							}
-							else {
-								err = new Error('You are not authorized to perform this operation!');
-								err.sttatus = 403;
-								return next(err);
-							}
-						}, (err) => next(err))
-						.catch((err) => next(err))
+	
+
+
+		Admin based management, being able to see a user list -implemented  - NOT TESTED
+
+
+		Admin allowed see and flag dishes as featured or not. -implemented  - NOT TESTED
+
+		
+		Admin can see and flag leaders as featured for the frontpage  -implemented  - NOT TESTED
+
+		
+		Admin allowed / able to upload files, such as images when creating new dishes. -implemented  - NOT TESTED
+
+		
+		Admin can  GET all the registered users' information  -implemented - NOT TESTED
+ 
+			
+			
+			
+			#####Example from routes/dishRouter.js
+
+			.post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+				...... 
 				}
-
-
-			 Admin based management, being able to see a user list -implemented
-
-			 Admin allowed see and flag dishes as featured or not. -implemented
-
-			 Admin can see and flag leaders as featured for the frontpage  -implemented
-
-			 Admin allowed / able to upload files, such as images when creating new dishes. -implemented
-
-			 Admin can  GET all the registered users' information  -implemented
-
-				Example from routes/dishRouter.js
-
-							.post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {.post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-							Dishes.create(req.body)
-							    .then((dish) => {
-								console.log('Dish Created ', dish);
-								res.statusCode = 200;
-								res.setHeader('Content-Type', 'application/json');
-								res.json(dish);
-							    }, (err) => next(err))
-							    .catch((err) => next(err));
-						    })
-							.put(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-							    res.statusCode = 403;
-							    res.end('PUT operation not supported on /dishes');
-							})
-
+	
+	
+	
      
 ### -------------------- Backend for Users Panel    --------------------------------- Needs testing
      
    
+		   
+		   Favorite functionality for users -implemented  - NOT TESTED
 
-		     Favorite functionality for users -implemented
+		   
+		   Comment and form support for the users to interact with the content. -implemented - NOT TESTED
 
-		     Comment and form support for the users to interact with the content. -implemented
+		   
+		   Support for a user to manage their own comments, delete functionality. -implemented - NOT TESTED
 
-		     Support for a user to manage their own comments, delete functionality. -implemented
+		   
+		   API supporting various objects of which contains members of the “company”  -implemented - NOT TESTED
 
-			     API supporting various objects of which contains members of the “company”  -implemented
-
-			      Check routes / favoritesRouter.js
+			
+			##### Check routes / favoritesRouter.js
 
 			      favoriteRouter.route('/')
 				  .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
@@ -465,14 +459,22 @@
 
 &nbsp;
 &nbsp;
-&nbsp;
+
+
+### ---------------Fileuploading with multer---------------------------- Needs testing
+		 
+			 http://localhost:3000/upload/ , Check UploadRouter under Devbranch  -implemented
+
+
 &nbsp;
   
 
 
 # Todo 
 	
-		   To add (mirror leaderfunctionality)
+		   To add:
+		   
+		   ------------(mirror leaderfunctionality)----------
 	 
 		   Via Userpanel able to update profilepicture, description etc.  
 
