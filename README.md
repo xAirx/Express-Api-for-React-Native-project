@@ -145,9 +145,9 @@
 	###using mongoDBCompass
 		￼
 
-![](https://imgur.com/6yjKsJp)
+![](https://imgur.com/6yjKsJp.png)
 
-<img src="https://imgur.com/6yjKsJp" />						
+<img src="https://imgur.com/6yjKsJp.png" />						
 [Imgur](https://i.imgur.com/6yjKsJp.png)
 	Register User 
 	
