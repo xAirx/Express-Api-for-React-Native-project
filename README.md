@@ -200,12 +200,9 @@
 
 
 
-
-
 		##### Login 
 ![](https://imgur.com/XmZFakp.png)
 ![](https://imgur.com/eKZ9R29.png)
-		
 		
 		
 		
@@ -213,23 +210,19 @@
 		##### VerifyAdmin and VerifyUser is bugged. work in progress…
 
 
-				TODO 
+			
 				Getting /users/ <— Admin protected route
 				
 ![](https://imgur.com/c2yGeEE.png)
 
 
 
-				TODO 
-				POST /leaders/  <— user protected route
-
-
-
-
-
-
-				TODO 
-				Posting /leaders/
+			
+				POST /Dishes <- Admin protected
+				
+				
+ ![](https://imgur.com/HhGN4CS)
+				
 
 		
 
