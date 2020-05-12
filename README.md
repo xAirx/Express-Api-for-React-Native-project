@@ -338,7 +338,7 @@
 	 
 ### ----------------PASSPORT JWT, PROTECT ROUTES, ETC--------------------- WORKS
 	 
-			 -Adding PASSPORT express mongoose handling, login registration cookies…  -BUGGED 
+			 -Adding PASSPORT.
 			
 
 			root/authenticate.js
