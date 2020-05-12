@@ -134,32 +134,130 @@
 
  # User manual (for myself mainly)
 
-Remove a user via mongo CLI 
+	###Remove a user via mongo CLI 
 
-use conFusion server
+		use conFusion server
 
-db.users.find()
+		db.users.find()
 
-Example: db.users.remove({username :"  "}, {justOne:true})
-
-
-using mongoDBCompass
-￼
-![alt text](https://imgur.com/a/sFvT3OM")
+		Example: db.users.remove({username :"  "}, {justOne:true})
 
 
+		using mongoDBCompass
+		￼
+		![alt text](https://imgur.com/6yjKsJp)
 
 
 
+	###Register user 
+
+
+		With CLI:
+
+		Example: db.users.insert({“firstname: admin, “password”: “password”, “admin”: “false”})
+
+
+		With Postman:
+
+		https://localhost:3443/users/signup
+
+		![alt text](https://imgur.com/IOLA55p)
+	
+	
+	
+
+
+	###Register admin 
+
+		If we want to register an admin we have to do it either via CLI or via the mongoDB compass.
+
+		###### Model: 
+
+			var mongoose = require('mongoose');
+			var Schema = mongoose.Schema;
+			var passportLocalMongoose = require('passport-local-mongoose');
+
+			var User = new Schema({
+			    firstname: {
+			      type: String,
+				default: ''
+			    },
+			    lastname: {
+			      type: String,
+				default: ''
+			    },
+			    admin:   {
+				type: Boolean,
+				default: false
+			    }
+			});
+
+			User.plugin(passportLocalMongoose);
+
+			module.exports = mongoose.model('User', User);
+
+
+		 ###### Do not do it with CLI:
+
+				// This makes the userdata appear as cleartext and not encrypted
+				// hash and salt is automatically added by passportLocalMongooose.
+
+				WORKS: db.users.insert({"username": "adminx", "password": "password", "admin": true})
+
+
+
+
+		##### To register a user via postman 
+
+				Via postman requires you to be logged in as admin
+
+			
+
+				![alt text](https://imgur.com/jodIRxv)
+				![alt text](https://imgur.com/GTxXts2)
+
+				Even if you pass admin as true via the postman call its not enabled.
+
+
+
+		###### Via MongoDBCompass OR CLI ( Ensure only ADMINS can do it).
+
+
+			To Update an existing user:
+
+			db.users.update({“username”: “admin”}, {$set: {“admin”:true}})
+
+
+
+		##### Login 
+		![alt text](https://imgur.com/XmZFakp)
+		![alt text](https://imgur.com/eKZ9R29)
+		
+		
+		
+
+		##### VerifyAdmin and VerifyUser is bugged. work in progress…
+
+
+				TODO 
+				Getting /users/ <— Admin protected route
+				
+				![alt text](https://imgur.com/c2yGeEE)
+
+
+
+				TODO 
+				POST /leaders/  <— user protected route
 
 
 
 
 
 
+				TODO 
+				Posting /leaders/
 
-
-
+		
 
 &nbsp;
 &nbsp;
