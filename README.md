@@ -162,7 +162,7 @@
 
 		https://localhost:3443/users/signup
 
-	![](https://imgur.com/IOLA55p)
+![](https://imgur.com/6yjKsJp)
 
 	
 	
@@ -214,8 +214,8 @@
 
 			
 
+![](https://imgur.com/IOLA55p)
 ![](https://imgur.com/jodIRxv)
-![](https://imgur.com/GTxXts2)
 
 				Even if you pass admin as true via the postman call its not enabled.
 
@@ -231,8 +231,8 @@
 
 
 		##### Login 
+![](https://imgur.com/GTxXts2)
 ![](https://imgur.com/XmZFakp)
-![](https://imgur.com/eKZ9R29)
 		
 		
 		
@@ -243,7 +243,7 @@
 				TODO 
 				Getting /users/ <— Admin protected route
 				
-![](https://imgur.com/c2yGeEE)
+![](https://imgur.com/eKZ9R29)
 
 
 
