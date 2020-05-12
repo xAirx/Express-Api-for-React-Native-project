@@ -147,7 +147,7 @@
 
 ![](https://imgur.com/6yjKsJp)
 
-<img src="https://imgur.com/6yjKsJp" width="800" />						
+<img src="https://imgur.com/6yjKsJp" />						
 
 	
 	Register User 
