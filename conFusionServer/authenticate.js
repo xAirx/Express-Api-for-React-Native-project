@@ -5,7 +5,7 @@ const User = require('./models/user');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const jwt = require('jsonwebtoken');
-var FacebookTokenStrategy = require('passport-facebook-token');
+
 const config = require('./config');
 
 /* passport use and say
@@ -39,14 +39,15 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Creating the token
-exports.getToken = function(user) {
-        /* 	this helps us to create the JSON Web Token and so inside that it'll
+exports.getToken = function (user) {
+
+	/* 	this helps us to create the JSON Web Token and so inside that it'll
 	allow me to supply the payload and
 	the payload here comes in as the parameter here called user,
 	and then the second parameter is
 	the secret or private key which I get from config.secret key, */
 
-        return jwt.sign(user, config.secretKey, { expiresIn: 3600 });
+	return jwt.sign(user, config.secretKey, { expiresIn: 3600 });
 };
 
 const opts = {};
@@ -80,8 +81,8 @@ opts.secretOrKey = config.secretKey;
 /* So, when passport parses the request messag e,*/
 /* it will use the strategy and then extract i nformation,*/
 /* and then load it onto our request message.  */
-exports.jwtPassport = passport.use(
-        new JwtStrategy(opts, (jwt_payload, done) => {
+exports.jwtPassport = passport.use(new JwtStrategy(opts,
+	(jwt_payload, done) => {
 		console.log("JWTPAYLOAD: ", jwt_payload);
 		User.findOne({ _id: jwt_payload._id }, (err, user) => {
 			if (err) {
@@ -99,52 +100,31 @@ exports.jwtPassport = passport.use(
 // We are creating no sessions, since we are using JWT based auth.
 // WE AUTHENTICATE HERE WITH THE TOKEN AND VERIFY THE USERS:
 
-
 // ANY PLACE WE WANT TO VERIFYUSER WE CAN USE THIS EXPORT.
-exports.verifyUser = passport.authenticate('jwt', { session: false });
+/// A session is required to be able to log out.
+exports.verifyUser = passport.authenticate('jwt', { session: false })
 
+
+/* verifyAdmin will be called only after verifyUser.
+When you login using passport, a
+ user property will be attached automatically to req.
+ In verifyAdmin you dont have to find users from database.
+ The user is already present in req as req.user because you will be using verifyAdmin only after verifyUser.
+ Simpley you can do a check like this- if(req.user.admin===true){next();}
+else{ //error code}
+No need to find the users. And make sure when you are calling verifyAdmin in routes, verifyUser should be called first */
 //Check if a verified ordinary user also has Admin privileges.
-exports.verifyAdmin = function (req, res, next) {
-	User.findOne({ _id: req.user._id })
+exports.verifyAdmin = function (req,res,next) {
+	/* User.findOne({ _id: req.user._id })
 		.then((user) => {
-			console.log("User: ", req.user);
-			if (user.admin) {
+			console.log("User: ", req.user); */
+			if (req.user.admin === true) {
+				console.log("ADMIN TRUE");
 				next();
 			}
 			else {
 				err = new Error('You are not authorized to perform this operation!');
-				err.sttatus = 403;
+				err.status = 403;
 				return next(err);
 			}
-		}, (err) => next(err))
-		.catch((err) => next(err))
 }
-
-
-
-exports.facebookPassport = passport.use(new FacebookTokenStrategy({
-	clientID: config.facebook.clientId,
-	clientSecret: config.facebook.clientSecret
-}, (accessToken, refreshToken, profile, done) => {
-	User.findOne({ facebookId: profile.id }, (err, user) => {
-		if (err) {
-			return done(err, false);
-		}
-		if (!err && user !== null) {
-			return done(null, user);
-		}
-		else {
-			user = new User({ username: profile.displayName });
-			user.facebookId = profile.id;
-			user.firstname = profile.name.givenName;
-			user.lastname = profile.name.familyName;
-			user.save((err, user) => {
-				if (err)
-					return done(err, false);
-				else
-					return done(null, user);
-			})
-		}
-	});
-}
-));

@@ -4,8 +4,8 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session = require('express-session');
-var FileStore = require('session-file-store')(session);
+/* var session = require('express-session');
+var FileStore = require('session-file-store')(session); */
 const uploadRouter = require('./routes/uploadRouter');
 var index = require('./routes/index');
 var usersRouter = require('./routes/usersRouter');
@@ -63,7 +63,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // }));
 
 app.use(passport.initialize());
-// app.use(passport.session());
+/* app.use(passport.session()); */
+console.log("init passport correctly");
 
 app.use('/', index);
 app.use('/users', usersRouter);
@@ -92,6 +93,7 @@ app.use('/leaders', leaderRouter);
 app.use('/imageUpload', uploadRouter);
 app.use('/favorites', favoritesRouter);
 app.use('/users', usersRouter);
+console.log("Routes Setup");
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');

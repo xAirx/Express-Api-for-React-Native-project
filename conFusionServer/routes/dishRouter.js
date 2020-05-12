@@ -43,7 +43,7 @@ DishRouter.route('/')
     If the authentication fails at this point,
     then passport authenticate will reply
     back to the client with the appropriate error message. */
-    .post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+    .post(cors.corsWithOptions, authenticate.verifyUser, /* authenticate.verifyAdmin, */ (req, res, next) => {
         Dishes.create(req.body)
             .then((dish) => {
                 console.log('Dish Created ', dish);
@@ -68,7 +68,5 @@ DishRouter.route('/')
         });
 
 
-
-        });
 
 module.exports = DishRouter;
