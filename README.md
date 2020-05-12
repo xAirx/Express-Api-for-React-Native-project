@@ -134,6 +134,18 @@
 
  # User manual (for myself mainly)
 
+Remove a user via mongo CLI 
+
+use conFusion server
+
+db.users.find()
+
+Example: db.users.remove({username :"  "}, {justOne:true})
+
+
+using mongoDBCompass
+￼
+![alt text](https://imgur.com/a/sFvT3OM")
 
 
 
