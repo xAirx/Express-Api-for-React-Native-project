@@ -246,33 +246,6 @@
 ## DevBranch  
 
 
-
-### ---Added post functionality for Dishes and Leaders / comments and Feedback---- WORKS
-	
-			/routes/leaderRouter.js -implemented
-
-			LeaderRouter.route('/')
-			    .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
-			    .get(cors.cors, (req, res, next) => {
-				Leaders.find({})
-				    .then((leaders) => {
-					res.statusCode = 200;
-					res.setHeader('Content-Type', 'application/json');
-					res.json(leaders);
-				    }, (err) => next(err))
-				    .catch((err) => next(err));
-			    })
-			    .post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-				Leaders.create(req.body)
-				    .then((leader) => {
-					console.log('Leader Created ', leaders);
-					res.statusCode = 200;
-					res.setHeader('Content-Type', 'application/json');
-					res.json(leaders);
-				    }, (err) => next(err))
-				    .catch((err) => next(err));
-			    })
-	
 	
 ### -----------------------HTTPS SECURE CONNECTION TO API------------------------ WORKS
 	
@@ -376,17 +349,43 @@
 
 
 
+### ---Added post functionality for Dishes and Leaders / comments and Feedback---- WORKS
+	
+			/routes/leaderRouter.js -implemented
+
+			LeaderRouter.route('/')
+			    .options(cors.cors, (req, res) => { res.sendStatus(200); })
+			    .get(cors.cors, (req, res, next) => {
+				Leaders.find({})
+				    .then((leaders) => {
+					res.statusCode = 200;
+					res.setHeader('Content-Type', 'application/json');
+					res.json(leaders);
+				    }, (err) => next(err))
+				    .catch((err) => next(err));
+			    })
+			    .post(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+				Leaders.create(req.body)
+				    .then((leader) => {
+					console.log('Leader Created ', leaders);
+					res.statusCode = 200;
+					res.setHeader('Content-Type', 'application/json');
+					res.json(leaders);
+				    }, (err) => next(err))
+				    .catch((err) => next(err));
+			    })
+	
 
 
 	      
-### --------------------------Verify Admin and Verify User ---------------------------------- Needs testing
+###--------------------------Verify Admin and Verify User ---------------------------------- works
 
-		  ####   Authentication based on being an admin or not. -implemented - BUGGED
+		  ####   Authentication based on being an admin or not. -implemented - works
 
 		
 		    // Check if user is logged in
 		   
-		   		exports.verifyUser = passport.authenticate('jwt', { session: false })  - BUGGED
+		   		exports.verifyUser = passport.authenticate('jwt', { session: false })  - works
 		
 		    //Check if a verified ordinary user also has Admin privileges.
 		    
@@ -394,19 +393,19 @@
 	
 
 
-		Admin based management, being able to see a user list -implemented  - NOT TESTED
+		Admin based management, being able to see a user list -implemented  - Works
 
 
-		Admin allowed see and flag dishes as featured or not. -implemented  - NOT TESTED
-
-		
-		Admin can see and flag leaders as featured for the frontpage  -implemented  - NOT TESTED
+		Admin allowed see and flag dishes as featured or not. -implemented  - Works
 
 		
-		Admin allowed / able to upload files, such as images when creating new dishes. -implemented  - NOT TESTED
+		Admin can see and flag leaders as featured for the frontpage  -implemented  - Works
 
 		
-		Admin can  GET all the registered users' information  -implemented - NOT TESTED
+TODO ------>	Admin allowed / able to upload files, such as images when creating new dishes. -implemented  - NOT TESTED
+
+		
+TODO ------>	Admin can  GET all the registered users' information  -implemented - NOT TESTED
  
 			
 			
@@ -424,18 +423,15 @@
      
    
 		   
-		   Favorite functionality for users -implemented  - NOT TESTED
+TODO ------>	   Favorite functionality for users -implemented  - NOT TESTED
 
 		   
-		   Comment and form support for the users to interact with the content. -implemented - NOT TESTED
+TODO ------>	   Comment and form support for the users to interact with the content. - NOT IMPLEMENTED MIRROR LEADERS ROUTE CODE
 
 		   
-		   Support for a user to manage their own comments, delete functionality. -implemented - NOT TESTED
+TODO ------>	   Support for a user to manage their own comments, delete functionality. -implemented - NOT TESTED
 
-		   
-		   API supporting various objects of which contains members of the “company”  -implemented - NOT TESTED
-
-			
+		 
 			##### Check routes / favoritesRouter.js
 
 			      favoriteRouter.route('/')
@@ -459,29 +455,11 @@
 
 ### ---------------Fileuploading with multer---------------------------- Needs testing
 		 
-			 http://localhost:3000/upload/ , Check UploadRouter under Devbranch  -implemented
+TODO ------>     http://localhost:3000/upload/ , Check UploadRouter under Devbranch  -implemented - Not tested
 
 
 &nbsp;
   
-
-
-# Todo 
-	
-		   To add:
-		   
-		   ------------(mirror leaderfunctionality)----------
-	 
-		   Via Userpanel able to update profilepicture, description etc.  
-
-  	           Via Userpanel able to update a submitted comment and delete a submitted comment
-		   
-		   Testing, bugfixing.
-    
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
 
 # Devlog 
        
