@@ -2,7 +2,9 @@
   ## Backend and API + Authentication.
   
   ## Hosted Project: https://expressproject.herokuapp.com/
-
+  ### you can register a user or use: username: marcouser password: password for testing purposes - Remember you are not admin
+ 					 try /dishes /favorites /leaders
+  
    ### Goals:
 
     Describe the use of Node for server-side development
