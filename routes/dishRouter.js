@@ -31,8 +31,6 @@ DishRouter.route('/')
             }, (err) => next(err))
             .catch((err) => next(err));
     })
-
-
     /*     This says that if a post request comes in,
     I would first execute this middleware,
     which I have exported from the authentic.js file,
@@ -66,6 +64,19 @@ DishRouter.route('/')
                 }, (err) => next(err))
                 .catch((err) => next(err));
         });
+
+
+        DishRouter.route('/:DishId')
+       .get(cors.cors, authenticate.verifyUser, (req, res, next) => {
+
+        Dishes.findById(req.params.dishId)
+            .then((dishes) => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(dishes);
+            }, (err) => next(err))
+            .catch((err) => next(err));
+    })
 
 
 
