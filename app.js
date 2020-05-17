@@ -35,7 +35,9 @@ connect.then((db) => {
 
 var app = express();
 
-// Secure traffic only
+
+
+/* // Secure traffic only
 app.all('*', (req, res, next) => {
   if (req.secure) {
     return next();
@@ -43,7 +45,7 @@ app.all('*', (req, res, next) => {
   else {
     res.redirect(307, 'https://' + req.hostname + ':' + app.get('secPort') + req.url);
   }
-});
+}); */
 
 // view engine setupx
 app.set('views', path.join(__dirname, 'views'));
@@ -113,5 +115,8 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+const port = process.env.PORT || 3000;app.listen(port);
+console.log("Listening on port", port)
 
 module.exports = app;
