@@ -10,7 +10,7 @@ DishRouter.use(bodyParser.json());
 
 DishRouter.route('/')
    /*  .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); }) */
-    .get(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+    .get(cors.cors, authenticate.verifyUser, (req, res, next) => {
         Dishes.find({})
 
             /*   dishes find and we will say after this, populate.
