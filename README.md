@@ -1,11 +1,19 @@
 # Backend-for-React-Native-project
   ## Backend and API + Authentication.
   
+<<<<<<< HEAD
   
   # CHECK DEVBRANCH <----- 
 
    ### Goals:
 
+=======
+  # MASTER BRANCH CONTAINS A BASIC AUTH EXAMPLE....
+
+  # CHECK DEVBRANCH CONTAINS REAL PROJECT. <----- 
+
+   ### Goals:
+>>>>>>> development
 
     Describe the use of Node for server-side development
     Create a Node application
