@@ -66,7 +66,7 @@ DishRouter.route('/')
         });
 
 
-        DishRouter.route('/:DishId')
+        DishRouter.route('/:dishId')
        .get(cors.cors, authenticate.verifyUser, (req, res, next) => {
 
         Dishes.findById(req.params.dishId)
