@@ -4,9 +4,9 @@ var User = require('./models/user');
 var JwtStrategy = require('passport-jwt').Strategy;
 var ExtractJwt = require('passport-jwt').ExtractJwt;
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
-
-var config = require('./config.js');
-
+/* var config = require('./config.js');
+ */
+require('dotenv').config()
 
 
 /* passport use and say
@@ -48,8 +48,7 @@ exports.getToken = function (user) {
 	and then the second parameter is
 	the secret or private key which I get from config.secret key, */
 
-
-    return jwt.sign(user, config.secretKey,
+    return jwt.sign(user, process.env.SECRETKEY,
         { expiresIn: 3600 });
 };
 
@@ -85,7 +84,7 @@ supply the secret key which I'm going to be using within my strategy for the sig
 /* it will use the strategy and then extract i nformation,*/
 /* and then load it onto our request message.  */
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = config.secretKey;
+opts.secretOrKey = process.env.SECRETKEY;
 
 exports.jwtPassport = passport.use(new JwtStrategy(opts,
     (jwt_payload, done) => {

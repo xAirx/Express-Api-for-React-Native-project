@@ -13,7 +13,7 @@ var dishRouter = require('./routes/dishRouter');
 var promoRouter = require('./routes/promoRouter');
 var leaderRouter = require('./routes/leaderRouter');
 var favoritesRouter = require('./routes/favoritesRouter');
-var config = require('./config');
+/* var config = require('./config'); */
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
@@ -21,12 +21,13 @@ const Dishes = require('./models/dishes');
 
 var passport = require('passport');
 var authenticate = require('./authenticate');
-
+require('dotenv').config()
 // Connection URL
-const url = config.mongoUrl;
+/* const url = config.mongoUrl; */
+const url = process.env.MONGODB_URI;
 
 const connect = mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
-require('dotenv').config()
+
 
 connect.then((db) => {
   console.log("Connected correctly to server");
