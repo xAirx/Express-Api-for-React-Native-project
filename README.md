@@ -1,9 +1,7 @@
 # Backend-for-React-Native-project
   ## Backend and API + Authentication.
   
-  # MASTER BRANCH CONTAINS A BASIC AUTH EXAMPLE....
-
-  # CHECK DEVBRANCH CONTAINS REAL PROJECT. <----- 
+  ## Hosted Project: https://expressproject.herokuapp.com/
 
    ### Goals:
 
