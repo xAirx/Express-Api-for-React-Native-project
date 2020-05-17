@@ -25,7 +25,8 @@ var authenticate = require('./authenticate');
 // Connection URL
 const url = config.mongoUrl;
 
-const connect = mongoose.connect('mongodb://127.0.0.1:27017/conFusion', { useNewUrlParser: true, useUnifiedTopology: true });
+const connect = mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+require('dotenv').config()
 
 connect.then((db) => {
   console.log("Connected correctly to server");
