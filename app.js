@@ -45,7 +45,7 @@ app.all('*', (req, res, next) => {
   }
 });
 
-// view engine setup
+// view engine setupx
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
