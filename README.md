@@ -6,8 +6,6 @@
  					 try /dishes /favorites /leaders
   
   
- 
-  
   
    ### Goals:
 
