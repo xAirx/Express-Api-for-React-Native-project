@@ -27,6 +27,11 @@ const imageFileFilter = (req, file, cb) => {
 
 const upload = multer({ storage: storage, fileFilter: imageFileFilter });
 
+/** Permissible loading a single file,
+    the value of the attribute "name" in the form of "recfile". **/
+var type = upload.single('recfile');
+
+
 const uploadRouter = express.Router();
 
 uploadRouter.use(bodyParser.json());
@@ -37,7 +42,29 @@ uploadRouter.route('/')
 		res.statusCode = 403;
 		res.end('GET operation not supported on /imageUpload');
 	})
-	.post(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, upload.single('myFile'), (req, res, next) => {
+	.post(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin,  type, function (req,res) {
+
+		/** When using the "single"
+			data come in "req.file" regardless of the attribute "name". **/
+		var tmp_path = req.file.path;
+
+		/** The original name of the uploaded file
+			stored in the variable "originalname". **/
+		var target_path = 'uploads/' + req.file.originalname;
+
+		/** A better way to copy the uploaded file. **/
+		var src = fs.createReadStream(tmp_path);
+		var dest = fs.createWriteStream(target_path);
+		src.pipe(dest);
+		src.on('end', function() { res.render('complete'); });
+		src.on('error', function(err) { res.render('error'); });
+
+	  });
+
+
+
+
+		/* upload.single('myFile'), (req, res, next) => {
 		const file = req.file
 		if (!file) {
 		  const error = new Error('Please upload a file')
@@ -46,7 +73,7 @@ uploadRouter.route('/')
 		}
 		  res.send(file)
 
-	  })
+	  }) */
 
 		/* upload.single('picture'), (req, res) => {
 		var img = fs.readFileSync(req.file.path);
