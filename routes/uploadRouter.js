@@ -42,11 +42,12 @@ uploadRouter.route('/')
 		res.statusCode = 403;
 		res.end('GET operation not supported on /imageUpload');
 	})
-	.post(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin,  type, single('myFile'), (req,res) {
+	.post(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin,  type, (req,res) => {
 
 		// chevk if there is a file
 
-		const file = req.file
+		const file = req.file.path;
+		console.log("This is the req file path", req.file.path);
 		if (!file) {
 		  const error = new Error('Please upload a file')
 		  error.httpStatusCode = 400
@@ -64,6 +65,7 @@ uploadRouter.route('/')
 
 		}
 	  })
+
 
 
 
