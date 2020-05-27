@@ -234,7 +234,7 @@
 TODO ------>	Admin allowed / able to upload files, such as images when creating new dishes. -implemented  - NOT TESTED
 
 		
-TODO ------>	Admin can  GET all the registered users' information  -implemented - NOT TESTED
+TODO ------>	Admin can  GET all the registered users' information  -implemented - Works
 			
 			
 			
@@ -284,7 +284,6 @@ TODO ------>	   Support for a user to manage their own comments, delete function
 ### ---------------Fileuploading with multer---------------------------- Needs testing
 		 
 TODO ------>     http://localhost:3000/upload/ , Check UploadRouter under Devbranch  -implemented - Not tested
-
 
 &nbsp;
   
@@ -435,10 +434,7 @@ TODO ------>     http://localhost:3000/upload/ , Check UploadRouter under Devbra
 ![](https://imgur.com/XmZFakp.png)
 ![](https://imgur.com/eKZ9R29.png)
 		
-		
-		
-
-		##### VerifyAdmin and VerifyUser is bugged. work in progress…
+		                ##### VerifyAdmin and VerifyUser works
 
 
 			
