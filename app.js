@@ -6,7 +6,6 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 /* var session = require('express-session');
 var FileStore = require('session-file-store')(session); */
-const uploadRouter = require('./routes/uploadRouter');
 var index = require('./routes/index');
 var usersRouter = require('./routes/usersRouter');
 var dishRouter = require('./routes/dishRouter');
