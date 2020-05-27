@@ -9,7 +9,7 @@ var cors = require('../routes/cors');
 
 LeaderRouter.route('/')
     /* .options(cors.corsWithOptions,authenticate.verifyAdmin, (req, res) => { res.sendStatus(200); }) */
-    .get(cors.cors, authenticate.verifyUser, (req, res, next) => {
+    .get(cors.cors, /* authenticate.verifyUser, */ (req, res, next) => {
         Leaders.find({})
             .then((leaders) => {
                 res.statusCode = 200;
