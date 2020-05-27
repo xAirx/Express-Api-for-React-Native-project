@@ -42,23 +42,27 @@ uploadRouter.route('/')
 		res.statusCode = 403;
 		res.end('GET operation not supported on /imageUpload');
 	})
-	.post(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin,  type, function (req,res) {
+	.post(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin,  type, single('myFile'), (req,res) {
 
-		/** When using the "single"
-			data come in "req.file" regardless of the attribute "name". **/
-		var tmp_path = req.file.path;
+		// chevk if there is a file
 
-		/** The original name of the uploaded file
-			stored in the variable "originalname". **/
-		var target_path = 'uploads/' + req.file.originalname;
+		const file = req.file
+		if (!file) {
+		  const error = new Error('Please upload a file')
+		  error.httpStatusCode = 400
+		  return next(error)
+		}else{
+			var encode_image = img.toString('base64');
+			// Define a JSONobject for the image attributes for saving to database
 
-		/** A better way to copy the uploaded file. **/
-		var src = fs.createReadStream(tmp_path);
-		var dest = fs.createWriteStream(target_path);
-		src.pipe(dest);
-		src.on('end', function() { res.render('complete'); });
-		src.on('error', function(err) { res.render('error'); });
+			var finalImg = {
+				 contentType: req.file.mimetype,
+				 image:  new Buffer(encode_image, 'base64')
+			  };
 
+			  console.log("this is finalimg", finalImg);
+
+		}
 	  })
 
 
@@ -77,23 +81,7 @@ uploadRouter.route('/')
 
 		/* upload.single('picture'), (req, res) => {
 		var img = fs.readFileSync(req.file.path);
-	 var encode_image = img.toString('base64');
-	 // Define a JSONobject for the image attributes for saving to database
 
-	 var finalImg = {
-		  contentType: req.file.mimetype,
-		  image:  new Buffer(encode_image, 'base64')
-	   };
-	db.collection('quotes').insertOne(finalImg, (err, result) => {
-		console.log(result)
-
-		if (err) return console.log(err)
-
-		console.log('saved to database')
-		res.redirect('/')
-
-
-	  })
 	}) */
 
 
