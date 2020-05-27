@@ -37,7 +37,18 @@ uploadRouter.route('/')
 		res.statusCode = 403;
 		res.end('GET operation not supported on /imageUpload');
 	})
-	.post(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, upload.single('picture'), (req, res) => {
+	.post(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, upload.single('myFile'), (req, res, next) => {
+		const file = req.file
+		if (!file) {
+		  const error = new Error('Please upload a file')
+		  error.httpStatusCode = 400
+		  return next(error)
+		}
+		  res.send(file)
+
+	  })
+
+		/* upload.single('picture'), (req, res) => {
 		var img = fs.readFileSync(req.file.path);
 	 var encode_image = img.toString('base64');
 	 // Define a JSONobject for the image attributes for saving to database
@@ -56,11 +67,16 @@ uploadRouter.route('/')
 
 
 	  })
-	})/* upload.single('imageFile'), (req, res) => {
+	}) */
+
+
+	/* upload.single('imageFile'), (req, res) => {
 		res.statusCode = 200;
 		res.setHeader('Content-Type', 'application/json');
 		res.json(req.file);
 	}) */
+
+
 	.put(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
 		res.statusCode = 403;
 		res.end('PUT operation not supported on /imageUpload');
