@@ -98,7 +98,7 @@ app.use('/leaders', leaderRouter);
 app.use('/imageUpload', uploadRouter);
 app.use('/favorites', favoritesRouter);
 app.use('/users', usersRouter);
-app.use('/uploads', uploadRouter)
+app.use('/uploads', uploadRouter);
 console.log("Routes Setup");
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
