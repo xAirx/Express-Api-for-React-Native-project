@@ -59,7 +59,7 @@ uploadRouter.route('/')
 		src.on('end', function() { res.render('complete'); });
 		src.on('error', function(err) { res.render('error'); });
 
-	  });
+	  })
 
 
 
