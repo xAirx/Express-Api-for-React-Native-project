@@ -6,44 +6,6 @@
  					 try /dishes /favorites /leaders
   
   
-  
-   ### Goals:
-
-    Describe the use of Node for server-side development
-    Create a Node application
-    Demonstrate the use of Node modules in developing a Node application
-    Develop a simple REST API server using the Express framework
-    
-    Demonstrate an understanding of data persistence using a database
-    Design persistent data storage based on MongoDB, a NoSQL database
-    Develop schemas and models for data storage using Mongoose
-    Combine the REST API and the data persistance layer for a full-fledged server implementation
-    
-    Demonstrate the need for user authentication
-    Evaluate varioius alternative approaches for supporting user authentication
-    Develop a comprehensive user authentication system using Passport
-    Develop a secure server based on the HTTPS protocol
-    
-
-     REST API with express mongodb and Mongoose -done
-     
-     User login and authentication -done
-     
-     Basic Authentication -done
-      
-     Explore Cookies, Express, Sessions and error handling. -done
-     
-     Mongoose Population -done
-     
-     HTTPS and Secure Communication -done  (LOCAL ONLY) heroku costs money bin/www disabled, port set in app.js....     
-     
-     - Implemented Certificates - done (LOCAL ONLY) heroku costs money bin/www disabled, port set in app.js....  
-     
-     
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
 
  # API description: 
  
@@ -78,16 +40,22 @@
 &nbsp;
 &nbsp;
 
-## Under development:   
+## Backend Feature Pipeline :   
 
 
-### ---------------Fileuploading with multer---------------------------- Needs development
-		 
-		TODO ------>     http://localhost:3000/upload/ , Check UploadRouter under Devbranch  -implemented - tested needs development
+## #0 Fileuploading with multer - Under development
+          
+	  Correctly setting up the uploadRouter
+	  
+	  Understanding the concept of heroku file system and using bash to connect
+	  
+	  Understand why we need proper storage - adding cloudinary.
+	  
+	  Understand how to upload a file correctly.
 
 
 
-## --------------- Connecting JWT register + login functionality to frontend - not started --------------
+## #1 Connecting JWT register + login functionality to frontend - not started
 
 	 - Create Refresh Token Functionality - and API endpoint for this purpose.
 	 - Implementing httpcookie to hold the JWT serverside so we can compare for a refresh token.
@@ -118,11 +86,163 @@
 
 
 
-### ---------------------- ADDING OAUTH ---------------------- not started
+### #2 ADDING OAUTH functionality - not started
 
 	https://www.youtube.com/watch?v=sakQbeRjgwg&list=PL4cUxeGkcC9jdm7QX143aMLAqyM-jTZ2x
 
 
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+## Users Panel:
+
+________________________________________
+&nbsp;
+&nbsp;
+&nbsp;
+	  
+### #1 TODO ------> Favorite functionality for users** POST, GET, DELETE
+
+
+	#Task 1 Mongoose populate GET request with dish data and user data.
+	
+	We will need a user ID (based on login show the correct favorites
+	
+	We will need a dish ID within the favorite listed so we know which dish it belongs to
+	
+	Files: favorites.js
+
+			const mongoose = require('mongoose');
+			const Schema = mongoose.Schema;
+
+			var favoriteSchema = new Schema({
+				user: {
+					type: mongoose.Schema.Types.ObjectId,
+					ref: 'User'
+				},
+				dishes: [{
+					type: mongoose.Schema.Types.ObjectId,
+					ref: 'Dish'
+				}]
+			}, {
+					timestamps: true
+				});
+
+			var Favorites = mongoose.model('Favorite', favoriteSchema);
+
+			module.exports = Favorites;
+
+
+		
+		
+	Files: favoritesRouter.js
+	
+	Favorites router has a get request already that populates both the user and dishes via its mongoose schema.
+	
+			 .get(cors.cors, /* authenticate.verifyUser, */ (req, res, next) => {
+			 Favorites.findOne({ user: req.user._id })
+				  .populate('user')
+				.populate('dishes')
+
+	
+
+  	#Task 2  Mongoose populate DEL request with dish data and user data.
+	
+		We will need a user ID within the favorite listed so we know which user it belongs to
+
+		We will need a dish ID within the favorite listed so we know which dish it belongs to
+ 
+
+	#Task 3  Mongoose populate POST request with dish data and user data.
+	
+		We will need a user ID within the favorite listed so we know which user it belongs to
+
+		We will need a dish ID within the favorite listed so we know which dish it belongs to
+		
+&nbsp;
+&nbsp;
+&nbsp;
+
+### #2 TODO ------> Comment functionality for users ** POST,GET,DELETE, ?? PUT ??
+			
+
+
+	#Task 1 Mongoose populate GET request with dish data and user data.
+	
+	We will need a user ID (based on login show the correct favorites
+	
+	We will need a dish ID within the favorite listed so we know which dish it belongs to
+	
+	Files: favorites.js
+
+			const mongoose = require('mongoose');
+			const Schema = mongoose.Schema;
+
+				----Inspiration: favoritesRouter-----
+
+        Files: models/comments.js 
+	Files: models/dishes.js 
+
+			var commentSchema = new Schema({
+				user: {
+					type: mongoose.Schema.Types.ObjectId,
+					ref: 'User'
+				},
+				dishes: [{
+					type: mongoose.Schema.Types.ObjectId,
+					ref: 'Dish'
+				}],
+
+
+
+
+	 Files: favoritesRouter.js
+
+	 Favorites router has a get request already that populates both the user and dishes via its mongoose schema.
+
+					 .get(cors.cors, /* authenticate.verifyUser, */ (req, res, next) => {
+					 Favorites.findOne({ user: req.user._id })
+						  .populate('user')
+						.populate('dishes')
+
+	
+
+  	#Task 2  Mongoose populate DEL request with dish data and user data.
+	
+		We will need a user ID within the comment listed so we know which user it belongs to
+
+		We will need a dish ID within the comment listed so we know which dish it belongs to
+
+
+
+
+
+	#Task 3  Mongoose populate POST request with dish data and user data.
+	
+		We will need a user ID within the comment listed so we know which user it belongs to
+
+		We will need a dish ID within the comment listed so we know which dish it belongs to
+		
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+### #3 Via Userpanel able to update profilepicture, description etc.**  
+
+	Mirror functionality from registraiton page 
+	
+	  getImageFromCamera = async () => {
+	    console.log('GETIMAGEFORMCAMERATRIGGRED');
+	    
+&nbsp;
+&nbsp;   
+&nbsp;
      
 &nbsp;
 &nbsp;
@@ -144,8 +264,8 @@
 
 # Devlog 
 
-	
-### -----------------------HTTPS SECURE CONNECTION TO API------------------------ WORKS
+
+### HTTPS SECURE CONNECTION TO API  WORKS
 	
 				root/app.js
 				
@@ -187,7 +307,7 @@
 
 	
 	
-### ------------------Mongoose Population------------------------- WORKS
+### Mongoose Populatio WORKS
 	
 			/models/user.js
 
@@ -196,7 +316,7 @@
 
 
 	
-### ---------------CORS for express server---------------------------- WORKS.
+### CORS for express server WORKS.
 		
 			Check cors.js under routes under Devbranch -implemented
 
@@ -206,7 +326,7 @@
 			const whitelist = ['http://localhost:3000', 'https://localhost:3443'];
 
 
-### ---Added post functionality for Dishes and Leaders / comments and Feedback---- WORKS
+### Added post functionality for Dishes and Leaders / comments and Feedback WORKS
 	
 			/routes/leaderRouter.js -implemented
 
@@ -235,7 +355,7 @@
 
 
 	      
-### --------------------------Verify Admin and Verify User ---------------------------------- WORKS
+### Verify Admin and Verify User WORKS
 
 		  ####   Authentication based on being an admin or not. -implemented - works
 
@@ -275,7 +395,7 @@
 	
 	
      
-### -------------------- Backend for Users Panel    --------------------------------- Needs testing
+### Backend for Users Panel - Needs testing
      
 
 
@@ -597,3 +717,44 @@
     
     * The app.js has been updated to support the new route. -done
 
+
+
+
+  
+   ### Goals:
+
+    Describe the use of Node for server-side development
+    Create a Node application
+    Demonstrate the use of Node modules in developing a Node application
+    Develop a simple REST API server using the Express framework
+    
+    Demonstrate an understanding of data persistence using a database
+    Design persistent data storage based on MongoDB, a NoSQL database
+    Develop schemas and models for data storage using Mongoose
+    Combine the REST API and the data persistance layer for a full-fledged server implementation
+    
+    Demonstrate the need for user authentication
+    Evaluate varioius alternative approaches for supporting user authentication
+    Develop a comprehensive user authentication system using Passport
+    Develop a secure server based on the HTTPS protocol
+    
+
+     REST API with express mongodb and Mongoose -done
+     
+     User login and authentication -done
+     
+     Basic Authentication -done
+      
+     Explore Cookies, Express, Sessions and error handling. -done
+     
+     Mongoose Population -done
+     
+     HTTPS and Secure Communication -done  (LOCAL ONLY) heroku costs money bin/www disabled, port set in app.js....     
+     
+     - Implemented Certificates - done (LOCAL ONLY) heroku costs money bin/www disabled, port set in app.js....  
+     
+     
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
