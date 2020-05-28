@@ -40,10 +40,10 @@
 &nbsp;
 &nbsp;
 
-## Backend Feature Pipeline :   
+# Backend Feature Pipeline :   
 
 
-## #0 Fileuploading with multer - Under development
+### #0 Fileuploading with multer - Under development
           
 	  Correctly setting up the uploadRouter
 	  
@@ -55,7 +55,7 @@
 
 
 
-## #1 Connecting Refresh Token and HTTP Cookie, connect backend to frontend login and register.
+### #1 Connecting Refresh Token and HTTP Cookie, connect backend to frontend login and register.
 
 	 - Create Refresh Token Functionality - and API endpoint for this purpose.
 	 - Implementing httpcookie to hold the JWT serverside so we can compare for a refresh token.
