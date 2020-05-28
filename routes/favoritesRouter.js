@@ -18,7 +18,7 @@ favoriteRouter.route('/')
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
        /*  res.json(favorites); */
-        res.json({status: "Grab favorite Success",favorite});
+        res.json({status: "Grab favorite Success",favorites});
       }, (err) => next(err))
       .catch((err) => next(err));
   })
