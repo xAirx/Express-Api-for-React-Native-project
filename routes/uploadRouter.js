@@ -57,7 +57,7 @@ uploadRouter.route('/')
 
 			// We are encoding a file here.
 			var encode_image = file.toString('base64');
-			// Define a JSONobject for the image attributes for saving to database
+			// Define a JSONobject for the image attributes for saving to databasex
 
 			var finalImg = {
 				 contentType: req.file.mimetype,
