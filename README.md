@@ -100,9 +100,6 @@
 &nbsp;
 ## Users Panel:
 ________________________________________
-&nbsp;
-&nbsp;
-&nbsp;
 	  
 ### #1 TODO ------> Favorite functionality for users** POST, GET, DELETE
 
