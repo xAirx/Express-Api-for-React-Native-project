@@ -111,7 +111,6 @@ exports.jwtPassport = passport.use(new JwtStrategy(opts,
 
 // We are creating no sessions, since we are using JWT based auth.
 // WE AUTHENTICATE HERE WITH THE TOKEN AND VERIFY THE USERS:
-
 // ANY PLACE WE WANT TO VERIFYUSER WE CAN USE THIS EXPORT.
 
 

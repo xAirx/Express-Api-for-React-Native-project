@@ -90,14 +90,24 @@ UsersRouter.post('/login', passport.authenticate('local'), (req, res) => {
   const token = authenticate.getToken({ _id: req.user._id });
   const userInfo = User.findOne({ _id: req.user._id })
 		.then((user) => {
-			console.log("User: ", req.user);
+      // Checking if user is logged in.
+      console.log("User: ", req.user);
+      if (req.user) {
+        console.log("you are already logged in");
+      /*   console.log("THIS IS THE req session", req.session) */
+			}
+			else {
+			   console.log("you are not logged in")
+      }
+
 			if (req.user.admin) {
         console.log("you are admin");
       /*   console.log("THIS IS THE req session", req.session) */
 			}
 			else {
 			   console.log("you are not admin")
-			}
+      }
+
 		}, (err) => next(err))
 		.catch((err) => next(err))
   res.statusCode = 200;

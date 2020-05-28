@@ -5,11 +5,10 @@ const multer = require('multer');
 var cors = require('../routes/cors');
 
 
-
 // Setting storage
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
-		cb(null, 'public/images');
+		cb(null, path.join(__dirname, 'public/images'));
 	},
 
 	filename: (req, file, cb) => {
