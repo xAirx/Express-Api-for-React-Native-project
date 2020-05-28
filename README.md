@@ -136,39 +136,140 @@
 ________________________________________
 
 	  
-### #1 TODO ------> Favorite functionality for users**
-&nbsp;
-&nbsp;   
-&nbsp;
-
-  
- -implemented - NOT TESTED
-
-	  
-
-### #2 TODO ------> Comment CRUD support for the users to interact with the content.**
-&nbsp;
-&nbsp;   
-&nbsp;
+### #1 TODO ------> Favorite functionality for users** POST, GET, DELETE
 
 
-#### NOT IMPLEMENTED MIRROR LEADERS ROUTE CODE
+	#Task 1 Mongoose populate GET request with dish data and user data.
+	
+	We will need a user ID (based on login show the correct favorites
+	
+	We will need a dish ID within the favorite listed so we know which dish it belongs to
+	
+	Files: favorites.js
 
- 	LeaderRouter.route('/:leaderId/feedback')
+			const mongoose = require('mongoose');
+			const Schema = mongoose.Schema;
+
+			var favoriteSchema = new Schema({
+				user: {
+					type: mongoose.Schema.Types.ObjectId,
+					ref: 'User'
+				},
+				dishes: [{
+					type: mongoose.Schema.Types.ObjectId,
+					ref: 'Dish'
+				}]
+			}, {
+					timestamps: true
+				});
+
+			var Favorites = mongoose.model('Favorite', favoriteSchema);
+
+			module.exports = Favorites;
+
+
+		
+		
+	Files: favoritesRouter.js
+	
+	Favorites router has a get request already that populates both the user and dishes via its mongoose schema.
+	
+			 .get(cors.cors, /* authenticate.verifyUser, */ (req, res, next) => {
+			 Favorites.findOne({ user: req.user._id })
+				  .populate('user')
+				.populate('dishes')
+
+	
+
+  	#Task 2  Mongoose populate DEL request with dish data and user data.
+	
+		We will need a user ID within the favorite listed so we know which user it belongs to
+
+		We will need a dish ID within the favorite listed so we know which dish it belongs to
  
- 	TODO ------  Support for a user to manage their own comments, delete functionality. -implemented - NOT TESTED
+
+	#Task 3  Mongoose populate POST request with dish data and user data.
+	
+		We will need a user ID within the favorite listed so we know which user it belongs to
+
+		We will need a dish ID within the favorite listed so we know which dish it belongs to
+		
 
 
+### #2 TODO ------> Comment functionality for users ** POST,GET,DELETE, ?? PUT ??
+			
 &nbsp;
 &nbsp;   
 &nbsp;
+
+
+
+	#Task 1 Mongoose populate GET request with dish data and user data.
+	
+	We will need a user ID (based on login show the correct favorites
+	
+	We will need a dish ID within the favorite listed so we know which dish it belongs to
+	
+	Files: favorites.js
+
+			const mongoose = require('mongoose');
+			const Schema = mongoose.Schema;
+
+				----Inspiration: favoritesRouter-----
+
+        Files: models/comments.js 
+	Files: models/dishes.js 
+
+			var commentSchema = new Schema({
+				user: {
+					type: mongoose.Schema.Types.ObjectId,
+					ref: 'User'
+				},
+				dishes: [{
+					type: mongoose.Schema.Types.ObjectId,
+					ref: 'Dish'
+				}],
+
+
+
+
+	 Files: favoritesRouter.js
+
+	 Favorites router has a get request already that populates both the user and dishes via its mongoose schema.
+
+					 .get(cors.cors, /* authenticate.verifyUser, */ (req, res, next) => {
+					 Favorites.findOne({ user: req.user._id })
+						  .populate('user')
+						.populate('dishes')
+
+	
+
+  	#Task 2  Mongoose populate DEL request with dish data and user data.
+	
+		We will need a user ID 
+
+		We will need a dish ID within the favorite listed so we know which dish it belongs to
+
+
+
+	#Task 3  Mongoose populate POST request with dish data and user data.
+	
+		We will need a user ID within the comment listed so we know which dish it belongs to
+
+		We will need a dish ID within the comment listed so we know which dish it belongs to
+		
+
+
 
   
 
 ### #3 Via Userpanel able to update profilepicture, description etc.**  
+
 	Mirror functionality from registraiton page 
+	
 	  getImageFromCamera = async () => {
 	    console.log('GETIMAGEFORMCAMERATRIGGRED');
+	    
 &nbsp;
 &nbsp;   
 &nbsp;
