@@ -169,10 +169,6 @@ ________________________________________
 
 ### #2 TODO ------> Comment functionality for users ** POST,GET,DELETE, ?? PUT ??
 			
-&nbsp;
-&nbsp;   
-&nbsp;
-
 
 
 	#Task 1 Mongoose populate GET request with dish data and user data.
@@ -217,9 +213,9 @@ ________________________________________
 
   	#Task 2  Mongoose populate DEL request with dish data and user data.
 	
-		We will need a user ID 
+		We will need a user ID within the comment listed so we know which user it belongs to
 
-		We will need a dish ID within the favorite listed so we know which dish it belongs to
+		We will need a dish ID within the comment listed so we know which dish it belongs to
 
 
 
@@ -227,7 +223,7 @@ ________________________________________
 
 	#Task 3  Mongoose populate POST request with dish data and user data.
 	
-		We will need a user ID within the comment listed so we know which dish it belongs to
+		We will need a user ID within the comment listed so we know which user it belongs to
 
 		We will need a dish ID within the comment listed so we know which dish it belongs to
 		
