@@ -13,9 +13,9 @@ PromoRouter.route('/')
             .then((Promotions) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-/*                 res.json(Promotions);
- */                res.json({status: "Grab Promo Success", Promotions});
-            }, (err) => next(err))
+                res.json(Promotions);
+/*                 res.json({status: "Grab Promo Success", Promotions});
+ */            }, (err) => next(err))
             .catch((err) => next(err));
     })
     .post(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {

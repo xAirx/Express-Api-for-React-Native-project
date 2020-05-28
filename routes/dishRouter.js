@@ -29,9 +29,9 @@ DishRouter.route('/')
             .then((dishes) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-               /*  res.json(dishes); */
-                res.json({status: "Dish Grabbed", dishes});
-            }, (err) => next(err))
+                res.json(dishes);
+/*                 res.json({status: "Dish Grabbed", dishes});
+ */            }, (err) => next(err))
             .catch((err) => next(err));
     })
     /*     This says that if a post request comes in,
