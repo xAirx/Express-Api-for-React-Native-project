@@ -81,7 +81,7 @@
 ## Under development:   
 
 
-## #0--------------Fileuploading with multer---------------------------- Under development
+## #0 Fileuploading with multer - Under development
           
 	  Correctly setting up the uploadRouter
 	  
@@ -93,7 +93,7 @@
 
 
 
-## --------------- Connecting JWT register + login functionality to frontend - not started --------------
+##  Connecting JWT register + login functionality to frontend - not started
 
 	 - Create Refresh Token Functionality - and API endpoint for this purpose.
 	 - Implementing httpcookie to hold the JWT serverside so we can compare for a refresh token.
@@ -124,7 +124,7 @@
 
 
 
-### ---------------------- ADDING OAUTH ---------------------- not started
+### ADDING OAUTH functionality - not started
 
 	https://www.youtube.com/watch?v=sakQbeRjgwg&list=PL4cUxeGkcC9jdm7QX143aMLAqyM-jTZ2x
 
@@ -151,7 +151,7 @@
 # Devlog 
 
 	
-### -----------------------HTTPS SECURE CONNECTION TO API------------------------ WORKS
+### HTTPS SECURE CONNECTION TO API  WORKS
 	
 				root/app.js
 				
@@ -193,7 +193,7 @@
 
 	
 	
-### ------------------Mongoose Population------------------------- WORKS
+### Mongoose Populatio WORKS
 	
 			/models/user.js
 
@@ -202,7 +202,7 @@
 
 
 	
-### ---------------CORS for express server---------------------------- WORKS.
+### CORS for express server WORKS.
 		
 			Check cors.js under routes under Devbranch -implemented
 
@@ -212,7 +212,7 @@
 			const whitelist = ['http://localhost:3000', 'https://localhost:3443'];
 
 
-### ---Added post functionality for Dishes and Leaders / comments and Feedback---- WORKS
+### Added post functionality for Dishes and Leaders / comments and Feedback WORKS
 	
 			/routes/leaderRouter.js -implemented
 
@@ -241,7 +241,7 @@
 
 
 	      
-### --------------------------Verify Admin and Verify User ---------------------------------- WORKS
+### Verify Admin and Verify User WORKS
 
 		  ####   Authentication based on being an admin or not. -implemented - works
 
@@ -281,7 +281,7 @@
 	
 	
      
-### -------------------- Backend for Users Panel    --------------------------------- Needs testing
+### Backend for Users Panel - Needs testing
      
 
 
