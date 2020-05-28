@@ -3,8 +3,7 @@ const bodyParser = require('body-parser');
 const authenticate = require('../authenticate');
 const multer = require('multer');
 var cors = require('../routes/cors');
-
-
+var path = require('path');
 // Setting storage
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
