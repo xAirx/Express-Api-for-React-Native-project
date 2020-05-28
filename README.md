@@ -55,7 +55,7 @@
 
 
 
-##  Connecting JWT register + login functionality to frontend - not started
+## #1 Connecting JWT register + login functionality to frontend - not started
 
 	 - Create Refresh Token Functionality - and API endpoint for this purpose.
 	 - Implementing httpcookie to hold the JWT serverside so we can compare for a refresh token.
@@ -86,17 +86,24 @@
 
 
 
-### ADDING OAUTH functionality - not started
+### #2 ADDING OAUTH functionality - not started
 
 	https://www.youtube.com/watch?v=sakQbeRjgwg&list=PL4cUxeGkcC9jdm7QX143aMLAqyM-jTZ2x
 
 
 
 &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 ## Users Panel:
 
 ________________________________________
-
+&nbsp;
+&nbsp;
+&nbsp;
 	  
 ### #1 TODO ------> Favorite functionality for users** POST, GET, DELETE
 
@@ -156,7 +163,9 @@ ________________________________________
 
 		We will need a dish ID within the favorite listed so we know which dish it belongs to
 		
-
+&nbsp;
+&nbsp;
+&nbsp;
 
 ### #2 TODO ------> Comment functionality for users ** POST,GET,DELETE, ?? PUT ??
 			
@@ -214,6 +223,8 @@ ________________________________________
 
 
 
+
+
 	#Task 3  Mongoose populate POST request with dish data and user data.
 	
 		We will need a user ID within the comment listed so we know which dish it belongs to
@@ -222,8 +233,9 @@ ________________________________________
 		
 
 
-
-  
+&nbsp;
+&nbsp;
+&nbsp;
 
 ### #3 Via Userpanel able to update profilepicture, description etc.**  
 
