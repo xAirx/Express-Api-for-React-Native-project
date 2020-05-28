@@ -81,9 +81,15 @@
 ## Under development:   
 
 
-### ---------------Fileuploading with multer---------------------------- Needs development
-		 
-		TODO ------>     http://localhost:3000/upload/ , Check UploadRouter under Devbranch  -implemented - tested needs development
+## #0--------------Fileuploading with multer---------------------------- Under development
+          
+	  Correctly setting up the uploadRouter
+	  
+	  Understanding the concept of heroku file system and using bash to connect
+	  
+	  Understand why we need proper storage - adding cloudinary.
+	  
+	  Understand how to upload a file correctly.
 
 
 
