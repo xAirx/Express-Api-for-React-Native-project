@@ -68,8 +68,15 @@
     http://localhost:3443//uploads
     
     
-    
-
+     
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## Under development:   
 
@@ -114,6 +121,28 @@
 ### ---------------------- ADDING OAUTH ---------------------- not started
 
 	https://www.youtube.com/watch?v=sakQbeRjgwg&list=PL4cUxeGkcC9jdm7QX143aMLAqyM-jTZ2x
+
+
+     
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+  
+
+# Devlog 
 
 	
 ### -----------------------HTTPS SECURE CONNECTION TO API------------------------ WORKS
@@ -279,10 +308,6 @@
 &nbsp;
 &nbsp;
 &nbsp;
-  
-
-# Devlog 
-
 
 # API usage guide 
 
