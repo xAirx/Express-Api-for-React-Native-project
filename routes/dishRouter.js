@@ -23,7 +23,9 @@ DishRouter.route('/')
               So, this call to the populate will ensure that
               the other field will be populated with the information as required. */
 
-            .populate('comments.author')
+            /// populating comments into our dish get route.
+            .populate('comments')
+
             .then((dishes) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
@@ -41,7 +43,7 @@ DishRouter.route('/')
     If the authentication fails at this point,
     then passport authenticate will reply
     back to the client with the appropriate error message. */
-    .post(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+      .post(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
         Dishes.create(req.body)
             .then((dish) => {
                 console.log('Dish Created ', dish);
