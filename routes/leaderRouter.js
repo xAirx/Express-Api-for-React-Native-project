@@ -15,7 +15,7 @@ LeaderRouter.route('/')
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 /* res.json(leaders); */
-                res.json({status: "Grabbed Leader Success"});
+                res.json({status: "Grabbed Leader Success", leaders});
 
             }, (err) => next(err))
             .catch((err) => next(err));
@@ -27,7 +27,7 @@ LeaderRouter.route('/')
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 /* res.json(leaders); */
-                res.json({status: "Post Leader Success"}, leaders);
+                res.json({status: "Post Leader Success", leaders});
             }, (err) => next(err))
             .catch((err) => next(err));
     })
@@ -48,6 +48,7 @@ LeaderRouter.route('/:leaderId')
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                /*  res.json(leaders); */
+               res.json({status: "Grabbed Leader Success", leaders});
             }, (err) => next(err))
             .catch((err) => next(err));
     })
@@ -63,7 +64,7 @@ LeaderRouter.route('/:leaderId')
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                /*  res.json(leaders); */
-                res.json({status: "Update  Leader Success"}, leaders);
+                res.json({status: "Update  Leader Success", leaders});
 
             }, (err) => next(err))
             .catch((err) => next(err));
@@ -73,7 +74,7 @@ LeaderRouter.route('/:leaderId')
             .then((resp) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json({status: "Delete Leader Success"}, resp);
+                res.json({status: "Delete Leader Success", resp});
             }, (err) => next(err))
             .catch((err) => next(err));
     });
