@@ -65,6 +65,9 @@
     http://localhost:3443/users/login
     http://localhost:3443/users/facebook/token
     http://localhost:3443/users/logout
+    http://localhost:3443//uploads
+    
+    
     
 
 
