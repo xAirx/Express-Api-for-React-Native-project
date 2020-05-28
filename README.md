@@ -326,7 +326,7 @@ ________________________________________
 			const whitelist = ['http://localhost:3000', 'https://localhost:3443'];
 
 
-### Added post functionality for Dishes and Leaders / comments and Feedback WORKS
+### Added CRUD functionality for Dishes and Leaders + Promotions + Single / :id - works
 	
 			/routes/leaderRouter.js -implemented
 
@@ -394,36 +394,7 @@ ________________________________________
 	
 	
 	
-     
-### Backend for Users Panel - Needs testing
-     
-
-
-	TODO ------>	   Favorite functionality for users -implemented  - NOT TESTED
-
-
-	TODO ------>	   Comment and form support for the users to interact with the content. - NOT IMPLEMENTED MIRROR LEADERS ROUTE CODE
-
-
-	TODO ------>	   Support for a user to manage their own comments, delete functionality. -implemented - NOT TESTED
-
-
-				##### Check routes / favoritesRouter.js
-
-				      favoriteRouter.route('/')
-					  .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
-					  .get(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
-					    Favorites.findOne({ user: req.user._id })
-					      .populate('user')
-					      .populate('dishes')
-					      .then((favorites) => {
-						res.statusCode = 200;
-						res.setHeader('Content-Type', 'application/json');
-						res.json(favorites);
-					      }, (err) => next(err))
-					      .catch((err) => next(err));
-					  })
-
+    
 
 &nbsp;
 &nbsp;
