@@ -15,7 +15,7 @@ LeaderRouter.route('/')
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 /* res.json(leaders); */
-                res.json({status: "Grabbed Leader Success"},leaders);
+                res.json({status: "Grabbed Leader Success"});
 
             }, (err) => next(err))
             .catch((err) => next(err));
@@ -36,14 +36,8 @@ LeaderRouter.route('/')
         res.end('PUT operation not supported on /leaders');
     })
     .delete(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-        Leaders.remove({})
-            .then((resp) => {
-                res.statusCode = 200;
-                res.setHeader('Content-Type', 'application/json');
-               /*  res.json(resp); */
-                res.json({status: "Delete Leader Success"}, resp);
-            }, (err) => next(err))
-            .catch((err) => next(err));
+        res.statusCode = 403;
+        res.end('DEL operation not supported on /leaders');
     });
 
 LeaderRouter.route('/:leaderId')
