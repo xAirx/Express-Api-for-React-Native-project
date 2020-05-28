@@ -6,44 +6,6 @@
  					 try /dishes /favorites /leaders
   
   
-  
-   ### Goals:
-
-    Describe the use of Node for server-side development
-    Create a Node application
-    Demonstrate the use of Node modules in developing a Node application
-    Develop a simple REST API server using the Express framework
-    
-    Demonstrate an understanding of data persistence using a database
-    Design persistent data storage based on MongoDB, a NoSQL database
-    Develop schemas and models for data storage using Mongoose
-    Combine the REST API and the data persistance layer for a full-fledged server implementation
-    
-    Demonstrate the need for user authentication
-    Evaluate varioius alternative approaches for supporting user authentication
-    Develop a comprehensive user authentication system using Passport
-    Develop a secure server based on the HTTPS protocol
-    
-
-     REST API with express mongodb and Mongoose -done
-     
-     User login and authentication -done
-     
-     Basic Authentication -done
-      
-     Explore Cookies, Express, Sessions and error handling. -done
-     
-     Mongoose Population -done
-     
-     HTTPS and Secure Communication -done  (LOCAL ONLY) heroku costs money bin/www disabled, port set in app.js....     
-     
-     - Implemented Certificates - done (LOCAL ONLY) heroku costs money bin/www disabled, port set in app.js....  
-     
-     
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
 
  # API description: 
  
@@ -78,7 +40,7 @@
 &nbsp;
 &nbsp;
 
-## Under development:   
+## Backend Feature Pipeline :   
 
 
 ## #0 Fileuploading with multer - Under development
@@ -294,7 +256,7 @@ ________________________________________
 
 # Devlog 
 
-	
+
 ### HTTPS SECURE CONNECTION TO API  WORKS
 	
 				root/app.js
@@ -747,3 +709,44 @@ ________________________________________
     
     * The app.js has been updated to support the new route. -done
 
+
+
+
+  
+   ### Goals:
+
+    Describe the use of Node for server-side development
+    Create a Node application
+    Demonstrate the use of Node modules in developing a Node application
+    Develop a simple REST API server using the Express framework
+    
+    Demonstrate an understanding of data persistence using a database
+    Design persistent data storage based on MongoDB, a NoSQL database
+    Develop schemas and models for data storage using Mongoose
+    Combine the REST API and the data persistance layer for a full-fledged server implementation
+    
+    Demonstrate the need for user authentication
+    Evaluate varioius alternative approaches for supporting user authentication
+    Develop a comprehensive user authentication system using Passport
+    Develop a secure server based on the HTTPS protocol
+    
+
+     REST API with express mongodb and Mongoose -done
+     
+     User login and authentication -done
+     
+     Basic Authentication -done
+      
+     Explore Cookies, Express, Sessions and error handling. -done
+     
+     Mongoose Population -done
+     
+     HTTPS and Secure Communication -done  (LOCAL ONLY) heroku costs money bin/www disabled, port set in app.js....     
+     
+     - Implemented Certificates - done (LOCAL ONLY) heroku costs money bin/www disabled, port set in app.js....  
+     
+     
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
