@@ -6,7 +6,7 @@ var cors = require('../routes/cors');
 var path = require('path');
 // Setting storage
 const storage = multer.diskStorage({
-	destination: (req, file, cb) => {
+	destination: (req, file, res, cb) => {
 		cb(null, path.join(__dirname, '../public/images'));
 	},
 
@@ -52,18 +52,16 @@ uploadRouter.route('/')
 		  error.httpStatusCode = 400
 		  return next(error)
 		}else{
-
 			// We are encoding a file here.
 			var encode_image = file.toString('base64');
 			// Define a JSONobject for the image attributes for saving to databasex
-
 			var finalImg = {
 				 contentType: req.file.mimetype,
 				 image:  new Buffer(encode_image, 'base64')
 			  };
 
 			  console.log("this is finalimg", finalImg);
-
+			  res.json({status: "File Uploaded"});
 		}
 	  })
 
