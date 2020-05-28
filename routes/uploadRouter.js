@@ -6,7 +6,7 @@ var cors = require('../routes/cors');
 var path = require('path');
 // Setting storage
 const storage = multer.diskStorage({
-	destination: (req, file, res, cb) => {
+	destination: (req, file,  cb) => {
 		cb(null, path.join(__dirname, '../public/images'));
 	},
 
