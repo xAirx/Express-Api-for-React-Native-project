@@ -14,8 +14,8 @@ LeaderRouter.route('/')
             .then((leaders) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(leaders);
-                res.json({status: "Grabbed Leader Success"});
+                /* res.json(leaders); */
+                res.json({status: "Grabbed Leader Success"},leaders);
 
             }, (err) => next(err))
             .catch((err) => next(err));
@@ -26,8 +26,8 @@ LeaderRouter.route('/')
                 console.log('Leader Created ', leaders);
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(leaders);
-                res.json({status: "Post Leader Success"});
+                /* res.json(leaders); */
+                res.json({status: "Post Leader Success"}, leaders);
             }, (err) => next(err))
             .catch((err) => next(err));
     })
@@ -40,8 +40,8 @@ LeaderRouter.route('/')
             .then((resp) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(resp);
-                res.json({status: "Delete Leader Success"});
+               /*  res.json(resp); */
+                res.json({status: "Delete Leader Success"}, resp);
             }, (err) => next(err))
             .catch((err) => next(err));
     });
@@ -53,7 +53,7 @@ LeaderRouter.route('/:leaderId')
             .then((leaders) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(leaders);
+               /*  res.json(leaders); */
             }, (err) => next(err))
             .catch((err) => next(err));
     })
@@ -68,8 +68,8 @@ LeaderRouter.route('/:leaderId')
             .then((leaders) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(leaders);
-                res.json({status: "Update  Leader Success"});
+               /*  res.json(leaders); */
+                res.json({status: "Update  Leader Success"}, leaders);
 
             }, (err) => next(err))
             .catch((err) => next(err));
@@ -79,8 +79,7 @@ LeaderRouter.route('/:leaderId')
             .then((resp) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(resp);
-                res.json({status: "Delete Leader Success"});
+                res.json({status: "Delete Leader Success"}, resp);
             }, (err) => next(err))
             .catch((err) => next(err));
     });

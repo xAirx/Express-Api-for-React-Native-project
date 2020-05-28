@@ -50,7 +50,7 @@ DishRouter.route('/')
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.json(dish);
-                res.json({status: "Dish created"});
+                res.json({status: "Dish created"}, dish);
             }, (err) => next(err))
             .catch((err) => next(err));
         })
@@ -64,7 +64,7 @@ DishRouter.route('/')
                     res.statusCode = 200;
                     res.setHeader('Content-Type', 'application/json');
                     res.json(resp);
-                    res.json({status: "Dish Deleted"});
+                    res.json({status: "Dish Deleted"}, resp);
                 }, (err) => next(err))
                 .catch((err) => next(err));
         });
@@ -91,7 +91,7 @@ DishRouter.route('/')
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.json(dishes);
-                res.json({status: "Update  Dish Success"});
+                res.json({status: "Update  Dish Success"},dishes);
 
             }, (err) => next(err))
             .catch((err) => next(err));
@@ -102,7 +102,7 @@ DishRouter.route('/')
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.json(resp);
-                res.json({status: "Delete Dish Success"});
+                res.json({status: "Delete Dish Success"}, resp);
             }, (err) => next(err))
             .catch((err) => next(err));
     });
