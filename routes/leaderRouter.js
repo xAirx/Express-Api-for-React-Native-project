@@ -14,9 +14,9 @@ LeaderRouter.route('/')
             .then((leaders) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                /* res.json(leaders); */
-                res.json({status: "Grabbed Leader Success", leaders});
-
+                res.json(leaders);
+/*                 res.json({status: "Grabbed Leader Success", leaders});
+ */
             }, (err) => next(err))
             .catch((err) => next(err));
     })
