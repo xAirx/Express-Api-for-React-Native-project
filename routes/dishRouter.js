@@ -86,7 +86,7 @@ DishRouter.route('/')
         res.end('POST operation not supported on /dishes/' + req.params.dishId);
     })
     .put(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-        DishRouter.findById(req.params.leaderId, {
+        Dishes.findByIdAndUpdate(req.params.leaderId, {
             $set: req.body
         }, { new: true })
             .then((dishes) => {
@@ -99,7 +99,7 @@ DishRouter.route('/')
             .catch((err) => next(err));
     })
     .delete(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
-        DishRouter.findById(req.params.dishId)
+        Dishes.findByIdAndRemove(req.params.dishId)
             .then((resp) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
