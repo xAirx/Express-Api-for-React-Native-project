@@ -28,8 +28,9 @@ const imageFileFilter = (req, file, cb) => {
 const upload = multer({ storage: storage, fileFilter: imageFileFilter });
 
 /** Permissible loading a single file,
-    the value of the attribute "name" in the form of "recfile". **/
-var type = upload.single('recfile');
+	the value of the attribute "name" in the form of "imagee". **/
+	// image is what we are passing from postman in our POST.
+var type = upload.single('image');
 
 
 const uploadRouter = express.Router();
@@ -53,7 +54,9 @@ uploadRouter.route('/')
 		  error.httpStatusCode = 400
 		  return next(error)
 		}else{
-			var encode_image = img.toString('base64');
+
+			// We are encoding a file here.
+			var encode_image = file.toString('base64');
 			// Define a JSONobject for the image attributes for saving to database
 
 			var finalImg = {
