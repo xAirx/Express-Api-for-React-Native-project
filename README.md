@@ -55,7 +55,7 @@
 
 
 
-## #1 Connecting JWT register + login functionality to frontend - not started
+## #1 Connecting Refresh Token and HTTP Cookie, connect backend to frontend login and register.
 
 	 - Create Refresh Token Functionality - and API endpoint for this purpose.
 	 - Implementing httpcookie to hold the JWT serverside so we can compare for a refresh token.
