@@ -13,8 +13,8 @@ PromoRouter.route('/')
             .then((Promotions) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(Promotions);
-                res.json({status: "Grab Promo Success", promotion});
+/*                 res.json(Promotions);
+ */                res.json({status: "Grab Promo Success", promotion});
             }, (err) => next(err))
             .catch((err) => next(err));
     })
@@ -24,7 +24,7 @@ PromoRouter.route('/')
                 console.log('promotion Created ', promotion);
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(promotion);
+               /*  res.json(promotion); */
                 res.json({status: "Post Promo Success", promotion});
 
             }, (err) => next(err))
@@ -53,8 +53,8 @@ PromoRouter.route('/:promotionId')
             .then((promotion) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(promotion);
-                res.json({status: "Grab Promo Success", promotion});
+/*                 res.json(promotion);
+ */                res.json({status: "Grab Promo Success", promotion});
             }, (err) => next(err))
             .catch((err) => next(err));
     })
@@ -69,8 +69,8 @@ PromoRouter.route('/:promotionId')
             .then((promotion) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(promotion);
-                res.json({status: "Update Promo Success", resp});
+/*                 res.json(promotion);
+ */                res.json({status: "Update Promo Success", resp});
 
             }, (err) => next(err))
             .catch((err) => next(err));
@@ -81,8 +81,8 @@ PromoRouter.route('/:promotionId')
             .then((resp) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(resp);
-                res.json({status: "Delete Promo Success", resp});
+/*                 res.json(resp);
+ */                res.json({status: "Delete Promo Success", resp});
 
             }, (err) => next(err))
             .catch((err) => next(err));
