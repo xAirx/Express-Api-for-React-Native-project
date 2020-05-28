@@ -129,6 +129,49 @@
 	https://www.youtube.com/watch?v=sakQbeRjgwg&list=PL4cUxeGkcC9jdm7QX143aMLAqyM-jTZ2x
 
 
+
+&nbsp;
+## Users Panel:
+
+________________________________________
+
+	  
+### #1 TODO ------> Favorite functionality for users**
+&nbsp;
+&nbsp;   
+&nbsp;
+
+  
+ -implemented - NOT TESTED
+
+	  
+
+### #2 TODO ------> Comment CRUD support for the users to interact with the content.**
+&nbsp;
+&nbsp;   
+&nbsp;
+
+
+#### NOT IMPLEMENTED MIRROR LEADERS ROUTE CODE
+
+ 	LeaderRouter.route('/:leaderId/feedback')
+ 
+ 	TODO ------  Support for a user to manage their own comments, delete functionality. -implemented - NOT TESTED
+
+
+&nbsp;
+&nbsp;   
+&nbsp;
+
+  
+
+### #3 Via Userpanel able to update profilepicture, description etc.**  
+	Mirror functionality from registraiton page 
+	  getImageFromCamera = async () => {
+	    console.log('GETIMAGEFORMCAMERATRIGGRED');
+&nbsp;
+&nbsp;   
+&nbsp;
      
 &nbsp;
 &nbsp;
