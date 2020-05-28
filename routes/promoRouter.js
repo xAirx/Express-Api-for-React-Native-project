@@ -24,6 +24,8 @@ PromoRouter.route('/')
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.json(promotion);
+                res.json({status: "Post Promo Success"});
+
             }, (err) => next(err))
             .catch((err) => next(err));
     })
@@ -37,6 +39,8 @@ PromoRouter.route('/')
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.json(resp);
+                res.json({status: "Delete Promo Success"});
+
             }, (err) => next(err))
             .catch((err) => next(err));
 
@@ -64,6 +68,8 @@ PromoRouter.route('/:promotionId')
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.json(promotion);
+                res.json({status: "Update Promo Success"});
+
             }, (err) => next(err))
             .catch((err) => next(err));
     })
@@ -74,6 +80,8 @@ PromoRouter.route('/:promotionId')
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.json(resp);
+                res.json({status: "Delete Promo Success"});
+
             }, (err) => next(err))
             .catch((err) => next(err));
     });

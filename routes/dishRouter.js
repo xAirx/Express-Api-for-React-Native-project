@@ -50,6 +50,7 @@ DishRouter.route('/')
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.json(dish);
+                res.json({status: "Dish created"});
             }, (err) => next(err))
             .catch((err) => next(err));
         })
@@ -63,21 +64,55 @@ DishRouter.route('/')
                     res.statusCode = 200;
                     res.setHeader('Content-Type', 'application/json');
                     res.json(resp);
+                    res.json({status: "Dish Deleted"});
                 }, (err) => next(err))
                 .catch((err) => next(err));
         });
 
-
-        DishRouter.route('/:dishId')
+    DishRouter.route('/:dishId')
        .get(cors.cors, authenticate.verifyUser, (req, res, next) => {
-
-        Dishes.findById(req.params.dishId)
+           Dishes.findById(req.params.dishId)
+               .then((dishes) => {
+                   res.statusCode = 200;
+                   res.setHeader('Content-Type', 'application/json');
+                   res.json(dishes);
+               }, (err) => next(err))
+               .catch((err) => next(err));
+      })
+    .post(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+        res.statusCode = 403;
+        res.end('POST operation not supported on /dishes/' + req.params.dishId);
+    })
+    .put(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+        DishRouter.findByIdAndUpdate(req.params.leaderId, {
+            $set: req.body
+        }, { new: true })
             .then((dishes) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.json(dishes);
+                res.json({status: "Update  Dish Success"});
+
             }, (err) => next(err))
             .catch((err) => next(err));
+    })
+    .delete(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+        DishRouter.findByIdAndRemove(req.params.dishId)
+            .then((resp) => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(resp);
+                res.json({status: "Delete Dish Success"});
+            }, (err) => next(err))
+            .catch((err) => next(err));
+    });
+
+
+
+
+
+
+
     })
 
 
