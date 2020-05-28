@@ -1,4 +1,4 @@
-# Backend-for-React-Native-project ( still under development, 
+# Backend-for-React-Native-project ( still under development ), 
   ## Backend and API + Authentication.
   
   ## Hosted Project: https://expressproject.herokuapp.com/
@@ -281,9 +281,11 @@ TODO ------>	   Support for a user to manage their own comments, delete function
 &nbsp;
 
 
-### ---------------Fileuploading with multer---------------------------- Needs testing
+### ---------------Fileuploading with multer---------------------------- Needs development
 		 
-TODO ------>     http://localhost:3000/upload/ , Check UploadRouter under Devbranch  -implemented - Not tested
+TODO ------>     http://localhost:3000/upload/ , Check UploadRouter under Devbranch  -implemented - tested needs development
+
+
 
 &nbsp;
   
