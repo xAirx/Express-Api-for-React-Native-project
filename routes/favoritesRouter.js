@@ -17,7 +17,8 @@ favoriteRouter.route('/')
       .then((favorites) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
-        res.json(favorites);
+       /*  res.json(favorites); */
+        res.json({status: "Grab favorite Success",favorite});
       }, (err) => next(err))
       .catch((err) => next(err));
   })
@@ -35,7 +36,7 @@ favoriteRouter.route('/')
               console.log('Favorite Created ', favorite);
               res.statusCode = 200;
               res.setHeader('Content-Type', 'application/json');
-              res.json({status: "saved favorite Success"},favorite);
+              res.json({status: "saved favorite Success",favorite});
             }, (err) => next(err));
         }
         else {
@@ -44,7 +45,7 @@ favoriteRouter.route('/')
               console.log('Favorite Created ', favorite);
               res.statusCode = 200;
               res.setHeader('Content-Type', 'application/json');
-              res.json({status: "created favorite Success"},favorite);
+              res.json({status: "created favorite Success",favorite});
             }, (err) => next(err));
         }
       }, (err) => next(err))
@@ -59,7 +60,7 @@ favoriteRouter.route('/')
       .then((resp) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
-        res.json({status: "delete favorite Success"},resp);
+        res.json({status: "Delete favorite Success",resp});
       }, (err) => next(err))
       .catch((err) => next(err));
   });
@@ -83,7 +84,7 @@ favoriteRouter.route('/:dishId')
                 console.log('Favorite Created ', favorite);
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json({status: "post favorite Success"}, favorite);
+                res.json({status: "post favorite Success", favorite});
               }, (err) => next(err))
           }
         }
@@ -93,7 +94,7 @@ favoriteRouter.route('/:dishId')
               console.log('Favorite Created ', favorite);
               res.statusCode = 200;
               res.setHeader('Content-Type', 'application/json');
-              res.json({status: "add favorite Success"},favorite);
+              res.json({status: "Post favorite Success", favorite});
             }, (err) => next(err))
         }
       }, (err) => next(err))
@@ -117,7 +118,7 @@ favoriteRouter.route('/:dishId')
                 console.log('Favorite Deleted ', favorite);
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json({status: "delete favorite Success"},favorite);
+                res.json({status: "delete favorite Success",favorite});
               }, (err) => next(err));
           }
           else {
