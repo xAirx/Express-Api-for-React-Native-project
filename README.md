@@ -511,7 +511,37 @@ ________________________________________
 &nbsp;
 &nbsp;
 &nbsp;    
-&nbsp;
+					
+## Login and security 
+________________________________________
+
+					      https://medium.com/react-native-training/securing-your-react-native-app-using-keychain-6de10850d203
+
+					      https://medium.com/react-native-training/integrate-touch-id-and-face-id-to-your-react-native-app-707e7db17edc
+					      https://blog.theodo.com/2018/04/add-touch-id-react-native-app/
+
+					      http://randycoulman.com/blog/2017/07/25/secure-storage-in-react-native/
+
+					      https://www.freecodecamp.org/news/how-to-implement-secure-biometric-authentication-on-mobile-devices-4dc518558c5c/
+					      https://medium.com/@talut/react-native-secure-storage-rn-secure-storage-f7c84dbcb811
+					      https://github.com/jarden-digital/react-native-pincode
+
+					      https://blog.usejournal.com/persisting-user-authentication-in-a-react-native-app-778e028ac816
+
+					      https://blog.benestudio.co/social-login-with-react-native-6157ba3cff1c
+
+					     Security and Authentication
+
+
+					 ## Expo 
+						  https://medium.com/mesan-digital/how-to-build-a-news-app-with-react-native-app-part-1-e78d7d3c55b3
+						  https://hackernoon.com/understanding-expo-for-react-native-7bf23054bbcd
+
+
+					 &nbsp;
+					 &nbsp;
+
+
 &nbsp;
 &nbsp;
 &nbsp;
