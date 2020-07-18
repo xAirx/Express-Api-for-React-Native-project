@@ -43,7 +43,7 @@
 # Backend Feature Pipeline :   
 
 
-### #0 Fileuploading with multer - Under development
+## Fileuploading with multer - Under development
           
 	  Correctly setting up the uploadRouter
 	  
@@ -52,10 +52,51 @@
 	  Understand why we need proper storage - adding cloudinary.
 	  
 	  Understand how to upload a file correctly.
+	  
+	  
+	  
+			  ### #2 Registration image upload - using cloudinary
+
+				https://devcenter.heroku.com/articles/cloudinary#using-with-node-js
+
+						Here’s a sample code that uses the Express framework for displaying an upload form, uploading an image to Cloudinary using streams and displaying a transformed version of the uploaded image:
+
+						var express = require('express');
+						var fs = require('fs');
+
+						var cloudinary = require('cloudinary');
+
+						var app = express.createServer(express.logger());
+						app.use(express.bodyParser())
+
+						app.get('/', function(req, res) {
+						  res.send('<form method="post" enctype="multipart/form-data">'
+						    + '<p>Public ID: <input type="text" name="title"/></p>'
+						    + '<p>Image: <input type="file" name="image"/></p>'
+						    + '<p><input type="submit" value="Upload"/></p>'
+						    + '</form>');
+						});
+
+				Moving functionality from state based to work with backend API - fetching images from FS (heroku server + cloudinary) -  multer and store images serverside under user ID.
+
+			### Adding auth0 button etc.
 
 
 
-### #1 Connecting Refresh Token and HTTP Cookie, connect backend to frontend login and register.
+
+## Login functionality, registration
+
+### implementing Routing Logic that shows components (userpanel // adminpanel) based on JWT token and AUTH.
+
+&nbsp;
+&nbsp;   
+&nbsp;
+
+### implementing conditional logic for  component adding: comment editing, posting and deleting based on user authentication.
+
+
+
+### Connecting Refresh Token and HTTP Cookie, connect backend to frontend login and register.
 
 	 - Create Refresh Token Functionality - and API endpoint for this purpose.
 	 - Implementing httpcookie to hold the JWT serverside so we can compare for a refresh token.
@@ -86,7 +127,7 @@
 
 
 
-### #2 ADDING OAUTH functionality - not started
+### ADDING OAUTH functionality - not started
 
 	https://www.youtube.com/watch?v=sakQbeRjgwg&list=PL4cUxeGkcC9jdm7QX143aMLAqyM-jTZ2x
 
@@ -98,7 +139,9 @@
 &nbsp;
 &nbsp;
 &nbsp;
-## Users Panel:
+
+
+## Users Panel setup.
 ________________________________________
 	  
 ### #1 TODO ------> Favorite functionality for users** POST, GET, DELETE
@@ -247,7 +290,57 @@ ________________________________________
 &nbsp;    
 &nbsp;
 &nbsp;
+
+## Admin Panel setup
+________________________________________
+
+###  Admin Panel Frontend structure
+
+
+#### Admin GET all the registered users' information from the database and see it in the adminpanel
+
+
 &nbsp;
+&nbsp;   
+&nbsp;
+
+
+### Admin allowed / able to upload files, (MULTER and FS) such as images when creating new dishes. and see the temp picture in the adminpanel
+
+		https://devcenter.heroku.com/articles/cloudinary#using-with-node-js
+		
+				Here’s a sample code that uses the Express framework for displaying an upload form, uploading an image to Cloudinary using streams and displaying a transformed version of the uploaded image:
+
+				var express = require('express');
+				var fs = require('fs');
+
+				var cloudinary = require('cloudinary');
+
+				var app = express.createServer(express.logger());
+				app.use(express.bodyParser())
+
+				app.get('/', function(req, res) {
+				  res.send('<form method="post" enctype="multipart/form-data">'
+				    + '<p>Public ID: <input type="text" name="title"/></p>'
+				    + '<p>Image: <input type="file" name="image"/></p>'
+				    + '<p><input type="submit" value="Upload"/></p>'
+				    + '</form>');
+				});
+
+
+&nbsp;
+&nbsp;   
+&nbsp;
+
+### Admin allowed see and flag dishes as featured or not. and see it in the adminpanel**
+
+
+&nbsp;
+&nbsp;   
+&nbsp; 
+### Admin can see and flag leaders as featured for the frontpage and see it in the adminpanel**
+
+
 &nbsp;
 &nbsp;
 &nbsp;
@@ -255,6 +348,56 @@ ________________________________________
 &nbsp;    
 &nbsp;
 &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;   
+
+## GraphQL and Apollo
+________________________________________
+
+	GraphQL + Apollo
+
+	https://dzone.com/articles/integrate-a-react-native-app-with-graphql-and-apol
+
+	https://www.sitepoint.com/graphql-react-native-getting-started/
+
+	https://github.com/contentstack/contentstack-reactnative-graphql-example
+
+	https://blog.bitsrc.io/migrating-existing-rest-apis-to-graphql-2c5de3db647d
+
+	https://medium.com/@weblab_tech/graphql-everything-you-need-to-know-58756ff253d8
+
+
+
+## CI/CD + VsCodeAPPCenter + Fastlane 
+________________________________________
+
+		https://blog.theodo.com/2019/04/react-native-deployment-pipeline/
+
+		https://learnprogramming.academy/courses/master-ci-cd-for-react-native/
+
+
+		https://medium.com/react-native-training/setup-continuous-integration-with-react-native-50ad2f6145f4
+
+
+		https://visualstudio.microsoft.com/app-center/
+
+
+		https://appcenter.ms/users/marcowurtz-hotmail.com/apps/RestaurantApp
+
+
+
+
 &nbsp;
 &nbsp;
   
