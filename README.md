@@ -42,6 +42,9 @@
 
 # Backend Feature Pipeline :   
 
+		
+		
+
 
 					Understanding body parser
 
@@ -63,16 +66,48 @@
 &nbsp;
 &nbsp;
 
-## Fileuploading with multer - Under development
+## FileStorage with Cloudinary / Fileuploading with multer - Under development
 
           
-	  Correctly setting up the uploadRouter
+	               ### Correctly setting up the uploadRouter
 	  
-	  Understanding the concept of heroku file system and using bash to connect
+	               ### Understanding the concept of heroku file system and using bash to connect
 	  
-	  Understand why we need proper storage - adding cloudinary.
 	  
-	  Understand how to upload a file correctly.
+	               ### Understand why we need proper storage - adding cloudinary.
+	 
+	 
+	 	       ### Images are hosted on cloudinary, we can pass the images back with the response from our API, 
+		
+		
+						  public_id: 'sample_remote',
+						  version: 1336304441,
+						  signature: 'abcde20044f8c8ba71fb31ebe81e9d72ec8763dd',
+						  width: 100,
+						  height: 100,
+						  format: 'jpg',
+						  resource_type: 'image',
+						  url: 'http://res.cloudinary.com/demo/image/upload/v1336304441/sample_remote.jpg',
+						  secure_url: 'https://d3jpl91pxevbkh.cloudfront.net/demo/image/upload/v1336304441/sample_remote.jpg' }
+						  
+			### Such as in the frontend we can do : 
+						  
+						  if (dish != null) {
+						    return (
+						      <Animatable.View animation="fadeInDown" duration={500} delay={200}>
+							<Tile
+							  height={480}
+							  title={dish.name}
+							  caption={dish.description}
+							  featured
+							  // eslint-disable-next-line global-require
+							  imageSrc={{dish.url }}
+							/>
+	  
+	  
+	  
+	  
+	                 ###Understand how to upload a file correctly.
 	  
 	  
 	  
