@@ -43,7 +43,28 @@
 # Backend Feature Pipeline :   
 
 
+					Understanding body parser
+
+					Understanding EXPRESS  middleware
+
+					Understanding CORS AND PREFLIGHT
+
+					What is a URI?
+
+					Understanding types of webservices
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
 ## Fileuploading with multer - Under development
+
           
 	  Correctly setting up the uploadRouter
 	  
@@ -98,6 +119,14 @@
 &nbsp;
 &nbsp;
 &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 
 ## Login functionality, registration
@@ -118,13 +147,72 @@
 
 ### implementing conditional logic for  component adding: comment editing, posting and deleting based on user authentication.
 
-
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 ### Connecting Refresh Token and HTTP Cookie, connect backend to frontend login and register.
 
 	 - Create Refresh Token Functionality - and API endpoint for this purpose.
 	 - Implementing httpcookie to hold the JWT serverside so we can compare for a refresh token.
 	 - Connecting backend to frontend - recieve token in browser as cookie 
+	 
+	 
+	 ## --------—— Authentication chapter ———-----
+
+					
+					
+					Types of authentication methods
+					
+					JWT
+					
+					PASSPORT
+					
+					How to Connect frontend to API.
+
+
+  					#### Refresh token, endpoint and httpcookie - making form on frontend work for 
+					login  and registration
+					
+					https://hasura.io/blog/best-practices-of-using-jwt-with-graphql/
+					
+					
+								Logout
+
+								    Token invalidation
+								    Blacklisting tokens
+
+								Silent refresh
+
+								    How does a refresh token work?
+								    Where to store refresh token?
+								    Login flow with refresh tokens
+								    Refreshing when token expired
+
+								Persisting sessions
+
+								    Security considerations
+								    Error handling
+
+
+					
+					
+	#### storing tokens
+						
+				https://medium.com/@ryanchenkie_40935/react-authentication-how-to-store-jwt-in-a-cookie-346519310e81			
+				https://medium.com/@ryanchenkie_40935/react-authentication-how-to-store-jwt-in-a-cookie-346519310e81
+				https://stackoverflow.com/questions/50404239/how-to-store-tokens-in-react-native
+
+
+	#### Automatic redirect
+						
+							https://stackoverflow.com/questions/29594720/automatic-redirect-after-login-with-react-router
+						
 	 
 	 
 	### ----------------PASSPORT JWT, PROTECT ROUTES, ETC--------------------- WORKS
@@ -148,7 +236,14 @@
 							user = new User({ username: profile.displayName });
 
 		
-
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 
 ### ADDING OAUTH functionality - not started
@@ -159,6 +254,22 @@
 
 &nbsp;
 &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
 &nbsp;
 &nbsp;
 &nbsp;
@@ -229,6 +340,13 @@ ________________________________________
 &nbsp;
 &nbsp;
 &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 ### #2 TODO ------> Comment functionality for users ** POST,GET,DELETE, ?? PUT ??
 			
@@ -296,6 +414,16 @@ ________________________________________
 &nbsp;
 &nbsp;
 &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 ### #3 Via Userpanel able to update profilepicture, description etc.**  
 
@@ -312,6 +440,14 @@ ________________________________________
 &nbsp;
 &nbsp;
 &nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;
 
