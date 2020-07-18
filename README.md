@@ -82,6 +82,22 @@
 			### Adding auth0 button etc.
 
 
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 
 ## Login functionality, registration
@@ -90,6 +106,14 @@
 
 &nbsp;
 &nbsp;   
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
 &nbsp;
 
 ### implementing conditional logic for  component adding: comment editing, posting and deleting based on user authentication.
