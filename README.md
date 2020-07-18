@@ -131,30 +131,6 @@
 
 ## Login functionality, registration
 
-### implementing Routing Logic that shows components (userpanel // adminpanel) based on JWT token and AUTH.
-
-&nbsp;
-&nbsp;   
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;    
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-
-### implementing conditional logic for  component adding: comment editing, posting and deleting based on user authentication.
-
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;    
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
 
 ### Connecting Refresh Token and HTTP Cookie, connect backend to frontend login and register.
 
@@ -569,6 +545,14 @@ ________________________________________
 
 
 
+
+## UnitTesting within React Native.
+
+      https://www.testim.io/blog/react-native-unit-testing/
+      
+      
+      
+      
 ## CI/CD + VsCodeAPPCenter + Fastlane 
 ________________________________________
 
@@ -584,8 +568,6 @@ ________________________________________
 
 
 		https://appcenter.ms/users/marcowurtz-hotmail.com/apps/RestaurantApp
-
-
 
 
 &nbsp;
