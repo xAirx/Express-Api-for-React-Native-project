@@ -60,7 +60,14 @@
 &nbsp;
 &nbsp;
 &nbsp;
+
+NOTES FOR SECTION WITHIN ONENOTE "READUP BEFORE STARTING AGAIN"
 &nbsp;    
+
+https://onedrive.live.com/view.aspx?resid=897203C158E872F%2184124&id=documents&wd=target%28React%20Native%2FTODO%20Dev%20Notes%20for%20Github%20Repo%20%28REWRITE%5C%29.one%7C2B1254FB-A7BE-A14A-9A6F-B53524411287%2FHow%20to%20add%20a%20dish%20and%20add%20a%20leader%20and%7C1DDCCE69-C76B-2F43-AEE4-41C16253C079%2F%29
+
+onenote:https://d.docs.live.net/0897203c158e872f/Documents/marcos%20notesbog/React%20Native/TODO%20Dev%20Notes%20for%20Github%20Repo%20(REWRITE).one#How to add a dish and add a leader and&section-id={2B1254FB-A7BE-A14A-9A6F-B53524411287}&page-id={1DDCCE69-C76B-2F43-AEE4-41C16253C079}&end
+
 &nbsp;
 &nbsp;
 &nbsp;
