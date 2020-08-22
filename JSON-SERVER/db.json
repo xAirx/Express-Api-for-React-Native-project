@@ -250,25 +250,6 @@
       "abbr": "EC",
       "featured": true,
       "description": "Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. He says, Put together the cuisines from the two craziest cultures, and you get a winning hit! Amma Mia!"
-    },
-    {
-      "id": 4
-    },
-    {
-      "id": 5
     }
-  ],
-  "feedback": [
-    {
-      "firstname": "fdas",
-      "lastname": "afds",
-      "telnum": "134113",
-      "email": "dafdads@daffas.dfdafd",
-      "agree": true,
-      "contactType": "Email",
-      "message": "afadsfds",
-      "date": "2017-12-04T09:41:49.890Z",
-      "id": 1
-    }
-  ]
-}
+    ]
+  }
