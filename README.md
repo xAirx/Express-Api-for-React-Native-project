@@ -40,26 +40,197 @@
 &nbsp;
 &nbsp;
 
-## Backend Feature Pipeline :   
+# Backend Feature Pipeline :   
+
+		
+		
 
 
-## #0 Fileuploading with multer - Under development
+					Understanding body parser
+
+					Understanding EXPRESS  middleware
+
+					Understanding CORS AND PREFLIGHT
+
+					What is a URI?
+
+					Understanding types of webservices
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+NOTES FOR SECTION WITHIN ONENOTE "READUP BEFORE STARTING AGAIN"
+&nbsp;    
+
+https://onedrive.live.com/view.aspx?resid=897203C158E872F%2184124&id=documents&wd=target%28React%20Native%2FTODO%20Dev%20Notes%20for%20Github%20Repo%20%28REWRITE%5C%29.one%7C2B1254FB-A7BE-A14A-9A6F-B53524411287%2FHow%20to%20add%20a%20dish%20and%20add%20a%20leader%20and%7C1DDCCE69-C76B-2F43-AEE4-41C16253C079%2F%29
+
+onenote:https://d.docs.live.net/0897203c158e872f/Documents/marcos%20notesbog/React%20Native/TODO%20Dev%20Notes%20for%20Github%20Repo%20(REWRITE).one#How to add a dish and add a leader and&section-id={2B1254FB-A7BE-A14A-9A6F-B53524411287}&page-id={1DDCCE69-C76B-2F43-AEE4-41C16253C079}&end
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+## FileStorage with Cloudinary / Fileuploading with multer - Under development
+
           
-	  Correctly setting up the uploadRouter
+	               ### Correctly setting up the uploadRouter
 	  
-	  Understanding the concept of heroku file system and using bash to connect
+	               ### Understanding the concept of heroku file system and using bash to connect
 	  
-	  Understand why we need proper storage - adding cloudinary.
 	  
-	  Understand how to upload a file correctly.
+	               ### Understand why we need proper storage - adding cloudinary.
+	 
+	 
+	 	       ### Images are hosted on cloudinary, we can pass the images back with the response from our API, 
+		
+		
+						  public_id: 'sample_remote',
+						  version: 1336304441,
+						  signature: 'abcde20044f8c8ba71fb31ebe81e9d72ec8763dd',
+						  width: 100,
+						  height: 100,
+						  format: 'jpg',
+						  resource_type: 'image',
+						  url: 'http://res.cloudinary.com/demo/image/upload/v1336304441/sample_remote.jpg',
+						  secure_url: 'https://d3jpl91pxevbkh.cloudfront.net/demo/image/upload/v1336304441/sample_remote.jpg' }
+						  
+			### Such as in the frontend we can do : 
+						  
+						  if (dish != null) {
+						    return (
+						      <Animatable.View animation="fadeInDown" duration={500} delay={200}>
+							<Tile
+							  height={480}
+							  title={dish.name}
+							  caption={dish.description}
+							  featured
+							  // eslint-disable-next-line global-require
+							  imageSrc={{dish.url }}
+							/>
+	  
+	  
+	  
+	  
+	                 ###Understand how to upload a file correctly.
+	  
+	  
+	  
+			  ### #2 Registration image upload - using cloudinary
+
+				https://devcenter.heroku.com/articles/cloudinary#using-with-node-js
+
+						Here’s a sample code that uses the Express framework for displaying an upload form, uploading an image to Cloudinary using streams and displaying a transformed version of the uploaded image:
+
+						var express = require('express');
+						var fs = require('fs');
+
+						var cloudinary = require('cloudinary');
+
+						var app = express.createServer(express.logger());
+						app.use(express.bodyParser())
+
+						app.get('/', function(req, res) {
+						  res.send('<form method="post" enctype="multipart/form-data">'
+						    + '<p>Public ID: <input type="text" name="title"/></p>'
+						    + '<p>Image: <input type="file" name="image"/></p>'
+						    + '<p><input type="submit" value="Upload"/></p>'
+						    + '</form>');
+						});
+
+				Moving functionality from state based to work with backend API - fetching images from FS (heroku server + cloudinary) -  multer and store images serverside under user ID.
+
+			### Adding auth0 button etc.
 
 
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
-## #1 Connecting JWT register + login functionality to frontend - not started
+
+## Login functionality, registration
+
+
+### Connecting Refresh Token and HTTP Cookie, connect backend to frontend login and register.
 
 	 - Create Refresh Token Functionality - and API endpoint for this purpose.
 	 - Implementing httpcookie to hold the JWT serverside so we can compare for a refresh token.
 	 - Connecting backend to frontend - recieve token in browser as cookie 
+	 
+	 
+	 ## --------—— Authentication chapter ———-----
+
+					
+					
+					Types of authentication methods
+					
+					JWT
+					
+					PASSPORT
+					
+					How to Connect frontend to API.
+
+
+  					#### Refresh token, endpoint and httpcookie - making form on frontend work for 
+					login  and registration
+					
+					https://hasura.io/blog/best-practices-of-using-jwt-with-graphql/
+					
+					
+								Logout
+
+								    Token invalidation
+								    Blacklisting tokens
+
+								Silent refresh
+
+								    How does a refresh token work?
+								    Where to store refresh token?
+								    Login flow with refresh tokens
+								    Refreshing when token expired
+
+								Persisting sessions
+
+								    Security considerations
+								    Error handling
+
+
+					
+					
+	#### storing tokens
+						
+				https://medium.com/@ryanchenkie_40935/react-authentication-how-to-store-jwt-in-a-cookie-346519310e81			
+				https://medium.com/@ryanchenkie_40935/react-authentication-how-to-store-jwt-in-a-cookie-346519310e81
+				https://stackoverflow.com/questions/50404239/how-to-store-tokens-in-react-native
+
+
+	#### Automatic redirect
+						
+							https://stackoverflow.com/questions/29594720/automatic-redirect-after-login-with-react-router
+						
 	 
 	 
 	### ----------------PASSPORT JWT, PROTECT ROUTES, ETC--------------------- WORKS
@@ -83,10 +254,17 @@
 							user = new User({ username: profile.displayName });
 
 		
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 
-
-### #2 ADDING OAUTH functionality - not started
+### ADDING OAUTH functionality - not started
 
 	https://www.youtube.com/watch?v=sakQbeRjgwg&list=PL4cUxeGkcC9jdm7QX143aMLAqyM-jTZ2x
 
@@ -98,12 +276,26 @@
 &nbsp;
 &nbsp;
 &nbsp;
-## Users Panel:
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
+
+## Users Panel setup.
 ________________________________________
-&nbsp;
-&nbsp;
-&nbsp;
 	  
 ### #1 TODO ------> Favorite functionality for users** POST, GET, DELETE
 
@@ -166,6 +358,13 @@ ________________________________________
 &nbsp;
 &nbsp;
 &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 ### #2 TODO ------> Comment functionality for users ** POST,GET,DELETE, ?? PUT ??
 			
@@ -185,6 +384,7 @@ ________________________________________
 				----Inspiration: favoritesRouter-----
 
         Files: models/comments.js 
+	
 	Files: models/dishes.js 
 
 			var commentSchema = new Schema({
@@ -232,6 +432,16 @@ ________________________________________
 &nbsp;
 &nbsp;
 &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 ### #3 Via Userpanel able to update profilepicture, description etc.**  
 
@@ -253,11 +463,155 @@ ________________________________________
 &nbsp;
 &nbsp;
 &nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+## Admin Panel setup
+________________________________________
+
+###  Admin Panel Frontend structure
+
+
+#### Admin GET all the registered users' information from the database and see it in the adminpanel
+
+
+&nbsp;
+&nbsp;   
+&nbsp;
+
+
+### Admin allowed / able to upload files, (MULTER and FS) such as images when creating new dishes. and see the temp picture in the adminpanel
+
+		https://devcenter.heroku.com/articles/cloudinary#using-with-node-js
+		
+				Here’s a sample code that uses the Express framework for displaying an upload form, uploading an image to Cloudinary using streams and displaying a transformed version of the uploaded image:
+
+				var express = require('express');
+				var fs = require('fs');
+
+				var cloudinary = require('cloudinary');
+
+				var app = express.createServer(express.logger());
+				app.use(express.bodyParser())
+
+				app.get('/', function(req, res) {
+				  res.send('<form method="post" enctype="multipart/form-data">'
+				    + '<p>Public ID: <input type="text" name="title"/></p>'
+				    + '<p>Image: <input type="file" name="image"/></p>'
+				    + '<p><input type="submit" value="Upload"/></p>'
+				    + '</form>');
+				});
+
+
+&nbsp;
+&nbsp;   
+&nbsp;
+
+### Admin allowed see and flag dishes as featured or not. and see it in the adminpanel**
+
+
+&nbsp;
+&nbsp;   
+&nbsp; 
+### Admin can see and flag leaders as featured for the frontpage and see it in the adminpanel**
+
+
+&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;
 &nbsp;    
 &nbsp;
 &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+					
+## Login and security 
+________________________________________
+
+					      https://medium.com/react-native-training/securing-your-react-native-app-using-keychain-6de10850d203
+
+					      https://medium.com/react-native-training/integrate-touch-id-and-face-id-to-your-react-native-app-707e7db17edc
+					      https://blog.theodo.com/2018/04/add-touch-id-react-native-app/
+
+					      http://randycoulman.com/blog/2017/07/25/secure-storage-in-react-native/
+
+					      https://www.freecodecamp.org/news/how-to-implement-secure-biometric-authentication-on-mobile-devices-4dc518558c5c/
+					      https://medium.com/@talut/react-native-secure-storage-rn-secure-storage-f7c84dbcb811
+					      https://github.com/jarden-digital/react-native-pincode
+
+					      https://blog.usejournal.com/persisting-user-authentication-in-a-react-native-app-778e028ac816
+
+					      https://blog.benestudio.co/social-login-with-react-native-6157ba3cff1c
+
+					     Security and Authentication
+
+
+					 ## Expo 
+						  https://medium.com/mesan-digital/how-to-build-a-news-app-with-react-native-app-part-1-e78d7d3c55b3
+						  https://hackernoon.com/understanding-expo-for-react-native-7bf23054bbcd
+
+
+					 &nbsp;
+					 &nbsp;
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;   
+
+## GraphQL and Apollo
+________________________________________
+
+	GraphQL + Apollo
+
+	https://dzone.com/articles/integrate-a-react-native-app-with-graphql-and-apol
+
+	https://www.sitepoint.com/graphql-react-native-getting-started/
+
+	https://github.com/contentstack/contentstack-reactnative-graphql-example
+
+	https://blog.bitsrc.io/migrating-existing-rest-apis-to-graphql-2c5de3db647d
+
+	https://medium.com/@weblab_tech/graphql-everything-you-need-to-know-58756ff253d8
+
+
+
+
+## UnitTesting within React Native.
+
+      https://www.testim.io/blog/react-native-unit-testing/
+      
+      
+      
+      
+## CI/CD + VsCodeAPPCenter + Fastlane 
+________________________________________
+
+		https://blog.theodo.com/2019/04/react-native-deployment-pipeline/
+
+		https://learnprogramming.academy/courses/master-ci-cd-for-react-native/
+
+
+		https://medium.com/react-native-training/setup-continuous-integration-with-react-native-50ad2f6145f4
+
+
+		https://visualstudio.microsoft.com/app-center/
+
+
+		https://appcenter.ms/users/marcowurtz-hotmail.com/apps/RestaurantApp
+
+
 &nbsp;
 &nbsp;
   
