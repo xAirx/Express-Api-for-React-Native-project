@@ -40,38 +40,7 @@
 &nbsp;
 &nbsp;
 
-# Backend Feature Pipeline :   
 
-		
-		
-
-
-					Understanding body parser
-
-					Understanding EXPRESS  middleware
-
-					Understanding CORS AND PREFLIGHT
-
-					What is a URI?
-
-					Understanding types of webservices
-
-
-&nbsp;
-&nbsp;
-&nbsp;
-
-NOTES FOR SECTION WITHIN ONENOTE "READUP BEFORE STARTING AGAIN"
-&nbsp;    
-
-https://onedrive.live.com/view.aspx?resid=897203C158E872F%2184124&id=documents&wd=target%28React%20Native%2FTODO%20Dev%20Notes%20for%20Github%20Repo%20%28REWRITE%5C%29.one%7C2B1254FB-A7BE-A14A-9A6F-B53524411287%2FHow%20to%20add%20a%20dish%20and%20add%20a%20leader%20and%7C1DDCCE69-C76B-2F43-AEE4-41C16253C079%2F%29
-
-onenote:https://d.docs.live.net/0897203c158e872f/Documents/marcos%20notesbog/React%20Native/TODO%20Dev%20Notes%20for%20Github%20Repo%20(REWRITE).one#How to add a dish and add a leader and&section-id={2B1254FB-A7BE-A14A-9A6F-B53524411287}&page-id={1DDCCE69-C76B-2F43-AEE4-41C16253C079}&end
-
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
 
 ## FileStorage with Cloudinary / Fileuploading with multer - Under development
 
@@ -269,7 +238,6 @@ onenote:https://d.docs.live.net/0897203c158e872f/Documents/marcos%20notesbog/Rea
 	https://www.youtube.com/watch?v=sakQbeRjgwg&list=PL4cUxeGkcC9jdm7QX143aMLAqyM-jTZ2x
 
 
-
 &nbsp;
 &nbsp;
 &nbsp;
@@ -368,7 +336,6 @@ ________________________________________
 
 ### #2 TODO ------> Comment functionality for users ** POST,GET,DELETE, ?? PUT ??
 			
-
 
 	#Task 1 Mongoose populate GET request with dish data and user data.
 	
@@ -570,30 +537,8 @@ ________________________________________
 &nbsp;
 &nbsp;   
 
-## GraphQL and Apollo
-________________________________________
-
-	GraphQL + Apollo
-
-	https://dzone.com/articles/integrate-a-react-native-app-with-graphql-and-apol
-
-	https://www.sitepoint.com/graphql-react-native-getting-started/
-
-	https://github.com/contentstack/contentstack-reactnative-graphql-example
-
-	https://blog.bitsrc.io/migrating-existing-rest-apis-to-graphql-2c5de3db647d
-
-	https://medium.com/@weblab_tech/graphql-everything-you-need-to-know-58756ff253d8
 
 
-
-
-## UnitTesting within React Native.
-
-      https://www.testim.io/blog/react-native-unit-testing/
-      
-      
-      
       
 ## CI/CD + VsCodeAPPCenter + Fastlane 
 ________________________________________
