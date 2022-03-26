@@ -1,4 +1,4 @@
-# Backend-for-React-Native-project 
+# Express-Api-for-React-Native-project 
   ## Backend and API + Authentication.
   
   ## Hosted Project: https://expressproject.herokuapp.com/
